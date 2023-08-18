@@ -1,0 +1,45 @@
+export const styles = {
+  sectionRow: {
+    display: "flex",
+  },
+  sectionRowReverse: {
+    display: "flex",
+    flexDirection: "row-reverse",
+  },
+  sectionRowContent: {
+    p: "$10",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "whitesmoke",
+    paddingTop: "38px",
+  },
+  sectionRowTitle: {
+    mx: "$7",
+    color: "#363C9A",
+    fontStyle: "normal",
+    fontWeight: "700",
+    fontSize: "18px",
+    lineHeight: "19px",
+    letterSpacing: "0.01em",
+    marginTop: 20,
+  },
+  sectionRowDesc: {
+    color: "#828282",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "16px",
+    lineHeight: 1.8,
+    maxWidth: "420px",
+    mx: "$7",
+    marginBottom: "20px",
+  },
+  sectionRowAction: {
+    width: "fit-content",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    p: "10px 10px 10px 10px",
+    backgroundColor: "whitesmoke",
+  },
+};
