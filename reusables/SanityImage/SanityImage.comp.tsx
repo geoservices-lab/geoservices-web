@@ -9,6 +9,7 @@ const configuredSanityClient = createClient({
 });
 
 const SanityImage = ({ image, style }: any) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const imageProps = image && useNextSanityImage(configuredSanityClient, image);
 
     return (

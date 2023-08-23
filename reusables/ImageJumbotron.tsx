@@ -4,6 +4,7 @@ import { Image, Text } from "@nextui-org/react";
 import { API_BASE_URL } from "../pageConstant/general";
 import {createClient} from "@sanity/client";
 import {useNextSanityImage} from "next-sanity-image";
+import {useRouter} from "next/router";
 
 export interface ImageJumbotronProps {
   imageSrc: string;
@@ -24,7 +25,9 @@ const ImageJumbotron = ({
   objectPosition = "0",
   text = "",
 }: ImageJumbotronProps) => {
-    const imageProps = useNextSanityImage(configuredSanityClient, imageSrc);
+    const router = useRouter();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const imageProps = router.asPath.includes('geolab/') && imageSrc && useNextSanityImage(configuredSanityClient, imageSrc);
 
   return (
     <Box css={{ width: "100%", position: "relative" }}>
