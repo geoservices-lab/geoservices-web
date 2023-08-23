@@ -9,6 +9,7 @@ import Footer from "../../../../module/BasicLayout/Footer";
 import Modal from "../../../../reusables/Modal/Modal";
 import BreadCrumbLine from "../../../../reusables/BreadcrumbLine";
 import { API_KEY, API_BASE_URL } from "../../../../pageConstant/general";
+import SanityImageComp from "../../../../reusables/SanityImage/SanityImage.comp";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -33,19 +34,19 @@ const breadcrumbData = (labTitle: string) => [
 const GeolabSub = () => {
   const router = useRouter();
   const [product, setProductData] = useState([]);
+  const [otherDivision, setOtherDivision] = useState([]);
   const [openTab, chooseTab] = useState(1);
   const [isModalOpen, setModalStatus] = useState(false);
   const [modalProps, setModalProps] = useState({});
 
-  const callAPI = async (setProductData) => {
+  const callAPI = async (setProductData: Function) => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/geolabs?populate=deep`, {
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-        },
-      });
+      const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "geolab"]`);
       const data = await res.json();
-      setProductData(data);
+      const currentPage = data.result.filter((item: any) => item.slug === router.query.id);
+      const otherDivision = data.result.filter((item: any) => item.slug !== router.query.id);
+      setProductData(currentPage[0]);
+      setOtherDivision(otherDivision);
     } catch (err) {
       console.log(err);
     }
@@ -55,17 +56,10 @@ const GeolabSub = () => {
     callAPI(setProductData);
   }, []);
 
-  const allData = product.data && product.data;
   const data = product.data && product.data[router.query.id].attributes;
   const images = data && data.products;
   const banner = data && data.Banner && data.Banner.data.attributes.url;
-  const labTitle = data && data.Laboratory;
-  const products = data && data.products;
-  console.log(allData);
-
-  const handleTab = (index) => () => {
-    chooseTab(index);
-  };
+  console.log(product);
 
   const openProductDetail = (props) => () => {
     setModalStatus(true);
@@ -77,11 +71,11 @@ const GeolabSub = () => {
       <Modal isModalOpen={isModalOpen} {...modalProps} />
       <Header />
       <ImageJumbotron
-        imageSrc={`${API_BASE_URL}${banner}`}
-        text={labTitle}
+        imageSrc={product && product.banner}
+        text={product.division}
       />
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
-        <BreadCrumbLine items={breadcrumbData(labTitle)} />
+        <BreadCrumbLine items={breadcrumbData(product.division)} />
         <h2 style={{ marginTop: 40 }}>Highlighted Products</h2>
         <Box
           css={{
@@ -154,7 +148,7 @@ const GeolabSub = () => {
                           color: "#828282",
                       }}
                   >
-                      {data && data.Laboratory}
+                      {product && product.division}
                   </Text>
                   <Text
                       css={{
@@ -164,7 +158,7 @@ const GeolabSub = () => {
                           color: "#828282",
                       }}
                   >
-                      Industry : {data && data.Industry}
+                      Industry : Oil & Gas
                   </Text>
                   <Text
                       css={{
@@ -174,7 +168,27 @@ const GeolabSub = () => {
                           color: "#828282",
                       }}
                   >
-                      Location : {data && data.Location}
+                      PIC : {product && product.pic}
+                  </Text>
+                  <Text
+                      css={{
+                          fontWeight: "400",
+                          fontSize: "16px",
+                          lineHeight: "30px",
+                          color: "#828282",
+                      }}
+                  >
+                      E-mail : {product && product.pic_email}
+                  </Text>
+                  <Text
+                      css={{
+                          fontWeight: "400",
+                          fontSize: "16px",
+                          lineHeight: "30px",
+                          color: "#828282",
+                      }}
+                  >
+                      Location : {product && product.address}
                   </Text>
               </Box>
           </Box>
@@ -199,18 +213,40 @@ const GeolabSub = () => {
                       marginTop: 0,
                       paddingTop: 0,
                   }}>
-                      PRODUCT DESCRIPTION
+                      PRODUCTS
                   </h3>
-                  <Text
-                      css={{
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          lineHeight: "30px",
-                          color: "#828282",
-                          whiteSpace: "pre-line",
-                      }}
-                      dangerouslySetInnerHTML={{ __html: data && data.Description }}
-                  ></Text>
+                  {product.products && product.products.map((item, index) => {
+                      return (
+                          <div
+                              key={index}
+                              style={{
+                              marginBottom: 20,
+                          }}>
+                              <Text
+                                  css={{
+                                      fontWeight: "600",
+                                      fontSize: "20px",
+                                      color: "#828282",
+                                      whiteSpace: "pre-line",
+                                      marginBottom: 7,
+                                  }}
+                              >
+                                  {index + 1}. {item.product}
+                              </Text>
+                              <Text
+                                  css={{
+                                      fontWeight: "400",
+                                      fontSize: "14px",
+                                      lineHeight: "30px",
+                                      color: "#828282",
+                                      whiteSpace: "pre-line",
+                                  }}
+                              >
+                                  {item.description}
+                              </Text>
+                          </div>
+                      )
+                  })}
               </Box>
           </Box>
         <h2>Other Geolab Laboratories</h2>
@@ -221,30 +257,26 @@ const GeolabSub = () => {
             display: "flex",
           }}
         >
-          {allData &&
-            allData.slice(0, 6).map(
+          {otherDivision && otherDivision.map(
                 (item, index) =>
                   index.toString() !== router.query.id && <div style={{
                       marginRight: 20,
                   }}>
-                    <Link key={index + 'lab'} href={'/oil_and_gas/geolab/' + index}>
+                    <Link key={index + 'lab'} href={'/oil_and_gas/geolab/' + item.slug}>
                       <div>
-                        <Image
-                          src={API_BASE_URL + item.attributes.Banner.data.attributes.url}
-                          width={222}
-                          height={124}
-                          objectFit={"cover"}
-                          style={{
+                        <SanityImageComp image={item.banner} style={{
+                            width: 300,
+                            height: 160,
+                            objectFit: 'cover',
                             borderRadius: 12,
-                          }}
-                        />
+                        }} />
                         <div style={{
                           fontSize: 15,
                           marginTop: 12,
                           maxWidth: 240,
                           lineHeight: 1.5,
                         }}>
-                          {item.attributes.Laboratory}
+                          {item.division}
                         </div>
                       </div>
                     </Link>

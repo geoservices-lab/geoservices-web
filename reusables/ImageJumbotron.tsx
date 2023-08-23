@@ -2,6 +2,8 @@ import React from "react";
 import Box from "reusables/Box";
 import { Image, Text } from "@nextui-org/react";
 import { API_BASE_URL } from "../pageConstant/general";
+import {createClient} from "@sanity/client";
+import {useNextSanityImage} from "next-sanity-image";
 
 export interface ImageJumbotronProps {
   imageSrc: string;
@@ -10,12 +12,20 @@ export interface ImageJumbotronProps {
   text: string;
 }
 
+const configuredSanityClient = createClient({
+    projectId: "miib670e",
+    dataset: "production",
+    useCdn: true,
+});
+
 const ImageJumbotron = ({
   imageSrc,
   height = "391px",
   objectPosition = "0",
   text = "",
 }: ImageJumbotronProps) => {
+    const imageProps = useNextSanityImage(configuredSanityClient, imageSrc);
+
   return (
     <Box css={{ width: "100%", position: "relative" }}>
         <img
@@ -29,7 +39,7 @@ const ImageJumbotron = ({
             }}
         />
       <Image
-        src={imageSrc}
+        src={imageProps && imageProps.src}
         objectFit="cover"
         height={height}
         containerCss={{

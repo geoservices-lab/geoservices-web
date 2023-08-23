@@ -254,17 +254,16 @@ export const LaboratorySubMenu = () => {
 
     const callAPI = async (setProductData) => {
         try {
-            const res = await fetch(`${API_BASE_URL}/api/geolabs?populate=deep`, {
-                headers: {
-                    Authorization: `Bearer ${API_KEY}`,
-                },
-            });
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "geolab"]`);
             const data = await res.json();
-            const mappedData = data.data.map((item, index) => {
+            console.log(data);
+
+            const mappedData = data.result.map((item: any) => {
                 return ({
-                    label: item.attributes.Laboratory,
-                    name: item.attributes.Laboratory,
-                    href: `/oil_and_gas/geolab/${index}`
+                    label: item.division,
+                    name: item.division,
+                    href: `/oil_and_gas/geolab/${item.slug}`,
+                    isActive: item.is_active,
                 })
             });
             setProductData(mappedData);
@@ -309,7 +308,7 @@ export const LaboratorySubMenu = () => {
                     }}
                 >
                     {product?.map((option) => (
-                        <Box
+                        option?.isActive && <Box
                             key={option?.name}
                             css={{
                                 mx: "10px",

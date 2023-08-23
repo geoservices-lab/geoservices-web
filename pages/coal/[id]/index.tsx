@@ -139,8 +139,9 @@ const renderMap = (selectedLab: any, setSelectedLab: Function) => (
           </InfoWindow>
         )}
         <div>
-          {labLocation.map((item) => (
+          {labLocation.map((item, index) => (
             <Marker
+                key={index}
               position={{
                 lat: item.lat,
                 lng: item.lng,
