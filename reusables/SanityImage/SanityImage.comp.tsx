@@ -9,14 +9,21 @@ const configuredSanityClient = createClient({
 });
 
 const SanityImage = ({ image, style }: any) => {
-    const imageProps = useNextSanityImage(configuredSanityClient, image);
+    const imageProps = image && useNextSanityImage(configuredSanityClient, image);
+
     return (
-        <img src={imageProps ? imageProps.src : ''} width={200} height={120} style={{
-            width: '100%',
-            objectFit: 'contain',
-            marginTop: 40,
-            ...style,
-        }} />
+        <img
+            alt={imageProps.src}
+            src={imageProps ? imageProps.src : ''}
+            width={200}
+            height={120}
+            style={{
+                width: '100%',
+                objectFit: 'contain',
+                marginTop: 40,
+                ...style,
+            }}
+        />
     );
 };
 

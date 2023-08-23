@@ -32,8 +32,14 @@ const breadcrumbData = (labTitle: string) => [
 ];
 
 const GeolabSub = () => {
+    const initialValue = {
+        division: '',
+        pic: '',
+        pic_email: '',
+    };
+
   const router = useRouter();
-  const [product, setProductData] = useState([]);
+  const [product, setProductData] = useState(initialValue);
   const [otherDivision, setOtherDivision] = useState([]);
   const [openTab, chooseTab] = useState(1);
   const [isModalOpen, setModalStatus] = useState(false);

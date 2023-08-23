@@ -115,9 +115,7 @@ const Software = () => {
   }, []);
 
   const renderPrincipal = () => (
-      principals?.map((item) => {
-          console.log(item);
-
+      principals && principals?.map((item: any) => {
           return (
               <Card key={item?.principal} variant="bordered" css={{ borderRadius: 7 }}>
                   <div>
@@ -129,7 +127,7 @@ const Software = () => {
                               gridTemplateRows: "1fr auto",
                           }}
                       >
-                          <SanityImageComp image={item.logo} />
+                          {item.logo && <SanityImageComp image={item.logo} />}
                           <h3 style={{
                               textAlign: 'center',
                               lineHeight: 1.6,
