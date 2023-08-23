@@ -17,7 +17,7 @@ const Home = () => {
   const callAPI = async () => {
     try {
       const res = await fetch(
-        `https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[2]`
+          `https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "home"]`
       );
       const data = await res.json();
       setData(data.result);
@@ -34,7 +34,7 @@ const Home = () => {
     <>
       <EnergyEvolutionSection
         configuredSanityClient={configuredSanityClient}
-        data={data}
+        data={data[0]}
       />
       <OurSpecialtySection />
       <LatestUpdateSection />

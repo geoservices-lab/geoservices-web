@@ -2,10 +2,8 @@ import React, {useEffect, useState} from "react";
 import Box from "reusables/Box";
 import { Card, Image, Text, Col, Row } from "@nextui-org/react";
 import TextLink from "reusables/TextLink";
-import { companies, composeEmailLink, products } from "./constants";
+import { composeEmailLink, products } from "./constants";
 import Slider from "react-slick";
-import {useNextSanityImage} from "next-sanity-image";
-import {configuredSanityClient} from '../../utils/image';
 import SanityImageComp from "../../reusables/SanityImage/SanityImage.comp";
 
 const openLightbox = (setLightBoxStatus: Function, setContent: Function, image: string, email?: any, desc: string) => () => {

@@ -11,14 +11,10 @@ import Box from "reusables/Box";
 import { useNextSanityImage } from "next-sanity-image";
 
 const EnergyEvolutionSection = ({ configuredSanityClient, data }: any) => {
-    console.log(data);
-
-  const imageProps = useNextSanityImage(configuredSanityClient, data.image);
+  const imageProps = data && useNextSanityImage(configuredSanityClient, data.image);
   const imgCart = "/assets/cart-vector.png";
   const imgResearch = "/assets/research-vector.png";
   const imgSearch = "/assets/search-vector.png";
-
-  console.log(imageProps);
 
   return (
     <>
@@ -62,7 +58,7 @@ const EnergyEvolutionSection = ({ configuredSanityClient, data }: any) => {
                 marginTop: "7px",
               }}
             >
-                {data.title}
+                {data && data.title}
             </Text>
           </Row>
           <Row
@@ -85,7 +81,7 @@ const EnergyEvolutionSection = ({ configuredSanityClient, data }: any) => {
                 color: "$black",
               }}
             >
-                {data.description}
+                {data && data.description}
             </Text>
           </Row>
         </Container>
