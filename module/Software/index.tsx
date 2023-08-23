@@ -4,6 +4,9 @@ import { Card, Image, Text, Col, Row } from "@nextui-org/react";
 import TextLink from "reusables/TextLink";
 import { companies, composeEmailLink, products } from "./constants";
 import Slider from "react-slick";
+import {useNextSanityImage} from "next-sanity-image";
+import {configuredSanityClient} from '../../utils/image';
+import SanityImageComp from "../../reusables/SanityImage/SanityImage.comp";
 
 const openLightbox = (setLightBoxStatus: Function, setContent: Function, image: string, email?: any, desc: string) => () => {
     setContent({
@@ -83,17 +86,13 @@ const renderLightbox = (
   </div>
 );
 
-const apiToken = '2ec67e19c8e68e464b98e935cbc43d59ea77c11d983120eb3d234d097cd7aff18771692acaa390be0f09bae1a134c6205553c888c90a3a69687edc730d9e92106283f875b54b9530a41124eec5e7fa6410ba4685b12d5b879f2de1f4c87b280d1cf9f979b3b87a7f76fb8bed79acf4d8bf3ec2546666b60cd5c8c44619a79ad4';
-const callAPI = async (setProductData) => {
+const callAPI = async (setPrincipal: Function) => {
     try {
-        const res = await fetch(`http://localhost:1337/api/softwares?populate=*`, {
-            headers: {
-                Authorization: `Bearer ${apiToken}`
-            }
-        });
+        const res = await fetch(
+            `https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "software"]`
+        );
         const data = await res.json();
-        console.log(data, '1');
-        setProductData(data);
+        setPrincipal(data.result);
     } catch (err) {
         console.log(err);
     }
@@ -111,11 +110,69 @@ const Software = () => {
 
   const [isActive, setLightBoxStatus] = useState(false);
   const [content, setContent] = useState({});
-  const [productData, setProductData] = useState([]);
+  const [principals, setPrincipal] = useState([]);
 
   useEffect(() => {
-      callAPI(setProductData);
+      callAPI(setPrincipal);
   }, []);
+
+  const renderPrincipal = () => (
+      principals?.map((item) => {
+          console.log(item);
+
+          return (
+              <Card key={item?.principal} variant="bordered" css={{ borderRadius: 7 }}>
+                  <div>
+                      <Box
+                          css={{
+                              height: "100%",
+                              display: "grid",
+                              gridAutoColumns: "1fr",
+                              gridTemplateRows: "1fr auto",
+                          }}
+                      >
+                          <SanityImageComp image={item.logo} />
+                          <h3 style={{
+                              textAlign: 'center',
+                              lineHeight: 1.6,
+                              paddingTop: 12,
+                          }}>
+                              {item.principal}
+                          </h3>
+                          <div style={{
+                              textAlign: 'left',
+                              marginTop: 10,
+                              marginBottom: 40,
+                              lineHeight: 1.5,
+                              fontSize: 15,
+                              paddingLeft: 20,
+                              paddingRight: 20,
+                          }}>
+                              {item.description}
+                          </div>
+                          <Box
+                              css={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  padding: 20,
+                              }}
+                          >
+                              <TextLink href={composeEmailLink(item?.filler_email)} style={{
+                                  color: '#505AE5'
+                              }}>
+                                  Request Quotation
+                              </TextLink>
+                              <a onClick={openLightbox(setLightBoxStatus, setContent, item.logo, item.filler_email)} style={{
+                                  color: '#505AE5',
+                                  cursor: 'pointer'
+                              }}>View Details</a>
+                          </Box>
+                      </Box>
+                  </div>
+              </Card>
+          )
+      })
+  );
 
   return (
       <>
@@ -225,68 +282,21 @@ const Software = () => {
                       justifyItems: "center",
                   }}
               >
-                  {companies?.map((item) => (
-                      <Card key={item?.name} variant="bordered" css={{ borderRadius: 7 }}>
-                          <Card.Body>
-                              <Box
-                                  css={{
-                                      height: "100%",
-                                      display: "grid",
-                                      gridAutoColumns: "1fr",
-                                      gridTemplateRows: "1fr auto",
-                                  }}
-                              >
-                                  <Box css={{ display: "flex", alignItems: "center" }}>
-                                      <Image src={item?.logo} style={{ height: 120 }} />
-                                  </Box>
-                                  <div style={{
-                                      textAlign: 'center',
-                                      marginTop: 20,
-                                      marginBottom: 40,
-                                      lineHeight: 1.5,
-                                      fontSize: 15,
-                                      paddingLeft: 10,
-                                      paddingRight: 10
-                                  }}>
-                                      {item.desc}
-                                  </div>
-                                  <Box
-                                      css={{
-                                          display: "flex",
-                                          justifyContent: "space-between",
-                                          mx: "$5",
-                                          height: "100%",
-                                          alignItems: "end",
-                                      }}
-                                  >
-                                      <TextLink href={composeEmailLink(item?.email)} style={{
-                                          color: '#505AE5'
-                                      }}>
-                                          Request Quotation
-                                      </TextLink>
-                                      <a onClick={openLightbox(setLightBoxStatus, setContent, item.logo, item.email)} style={{
-                                          color: '#505AE5',
-                                          cursor: 'pointer'
-                                      }}>View Details</a>
-                                  </Box>
-                              </Box>
-                          </Card.Body>
-                      </Card>
-                  ))}
+                  {renderPrincipal()}
               </Box>
 
               <div>
-                  <Text
-                      css={{
-                          fontWeight: "700",
-                          fontSize: "20px",
-                          lineHeight: "24px",
-                          color: "$black",
-                          marginTop: 80,
-                      }}
-                  >
-                      Other Products
-                  </Text>
+                  {/*<Text*/}
+                  {/*    css={{*/}
+                  {/*        fontWeight: "700",*/}
+                  {/*        fontSize: "20px",*/}
+                  {/*        lineHeight: "24px",*/}
+                  {/*        color: "$black",*/}
+                  {/*        marginTop: 80,*/}
+                  {/*    }}*/}
+                  {/*>*/}
+                  {/*    Other Products*/}
+                  {/*</Text>*/}
               </div>
               <Box
                   css={{
@@ -299,46 +309,57 @@ const Software = () => {
                       paddingBottom: 60
                   }}
               >
-                  {productData.data && productData.data.map((item) => {
-                      const imageUrl = `http://localhost:1337${item.attributes.image.data.attributes.url}`;
-                      const contentDesc = item.attributes.description;
+                  {/*{principals && principals.map((item) => {*/}
+                  {/*    // const imageUrl = `http://localhost:1337${item.attributes.image.data.attributes.url}`;*/}
+                  {/*    // const contentDesc = item.attributes.description;*/}
+                  {/*    console.log(item);*/}
 
-                      return(
-                          <div onClick={openLightbox(setLightBoxStatus, setContent, imageUrl, '', contentDesc)}>
-                              <Card
-                                  key={item.attributes.title}
-                                  variant="bordered"
-                                  css={{ borderRadius: 0, borderWidth: 0 }}
-                              >
-                                  <Card.Body>
-                                      <Box
-                                          css={{
-                                              height: "100%",
-                                              display: "grid",
-                                              gridAutoColumns: "1fr",
-                                              gridTemplateRows: "1fr auto",
-                                          }}
-                                      >
-                                          <Box css={{ display: "flex", alignItems: "center" }}>
-                                              <Image src={imageUrl} style={{ height: 200 }}/>
-                                          </Box>
-                                          <Box
-                                              css={{
-                                                  marginTop: 12,
-                                                  textAlign: 'center'
-                                              }}
-                                          >
-                                              {item.attributes.title} by {item.attributes.principal}
-                                              <div>
-                                                  {item.attributes.location && item.attributes.location}
-                                              </div>
-                                          </Box>
-                                      </Box>
-                                  </Card.Body>
-                              </Card>
-                          </div>
-                      )
-                  })}
+                  {/*    return(*/}
+                  {/*        <div>*/}
+                  {/*            <Card*/}
+                  {/*                key={item.principal}*/}
+                  {/*                variant="bordered"*/}
+                  {/*                css={{ borderRadius: 0, borderWidth: 0 }}*/}
+                  {/*            >*/}
+                  {/*                <Card.Body>*/}
+                  {/*                    <Box*/}
+                  {/*                        css={{*/}
+                  {/*                            height: "100%",*/}
+                  {/*                            display: "grid",*/}
+                  {/*                            gridAutoColumns: "1fr",*/}
+                  {/*                            gridTemplateRows: "1fr auto",*/}
+                  {/*                        }}*/}
+                  {/*                    >*/}
+                  {/*                        /!*<Box css={{ display: "flex", alignItems: "center" }}>*!/*/}
+                  {/*                        /!*    <Image src={imageUrl} style={{ height: 200 }}/>*!/*/}
+                  {/*                        /!*</Box>*!/*/}
+                  {/*                        <Box*/}
+                  {/*                            css={{*/}
+                  {/*                                marginTop: 12,*/}
+                  {/*                                textAlign: 'center'*/}
+                  {/*                            }}*/}
+                  {/*                        >*/}
+                  {/*                            {item.principal} by {item.principal}*/}
+                  {/*                            /!*<div>*!/*/}
+                  {/*                            /!*    {item.attributes.location && item.attributes.location}*!/*/}
+                  {/*                            /!*</div>*!/*/}
+                  {/*                        </Box>                                 /!*<Box*/}
+                  {/*                        /!*    css={{*!/*/}
+                  {/*                        /!*        marginTop: 12,*!/*/}
+                  {/*                        /!*        textAlign: 'center'*!/*/}
+                  {/*                        /!*    }}*!/*/}
+                  {/*                        /!*>*!/*/}
+                  {/*                        /!*    {item.principal} by {item.attributes.principal}*!/*/}
+                  {/*                        /!*    <div>*!/*/}
+                  {/*                        /!*        {item.attributes.location && item.attributes.location}*!/*/}
+                  {/*                        /!*    </div>*!/*/}
+                  {/*                        /!*</Box>*!/*/}
+                  {/*                    </Box>*/}
+                  {/*                </Card.Body>*/}
+                  {/*            </Card>*/}
+                  {/*        </div>*/}
+                  {/*    )*/}
+                  {/*})}*/}
               </Box>
 
               {/* Card #3 */}

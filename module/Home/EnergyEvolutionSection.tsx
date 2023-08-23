@@ -12,6 +12,7 @@ import { useNextSanityImage } from "next-sanity-image";
 
 const EnergyEvolutionSection = ({ configuredSanityClient, data }: any) => {
     console.log(data);
+
   const imageProps = useNextSanityImage(configuredSanityClient, data.image);
   const imgCart = "/assets/cart-vector.png";
   const imgResearch = "/assets/research-vector.png";
