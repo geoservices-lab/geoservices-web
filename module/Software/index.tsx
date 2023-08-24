@@ -58,10 +58,11 @@ const renderLightbox = (
           }}>
               x
           </button>
-          {content.image && <img src={content.image} style={{ width: 400 }}/>}
+          {content.image && <SanityImageComp image={content.image} />}
           <div style={{
               marginTop: 20,
-              color: 'gray'
+              color: 'gray',
+              lineHeight: 1.6
           }}>
               {content.desc}
           </div>
@@ -138,11 +139,14 @@ const Software = () => {
                           <div style={{
                               textAlign: 'left',
                               marginTop: 10,
-                              marginBottom: 40,
+                              marginBottom: 20,
                               lineHeight: 1.5,
                               fontSize: 15,
                               paddingLeft: 20,
                               paddingRight: 20,
+                              textOverflow: 'ellipsis',
+                              overflow: 'scroll',
+                              maxHeight: 140
                           }}>
                               {item.description}
                           </div>
@@ -158,7 +162,7 @@ const Software = () => {
                               }}>
                                   Request Quotation
                               </TextLink>
-                              <a onClick={openLightbox(setLightBoxStatus, setContent, item.logo, item.filler_email)} style={{
+                              <a onClick={openLightbox(setLightBoxStatus, setContent, item.logo, item.filler_email, item.description)} style={{
                                   color: '#505AE5',
                                   cursor: 'pointer'
                               }}>View Details</a>
