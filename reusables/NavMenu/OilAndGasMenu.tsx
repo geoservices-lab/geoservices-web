@@ -74,6 +74,9 @@ export const MainMenu = ({ onChange, selected }: NavMainMenuProps) => {
 
 export const DefaultSubMenu = () => {
   const image1 = "/assets/bg-personlab1.png";
+    const exploration = "/assets/bg-coal2.png";
+    const laboratory = "/assets/bg-personlab2.png";
+    const service = "/assets/bg-offshore1.png";
 
   return (
     <Box
@@ -85,8 +88,8 @@ export const DefaultSubMenu = () => {
     >
       <Box css={{ mx: "20px" }}>
         <Image
-          src={image1}
-          objectFit="fill"
+          src={exploration}
+          objectFit="cover"
           height={250}
           containerCss={{
             borderRadius: "0",
@@ -108,14 +111,14 @@ export const DefaultSubMenu = () => {
               lineHeight: "22px",
             }}
           >
-            PVT Analysis
+            Exploration
           </Text>
           <BsArrowRight color="#EC1C24" />
         </Box>
       </Box>
       <Box css={{ mx: "20px" }}>
         <Image
-          src={image1}
+          src={laboratory}
           objectFit="fill"
           height={250}
           containerCss={{
@@ -138,15 +141,15 @@ export const DefaultSubMenu = () => {
               lineHeight: "22px",
             }}
           >
-            Geo Lab
+            Laboratory
           </Text>
           <BsArrowRight color="#EC1C24" />
         </Box>
       </Box>
       <Box css={{ mx: "20px" }}>
         <Image
-          src={image1}
-          objectFit="fill"
+          src={service}
+          objectFit="cover"
           height={250}
           containerCss={{
             borderRadius: "0",
@@ -168,7 +171,7 @@ export const DefaultSubMenu = () => {
               lineHeight: "22px",
             }}
           >
-            Geo Lab
+            Service
           </Text>
           <BsArrowRight color="#EC1C24" />
         </Box>
