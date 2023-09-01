@@ -226,7 +226,7 @@ export const TrainingSubMenu = () => {
                         lineHeight: "22px",
                     }}
                 >
-                    Exploration
+                    Latest Training
                 </Text>
             </Box>
 
