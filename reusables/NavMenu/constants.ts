@@ -16,10 +16,10 @@ export const options = [
     label: "Software",
     url: PAGES.SOFTWARE.url
   },
-  {
-    name: "wellAndServices",
-    label: "Well and Services",
-  },
+  // {
+  //   name: "wellAndServices",
+  //   label: "Well and Services",
+  // },
   {
     name: "training",
     label: "Training",

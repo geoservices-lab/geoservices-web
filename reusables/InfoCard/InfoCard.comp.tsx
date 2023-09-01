@@ -1,6 +1,5 @@
 import React from "react";
 import Box from "../Box";
-import {Text} from "@nextui-org/react";
 
 const InfoCard = ({ title, children }) => {
     return (

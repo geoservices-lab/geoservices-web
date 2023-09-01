@@ -1,15 +1,14 @@
-import { Image, Text, Container } from "@nextui-org/react";
+import { Text, Container } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Box from "reusables/Box";
 import { useRouter } from "next/router";
-import Header from "../../../../module/BasicLayout/Header";
-import ImageJumbotron from "../../../../reusables/ImageJumbotron";
-import Footer from "../../../../module/BasicLayout/Footer";
-import Modal from "../../../../reusables/Modal/Modal";
-import BreadCrumbLine from "../../../../reusables/BreadcrumbLine";
-import { API_KEY, API_BASE_URL } from "../../../../pageConstant/general";
-import SanityImageComp from "../../../../reusables/SanityImage/SanityImage.comp";
+import Header from "../../../module/BasicLayout/Header";
+import ImageJumbotron from "../../../reusables/ImageJumbotron";
+import Footer from "../../../module/BasicLayout/Footer";
+import Modal from "../../../reusables/Modal/Modal";
+import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
+import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -32,16 +31,9 @@ const breadcrumbData = (labTitle: string) => [
 ];
 
 const GeolabSub = () => {
-    const initialValue = {
-        division: '',
-        pic: '',
-        pic_email: '',
-    };
-
   const router = useRouter();
-  const [product, setProductData] = useState(initialValue);
+  const [product, setProductData] = useState();
   const [otherDivision, setOtherDivision] = useState([]);
-  const [openTab, chooseTab] = useState(1);
   const [isModalOpen, setModalStatus] = useState(false);
   const [modalProps, setModalProps] = useState({});
 
@@ -61,10 +53,6 @@ const GeolabSub = () => {
   useEffect(() => {
     callAPI(setProductData);
   }, []);
-
-  const data = product.data && product.data[router.query.id].attributes;
-  const images = data && data.products;
-  const banner = data && data.Banner && data.Banner.data.attributes.url;
   console.log(product);
 
   const openProductDetail = (props) => () => {
@@ -78,52 +66,10 @@ const GeolabSub = () => {
       <Header />
       <ImageJumbotron
         imageSrc={product && product.banner}
-        text={product.division}
+        text={product && product.division}
       />
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
-        <BreadCrumbLine items={breadcrumbData(product.division)} />
-        <h2 style={{ marginTop: 40 }}>Highlighted Products</h2>
-        <Box
-          css={{
-            marginTop: 30,
-            display: "flex",
-              flexWrap: "wrap"
-          }}
-        >
-          {images &&
-            images.map((item, index) => (
-              <div
-                key={index}
-                onClick={openProductDetail({
-                  title: item.title,
-                  desc: item.description,
-                  cover: API_BASE_URL + item.thumbnail.data.attributes.url,
-                  images: item.images.data,
-                })}
-                style={{ marginRight: 20, marginBottom: 40 }}
-              >
-                <Image
-                  src={API_BASE_URL + item.thumbnail.data.attributes.url}
-                  width={270}
-                  height={160}
-                  objectFit={"cover"}
-                  style={{
-                    borderRadius: 12,
-                      border: '1px solid gainsboro'
-                  }}
-                />
-                <div style={{
-                  fontSize: 15,
-                  marginTop: 12,
-                  maxWidth: 240,
-                  lineHeight: 1.5,
-                }}>
-                  {item.title}
-                </div>
-              </div>
-            ))}
-        </Box>
-
+        <BreadCrumbLine items={breadcrumbData(product && product.division)} />
           <Box
               css={{
                   marginTop: 40,
@@ -221,7 +167,7 @@ const GeolabSub = () => {
                   }}>
                       PRODUCTS
                   </h3>
-                  {product.products && product.products.map((item, index) => {
+                  {product && product.products && product.products.map((item, index) => {
                       return (
                           <div
                               key={index}
@@ -270,12 +216,12 @@ const GeolabSub = () => {
                   }}>
                     <Link key={index + 'lab'} href={'/oil_and_gas/geolab/' + item.slug}>
                       <div>
-                        <SanityImageComp image={item.banner} style={{
+                        {item.banner && <SanityImageComp image={item.banner} style={{
                             width: 300,
                             height: 160,
                             objectFit: 'cover',
                             borderRadius: 12,
-                        }} />
+                        }} />}
                         <div style={{
                           fontSize: 15,
                           marginTop: 12,

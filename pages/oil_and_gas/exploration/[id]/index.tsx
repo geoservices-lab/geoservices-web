@@ -11,6 +11,7 @@ import BreadCrumbLine from "../../../../reusables/BreadcrumbLine";
 import SanityImageComp from "../../../../reusables/SanityImage/SanityImage.comp";
 import { PortableText } from '@portabletext/react';
 import InfoCard from "../../../../reusables/InfoCard/InfoCard.comp";
+import InfoCardListItem from "../../../../reusables/InfoCardListItem/InfoCardListItem";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -33,14 +34,8 @@ const breadcrumbData = (labTitle: string) => [
 ];
 
 const ExplorationSub = () => {
-    const initialValue = {
-        division: '',
-        pic: '',
-        pic_email: '',
-    };
-
     const router = useRouter();
-    const [product, setProductData] = useState(initialValue);
+    const [product, setProductData] = useState();
     const [otherDivision, setOtherDivision] = useState([]);
     const [isModalOpen, setModalStatus] = useState(false);
     const [modalProps, setModalProps] = useState({});
@@ -62,9 +57,7 @@ const ExplorationSub = () => {
         callAPI(setProductData);
     }, []);
 
-    const data = product.data && product.data[router.query.id].attributes;
-    const images = data && data.products;
-    console.log(product);
+    console.log(product && product.contact);
 
     return (
         <>
@@ -72,25 +65,10 @@ const ExplorationSub = () => {
             <Header />
             <ImageJumbotron
                 imageSrc={product && product.banner}
-                text={product.service}
+                text={product && product.service}
             />
             <Container css={{ my: "10px", maxWidth: "1240px" }}>
-                <BreadCrumbLine items={breadcrumbData(product.service)} />
-                <InfoCard
-                    title={"GENERAL INFORMATION"}
-                    list={[
-                        {
-                            key: 'Service',
-                            value: product && product.service,
-                        },
-                        {
-                            key: 'Contact',
-                            type: 'collection',
-                            value: product && product.contact,
-                        },
-                    ]}
-                />
-
+                <BreadCrumbLine items={product && breadcrumbData(product.service)} />
                 <Box
                     css={{
                         marginTop: 40,
@@ -113,7 +91,7 @@ const ExplorationSub = () => {
                         }}>
                             SERVICES
                         </h3>
-                        {product.services && product.services.map((item, index) => {
+                        {product && product.services.map((item, index) => {
                             return (
                                 <div
                                     key={index}
@@ -145,8 +123,8 @@ const ExplorationSub = () => {
                         })}
                     </Box>
                 </Box>
-                {product.equipment_item && <InfoCard title={"EQUIPMENT"}>
-                    {product && product.equipment_item.map((item: any, index: number) => {
+                {product && product.equipment_item && <InfoCard title={"EQUIPMENT"}>
+                    {product.equipment_item.map((item: any, index: number) => {
                         return(
                             <li key={index} style={{
                                 lineHeight: 2,
@@ -157,6 +135,22 @@ const ExplorationSub = () => {
                         )
                     })}
                 </InfoCard>}
+                <InfoCard title={"CONTACTS"}>
+                    <div>
+                        {product && product.contact.map((item, index) => {
+                            return (
+                                <div style={{ marginBottom: 40 }}>
+                                    <h3 style={{ marginBottom: 12, color: 'grey' }}>{item.office}</h3>
+                                    <InfoCardListItem>{item.address}</InfoCardListItem>
+                                    <InfoCardListItem>Phone: {item.phones}</InfoCardListItem>
+                                    <InfoCardListItem>Fax: {item.fax}</InfoCardListItem>
+                                    <InfoCardListItem>E-mail: {item.email}</InfoCardListItem>
+                                    <InfoCardListItem>Contact Persons: {item.contact_persons.toString()}</InfoCardListItem>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </InfoCard>
                 <h2>Other Exploration Services</h2>
                 <Box
                     css={{
