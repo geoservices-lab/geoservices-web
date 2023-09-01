@@ -3,15 +3,15 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Box from "reusables/Box";
 import { useRouter } from "next/router";
-import Header from "../../../../module/BasicLayout/Header";
-import ImageJumbotron from "../../../../reusables/ImageJumbotron";
-import Footer from "../../../../module/BasicLayout/Footer";
-import Modal from "../../../../reusables/Modal/Modal";
-import BreadCrumbLine from "../../../../reusables/BreadcrumbLine";
-import SanityImageComp from "../../../../reusables/SanityImage/SanityImage.comp";
+import Header from "../../../module/BasicLayout/Header";
+import ImageJumbotron from "../../../reusables/ImageJumbotron";
+import Footer from "../../../module/BasicLayout/Footer";
+import Modal from "../../../reusables/Modal/Modal";
+import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
+import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
 import { PortableText } from '@portabletext/react';
-import InfoCard from "../../../../reusables/InfoCard/InfoCard.comp";
-import InfoCardListItem from "../../../../reusables/InfoCardListItem/InfoCardListItem";
+import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
+import InfoCardListItem from "../../../reusables/InfoCardListItem/InfoCardListItem";
 
 const breadcrumbData = (labTitle: string) => [
     {

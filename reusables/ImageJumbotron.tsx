@@ -27,7 +27,7 @@ const ImageJumbotron = ({
 }: ImageJumbotronProps) => {
     const router = useRouter();
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const imageProps = (router.asPath.includes('geolab') || router.asPath.includes('exploration')) && imageSrc && useNextSanityImage(configuredSanityClient, imageSrc);
+    const imageProps = (router.asPath.includes('training') || router.asPath.includes('geolab') || router.asPath.includes('software') || router.asPath.includes('exploration')) && imageSrc && useNextSanityImage(configuredSanityClient, imageSrc);
 
   return (
     <Box css={{ width: "100%", position: "relative" }}>

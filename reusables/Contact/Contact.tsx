@@ -7,11 +7,11 @@ const Contact = ({ email, address, contactPerson }: any) => {
       <InfoCard title={'CONTACT INFO'}>
     <div style={styles.contact}>
       <div style={styles.contactItem}>
-        <span style={styles.contactLabel}>Email</span>
+        <span style={styles.contactLabel}>E-mail</span>
         <span style={styles.contactValue}>{email}</span>
       </div>
       <div style={styles.contactItem}>
-        <span style={styles.contactLabel}>Alamat</span>
+        <span style={styles.contactLabel}>Address</span>
         <span style={styles.contactValue}>
          {address}
         </span>
