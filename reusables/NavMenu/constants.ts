@@ -9,17 +9,32 @@ export const options = [
   },
   {
     name: "laboratory",
-    label: "Geolab",
+    label: "Laboratory",
   },
   {
     name: "software",
     label: "Software",
     url: PAGES.SOFTWARE.url
   },
-  // {
-  //   name: "wellAndServices",
-  //   label: "Well and Services",
-  // },
+  {
+    name: "services",
+    label: "Services",
+  },
+  {
+    name: "training",
+    label: "Training",
+  },
+];
+
+export const optionsCoal = [
+  {
+    name: "exploration",
+    label: "Exploration",
+  },
+  {
+    name: "laboratory",
+    label: "Laboratory",
+  },
   {
     name: "training",
     label: "Training",

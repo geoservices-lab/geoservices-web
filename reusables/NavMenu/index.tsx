@@ -78,6 +78,7 @@ const Nav = ({ children, MainMenu, getSubMenu, ...rest }: NavProps) => {
             borderRadius: 0,
             width: "100%",
             maxWidth: "100%",
+            border: "none",
           }}
         >
           <NavMenu MainMenu={MainMenu} getSubMenu={getSubMenu} />

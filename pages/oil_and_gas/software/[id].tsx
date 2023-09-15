@@ -121,7 +121,7 @@ const SoftwareSub = () => {
                 </InfoCard>
                 <InfoCard title={"CONTACTS"}>
                     <div>
-                        {product && product.contact.map((item, index) => {
+                        {product && product.contact && product.contact.map((item, index) => {
                             return (
                                 <div key={index} style={{ marginBottom: 40 }}>
                                     <h3 style={{ marginBottom: 12, color: 'grey' }}>{item.office}</h3>

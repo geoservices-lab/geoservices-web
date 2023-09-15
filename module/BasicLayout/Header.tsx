@@ -9,6 +9,7 @@ import Dot from "reusables/Dot";
 import Box from "reusables/Box";
 import { Nav } from "reusables/NavMenu";
 import menu from "reusables/NavMenu/OilAndGasMenu";
+import coalMenu from "reusables/NavMenu/CoalMenu";
 
 const headerTextCSS = {
   paddingTop: 10,
@@ -167,26 +168,27 @@ const Header = () => {
                     Oil and Gas
                   </Text>
                 </Nav>
-
-                <TextLink
-                  textCSS={{
-                    ...headerTextCSS,
-                    ...mainMenu,
-                    cursor: "pointer",
-                    "&:hover": {
-                      color: "$gray700",
-                    },
-                    height: "100%",
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    borderColor: router.pathname.includes("coal")
-                      ? "#D3252C"
-                      : "transparent",
-                  }}
-                  href={"/coal"}
-                >
-                  Coal and Minerals
-                </TextLink>
+                  <Nav {...coalMenu}>
+                      <Text
+                          css={{
+                              ...headerTextCSS,
+                              ...mainMenu,
+                              cursor: "pointer",
+                              "&:hover": {
+                                  color: "$gray700",
+                              },
+                              top: 8,
+                              height: "100%",
+                          }}
+                          style={{
+                              borderColor: router.pathname.includes("coal")
+                                  ? "#D3252C"
+                                  : "transparent",
+                          }}
+                      >
+                          Coal and Minerals
+                      </Text>
+                  </Nav>
                 <TextLink
                   textCSS={{
                     ...headerTextCSS,
