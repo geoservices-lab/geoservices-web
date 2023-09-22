@@ -52,10 +52,42 @@ const news = [
       action: "Watch",
         url: "/news/pt-geoservices-ipa-2022-convention",
     },
-    
+
   ];
 
 const NewsUpdate = ({ category, title, action, url, image }:any) => {
+    const [pageData, setPageData] = useState();
+    const [contentData, setContentData] = useState();
+
+    const callPageApi = async () => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "news"]`);
+            const data = await res.json();
+            const currentPage = data.result.filter((item: any) => item.slug === 'training');
+            setPageData(currentPage[0]);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const callContentApi = async () => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
+            const data = await res.json();
+            const content = data && data.result;
+            setContentData(content);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    console.log(contentData && contentData);
+
+    useEffect(() => {
+        callPageApi();
+        callContentApi();
+    }, []);
+
     return (
         <>
             <div

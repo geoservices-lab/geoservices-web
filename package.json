@@ -21,6 +21,7 @@
     "autoprefixer": "^10.4.15",
     "babel-eslint": "^10.1.0",
     "cssnano": "^6.0.1",
+    "dayjs": "^1.11.10",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.0",
     "formatjs": "^0.1.1",
