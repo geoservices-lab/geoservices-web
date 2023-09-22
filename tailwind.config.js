@@ -8,13 +8,15 @@ module.exports = {
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
+        'node_modules/flowbite/**/*.{js,jsx,ts,tsx}',
+        'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
 
         // Or if using `src` directory:
         "./src/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
         screens: {
-            mobile: { max: '425px' },
+            mobile: { max: '768px' }, //425px
             tablet: { max: '640px', min: '426px' },
             mobileLaptop: {
                 max: '1024px',
@@ -36,7 +38,9 @@ module.exports = {
                 min: '1024px',
             },
             desktop: {
-                min: '1280px',
+                min:'768px',
+                max: '1931px',
+                //min:'1280px'
             },
             desktop4k: {
                 min: '1931px',
@@ -139,6 +143,9 @@ module.exports = {
                 hero: '0px 16px 48px rgba(228, 187, 228, 0.32);',
             },
             colors: {
+                blue: '#505AE5',
+                peach: '#E68E67',
+                lightBlue: '#CCE7FF',
                 primary: '#471F81',
                 secondary: '#C565AD',
                 'dark-primary': '#29045D',
@@ -147,7 +154,7 @@ module.exports = {
                 'xlight-primary': '#D38CC2',
                 'xlight-secondary': '#F0D9EB',
                 darkGray: '#323540',
-                gray: '#C1C3CC',
+                gray: '#828282',
                 link: '#0B59EF',
                 'link-secondary': '#B63F99',
                 disabled: '#838899',
@@ -181,5 +188,7 @@ module.exports = {
             },
         },
     },
-    plugins: [lineClamp],
+    plugins: [
+        require('flowbite/plugin')
+    ]
 };
