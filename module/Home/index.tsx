@@ -36,9 +36,12 @@ const Home = () => {
         configuredSanityClient={configuredSanityClient}
         data={data[0]}
       />
-      <OurSpecialtySection />
+      <div className="mt-42">
+      <OurSpecialtySection/>
       <LatestUpdateSection />
       <UpcomingTrainingSection />
+      </div>
+
     </>
   );
 };

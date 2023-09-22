@@ -1,364 +1,99 @@
-import React from "react";
-
-import {
-  Text,
-  Container,
-  Row,
-  Col,
-  Spacer,
-  Card,
-  Image,
-} from "@nextui-org/react";
-import { BsArrowRight } from "react-icons/bs";
-import Box from "reusables/Box";
+import React from "react"
+const posts = [
+    {
+      id: 1,
+      title: 'Coal Trading & Sourcing',
+      href: '/training-demo/1',
+      description:
+        'May 17 @ 8:00 am - May 18 @ 5:00 pm',
+    },
+    {
+    id: 2,
+    title: 'Coal Trading & Sourcing',
+    href: '/training-demo/1',
+    description:
+        'May 17 @ 8:00 am - May 18 @ 5:00 pm',
+    },
+    {
+    id: 3,
+    title: 'Coal Trading & Sourcing',
+    href: '/training-demo/1',
+    description:
+        'May 17 @ 8:00 am - May 18 @ 5:00 pm',
+    },
+    {
+    id: 4,
+    title: 'Coal Trading & Sourcing',
+    href: '/training-demo',
+    description:
+        'May 17 @ 8:00 am - May 18 @ 5:00 pm',
+    },
+    {
+    id: 5,
+    title: 'Coal Trading & Sourcing',
+    href: '/training-demo',
+    description:
+        'May 17 @ 8:00 am - May 18 @ 5:00 pm',
+    },
+]
 
 const UpcomingTrainingSection = () => {
-  const imgBackground = "/assets/bg-training.png";
+    return (
+        <>
+        <div className="w-full bg-blue py-16">
 
-  return (
-    <Row
-      css={{
-        width: "100%",
-        position: "relative",
-        background: '#505AE5',
-      }}
-    >
-      {/*<Image*/}
-      {/*  src={imgBackground}*/}
-      {/*  objectFit="fill"*/}
-      {/*  height="400px"*/}
-      {/*  containerCss={{*/}
-      {/*    width: "100%",*/}
-      {/*    borderRadius: "0",*/}
-      {/*  }}*/}
-      {/*  css={{ zIndex: "-1", opacity: 0.4 }}*/}
-      {/*/>*/}
-      <Box css={{
-          maxWidth: '1240px',
-          margin: '0 auto',
-          paddingTop: 40,
-          paddingBottom: 80
-      }}>
-        {/* TITLE */}
-        <Row justify="space-between" align="center" css={{pr: '50px'}}>
-          <Row align="center" gap={4} css={{ my: "$6" }}>
-            <Box
-              css={{ width: "56px", height: "3px", backgroundColor: "#F2F2F2" }}
-            />
-            <Text
-              css={{
-                fontStyle: "normal",
-                fontWeight: "300",
-                fontSize: "50px",
-                lineHeight: "61px",
-                color: "#F2F2F2",
-              }}
-            >
-              Upcoming Training
-            </Text>
-          </Row>
-
-          <Card
-            isPressable
-            css={{
-              width: "200px",
-              my: "$6",
-              p: "10px 10px 10px 10px",
-            }}
-          >
-            <Container
-              css={{
-                p: 0,
-                width: "fit-content",
-                display: "flex",
-                flexDirection: "column",
-                flexFlow: "initial",
-                alignItems: "center",
-              }}
-            >
-              <Text css={{ mr: "$10" }}>View All</Text>
-              <BsArrowRight color="#EC1C24" />
-            </Container>
-          </Card>
-        </Row>
-
-        <Box
-          css={{
-            display: "grid",
-            gridAutoColumns: "1fr",
-            gridTemplateColumns: "1fr 1fr 1fr",
-          }}
-        >
-          {/* CARD 1 */}
-          <Col
-            css={{
-              px: "$5",
-              height: "100%",
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Card
-              css={{
-                backgroundColor: "transparent",
-                height: "100%",
-                border: "1px white solid",
-                borderRadius: "10px",
-                p: "10px 10px 10px 20px",
-                maxWidth: '400px',
-              }}
-            >
-              <Row css={{ pt: "$10" }}>
-                <Text
-                  css={{
-                    color: "#F2F2F2",
-
-                    fontStyle: "normal",
-                    fontWeight: "700",
-                    fontSize: "24px",
-                    lineHeight: "29px",
-                  }}
+            <div className="max-w-7xl container mx-auto">
+                <div className="desktop:flex justify-between">
+                <div className="inline-flex items-center pb-4">
+                    <span className="mobile:hidden h-2 w-14 bg-white"></span>
+                    <h1 className="desktop:text-[50px] desktop:ml-[60px] desktop:text-left ml-8 text-[36px] font-bold text-white capitalize">
+                        upcoming training
+                    </h1>
+                </div>
+                    <a href="/training-demo" type="button" className="mobile:hidden group bg-white hover:bg-peach hover:text-white border-b border-black font-medium rounded-md text-sm px-4 py-1 my-6 inline-flex items-center">
+                            View More
+                            <svg className="w-4 h-4 ml-4 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                    </a>
+                </div>
+                <br /><br />
+                <div
+                id="scrollContainer"
+                className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8 pb-8"
                 >
-                  Konversi Batubara
-                </Text>
-              </Row>
-              <Spacer y={1} />
+                    {posts.map((post) => (
+                    <div
+                        className="flex-none mr-8">    
+                        <div key={post.id} className="max-w-sm p-6 bg-transparent border border-white text-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <h5 className="mb-2 text-[24px] font-bold tracking-tight dark:text-white">{post.title}</h5>
+                            <p className="mb-3 font-normal dark:text-gray-400">{post.description}</p>
+                            <div className="py-4"></div>
+                            <a href={post.href} type="button" className="text-white bg-transparent group hover:bg-peach border-b border-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                                Register
+                                <svg className="w-3.5 h-3.5 ml-2 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    ))}
 
-              <Row>
-                <Text
-                  css={{
-                    color: "#F2F2F2",
+                </div> 
+                <div className="desktop:hidden pt-8 text-center">
+                    <a href="/training-demo" type="button" className="group bg-white hover:bg-peach hover:text-white border-b border-black font-medium rounded-md text-sm px-4 py-2.5 inline-flex items-center">
+                            View More
+                            <svg className="w-4 h-4 ml-4 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                    </a>
+                </div>
+                
+            </div>
 
-                    fontStyle: "normal",
-                    fontWeight: "400",
-                    fontSize: "16px",
-                    lineHeight: "19px",
-                  }}
-                >
-                  May 17 @ 8:00 am - May 18 @ 5:00 pm
-                </Text>
-              </Row>
+        </div>
+        </>
+    )
+}
 
-              <Spacer y={2} />
-              <Row align="flex-end" css={{ height: "100%" }}>
-                <Card
-                  isPressable
-                  variant="flat"
-                  css={{
-                    width: "fit-content",
-                    backgroundColor: "transparent",
-                    p: "10px 10px 10px 10px",
-                  }}
-                >
-                  <Container
-                    css={{
-                      p: 0,
-                      width: "fit-content",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      css={{
-                        mr: "$10",
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "16px",
-                        lineHeight: "20px",
-                        color: "#F2F2F2",
-                      }}
-                    >
-                      Register
-                    </Text>
-                    <BsArrowRight color="#EC1C24" />
-                  </Container>
-                </Card>
-              </Row>
-            </Card>
-          </Col>
-
-          {/* CARD 2 */}
-          <Col
-            css={{
-              px: "$5",
-              height: "100%",
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Card
-              css={{
-                backgroundColor: "transparent",
-                height: "100%",
-                border: "1px white solid",
-                borderRadius: "10px",
-                p: "10px 10px 10px 20px",
-                maxWidth: '400px'
-              }}
-            >
-              <Row css={{ pt: "$10" }}>
-                <Text
-                  css={{
-                    color: "#F2F2F2",
-
-                    fontStyle: "normal",
-                    fontWeight: "700",
-                    fontSize: "24px",
-                    lineHeight: "29px",
-                  }}
-                >
-                  Jaminan Mutu Data Hasil Pengujian
-                </Text>
-              </Row>
-              <Spacer y={1} />
-
-              <Row>
-                <Text
-                  css={{
-                    color: "#F2F2F2",
-
-                    fontStyle: "normal",
-                    fontWeight: "400",
-                    fontSize: "16px",
-                    lineHeight: "19px",
-                  }}
-                >
-                  May 17 @ 8:00 am - May 18 @ 5:00 pm
-                </Text>
-              </Row>
-
-              <Spacer y={2} />
-              <Row align="flex-end" css={{ height: "100%" }}>
-                <Card
-                  isPressable
-                  variant="flat"
-                  css={{
-                    width: "fit-content",
-                    backgroundColor: "transparent",
-                    p: "10px 10px 10px 10px",
-                  }}
-                >
-                  <Container
-                    css={{
-                      p: 0,
-                      width: "fit-content",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      css={{
-                        mr: "$10",
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "16px",
-                        lineHeight: "20px",
-                        color: "#F2F2F2",
-                      }}
-                    >
-                      Register
-                    </Text>
-                    <BsArrowRight color="#EC1C24" />
-                  </Container>
-                </Card>
-              </Row>
-            </Card>
-          </Col>
-
-          {/* CARD 3 */}
-          <Col
-            css={{
-              px: "$5",
-              height: "100%",
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Card
-              css={{
-                backgroundColor: "transparent",
-                height: "100%",
-                border: "1px white solid",
-                borderRadius: "10px",
-                p: "10px 10px 10px 20px",
-                maxWidth: '400px'
-              }}
-            >
-              <Row css={{ pt: "$10" }}>
-                <Text
-                  css={{
-                    color: "#F2F2F2",
-
-                    fontStyle: "normal",
-                    fontWeight: "700",
-                    fontSize: "24px",
-                    lineHeight: "29px",
-                  }}
-                >
-                  Geofisika untuk eksplorasi emas
-                </Text>
-              </Row>
-              <Spacer y={1} />
-
-              <Row>
-                <Text
-                  css={{
-                    color: "#F2F2F2",
-
-                    fontStyle: "normal",
-                    fontWeight: "400",
-                    fontSize: "16px",
-                    lineHeight: "19px",
-                  }}
-                >
-                  May 17 @ 8:00 am - May 18 @ 5:00 pm
-                </Text>
-              </Row>
-
-              <Spacer y={2} />
-              <Row align="flex-end" css={{ height: "100%" }}>
-                <Card
-                  isPressable
-                  variant="flat"
-                  css={{
-                    width: "fit-content",
-                    backgroundColor: "transparent",
-                    p: "10px 10px 10px 10px",
-                  }}
-                >
-                  <Container
-                    css={{
-                      p: 0,
-                      width: "fit-content",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Text
-                      css={{
-                        mr: "$10",
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "16px",
-                        lineHeight: "20px",
-                        color: "#F2F2F2",
-                      }}
-                    >
-                      Register
-                    </Text>
-                    <BsArrowRight color="#EC1C24" />
-                  </Container>
-                </Card>
-              </Row>
-            </Card>
-          </Col>
-        </Box>
-      </Box>
-    </Row>
-  );
-};
-
-export default UpcomingTrainingSection;
+export default UpcomingTrainingSection
