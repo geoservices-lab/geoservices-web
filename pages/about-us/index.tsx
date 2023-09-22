@@ -1,9 +1,18 @@
 import React from 'react';
+import Header from "../../module/BasicLayout/Header";
+import Banner from './Component/banner';
+import Desc from './Component/desc-about';
+import Footer from 'pages/home-demo/component/footer';
 
 export default function AboutUs() {
     return (
-        <h1 className="text-3xl font-bold underline p-[20px] mobile:text-red-500 desktop:text-amber-700">
-            Hello world!
-        </h1>
+        
+        <div>
+            <Header />
+            <Banner />
+            <Desc />
+            <br /><br />
+            <Footer />
+        </div>
     )
 }

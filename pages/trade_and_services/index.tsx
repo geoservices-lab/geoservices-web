@@ -94,18 +94,18 @@ const TradeServices = () => {
   return (
     <div>
       <Header />
-      <ImageJumbotron
+      {/* <ImageJumbotron
         imageSrc={
           "https://strapi-g3gp.onrender.com/uploads/overlay_d705da266e.png"
         }
         text={"Trade and Services"}
-      />
+      /> */}
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
         <BreadCrumbLine items={breadcrumbData()} />
         <Tab tabItems={tabItems} />
         <Contact />
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

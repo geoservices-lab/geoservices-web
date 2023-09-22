@@ -57,8 +57,6 @@ const ExplorationSub = () => {
         callAPI(setProductData);
     }, []);
 
-    console.log(product.introduction);
-
     return (
         <>
             <Modal isModalOpen={isModalOpen} {...modalProps} />
