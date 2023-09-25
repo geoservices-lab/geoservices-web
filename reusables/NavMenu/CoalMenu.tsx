@@ -39,7 +39,7 @@ export const MainMenu = ({ onChange, selected }: NavMainMenuProps) => {
                         lineHeight: "22px",
                     }}
                 >
-                    Coal
+                    Coal and Minerals
                 </Text>
             </Box>
             {optionsCoal?.map((item) => (
@@ -378,84 +378,101 @@ export const ExplorationSubMenu = () => {
 
 export const LaboratorySubMenu = () => {
     const image1 = "/assets/bg-machinery.png";
-    const [product, setProductData] = useState([]);
+    const [coalLab, setCoalLab] = useState([]);
+    const [mineralLab, setMineralLab] = useState([]);
 
-    const callAPI = async (setProductData) => {
+    const callAPI = async () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "geolab"]`);
             const data = await res.json();
+            const coalData = data.result.filter((item: any) => item.type === 'coal');
+            const mineralData = data.result.filter((item: any) => item.type === 'mineral');
 
-            const mappedData = data.result.map((item: any) => {
+            const mappedCoal = coalData.map((item: any) => {
                 return ({
                     label: item.division,
                     name: item.division,
-                    href: `/oil_and_gas/geolab/${item.slug}`,
+                    href: `/coal/laboratory/${item.slug}`,
                     isActive: item.is_active,
                 })
             });
-            setProductData(mappedData);
+
+            const mappedMineral = mineralData.map((item: any) => {
+                return ({
+                    label: item.division,
+                    name: item.division,
+                    href: `/mineral/laboratory/${item.slug}`,
+                    isActive: item.is_active,
+                })
+            });
+            setCoalLab(mappedCoal);
+            setMineralLab(mappedMineral);
         } catch (err) {
             console.log(err);
         }
     };
 
     useEffect(() => {
-        callAPI(setProductData);
-    }, [product]);
+        callAPI();
+    }, [coalLab]);
 
     return (
-        <>
-            <Box
-                css={{
-                    margin: "10px 10px 15px 10px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                }}
-            >
-                <Text
-                    css={{
-                        fontStyle: "normal",
-                        fontWeight: "700",
-                        fontSize: "18px",
-                        lineHeight: "22px",
-                    }}
-                >
-                    Laboratory
+        <div className={'flex'}>
+            <Box>
+                <Text className={'font-bold'} style={{ fontSize: 18, padding: 20 }}>
+                    Coal
                 </Text>
+                {coalLab?.map((option) => (
+                    option?.isActive && <Box
+                        key={option?.name}
+                        css={{
+                            mx: "10px",
+                            mb: "15px",
+                        }}
+                    >
+                        <TextLink
+                            textCSS={{
+                                fontStyle: "normal",
+                                fontWeight: "400",
+                                fontSize: "15px",
+                                lineHeight: "22px",
+                            }}
+                            href={option.href}
+                        >
+                            {option.label}
+                        </TextLink>
+                    </Box>
+                ))}
+            </Box>
+
+            <Box>
+                <Text className={'font-bold'} style={{ fontSize: 18, padding: 20 }}>
+                    Mineral
+                </Text>
+                {mineralLab?.map((option) => (
+                    option?.isActive && <Box
+                        key={option?.name}
+                        css={{
+                            mx: "10px",
+                            mb: "15px",
+                        }}
+                    >
+                        <TextLink
+                            textCSS={{
+                                fontStyle: "normal",
+                                fontWeight: "400",
+                                fontSize: "15px",
+                                lineHeight: "22px",
+                            }}
+                            href={option.href}
+                        >
+                            {option.label}
+                        </TextLink>
+                    </Box>
+                ))}
             </Box>
 
             <Box css={{ display: "flex" }}>
-                <Box
-                    css={{
-                        width: "70%",
-                        display: "grid",
-                        gridAutoRows: "min-content",
-                        gridTemplateColumns: "1fr 1fr",
-                    }}
-                >
-                    {product?.map((option) => (
-                        option?.isActive && <Box
-                            key={option?.name}
-                            css={{
-                                mx: "10px",
-                                mb: "15px",
-                            }}
-                        >
-                            <TextLink
-                                textCSS={{
-                                    fontStyle: "normal",
-                                    fontWeight: "400",
-                                    fontSize: "15px",
-                                    lineHeight: "22px",
-                                }}
-                                href={option.href}
-                            >
-                                {option.label}
-                            </TextLink>
-                        </Box>
-                    ))}
-                </Box>
                 <Box css={{ mx: "$14" }}>
                     <Image
                         src={image1}
@@ -467,7 +484,7 @@ export const LaboratorySubMenu = () => {
                     />
                 </Box>
             </Box>
-        </>
+        </div>
     );
 };
 

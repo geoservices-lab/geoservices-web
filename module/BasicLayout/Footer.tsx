@@ -1,87 +1,80 @@
 import React from "react";
-import { Container, Row, Spacer, Text } from "@nextui-org/react";
-import Image from "next/image";
-import Box from "reusables/Box";
+import {BsFillTelephoneFill, BsInstagram, BsLinkedin, BsYoutube} from 'react-icons/bs';
+import {FaFax} from 'react-icons/fa';
+import {MdAttachEmail} from 'react-icons/md';
 
 const Footer = () => {
-  const logo = "/assets/logo2.png";
+    const logo = "/assets/logo2.png";
 
-  return (
-      <Row css={{ borderTop: '1px solid gainsboro' }}>
-    <Row
-      css={{
-        mt: "$10",
-        mb: "$40",
-        display: "grid",
-        gridAutoRows: "1fr",
-        gridTemplateColumns: "50% 1fr 1fr",
-          maxWidth: '1240px',
-      }}
-    >
-      <Row
-        css={{
-          width: "fit-content",
-          display: "flex",
-          flexDirection: "column",
-          left: "20%",
-        }}
-      >
-        <Image
-          src={logo}
-          width="200px"
-          height="60px"
-          alt="logo"
-          objectFit="contain"
-        />
-        <Text
-          css={{
-            fontStyle: "normal",
-            fontWeight: "500",
-            fontSize: "16px",
-            lineHeight: "20px",
-              marginTop: '12px',
-              marginLeft: '7px'
-          }}
-        >
-          Copyright © 2022 - PT Geoservices
-        </Text>
-      </Row>
+    return (
+        <>
+            <footer className="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+                <div className="w-full max-w-7xl mx-auto p-4 md:py-8">
+                    <div className="desktop:flex desktop:justify-between grid grid-cols-1 space-y-4">
+                        <div>
+                            <a href="/" className="flex items-center">
+                                <img src="/assets/logo2.png" className="h-14" alt="Geoservices Logo" />
+                            </a>
+                            <br />
+                            <div className="inline-flex items-center space-x-5">
+                                <a href="https://www.instagram.com/geoservices.id/">
+                                    <BsInstagram className="text-[18px]"/>
+                                    <span className="sr-only">Instagram</span>
+                                </a>
+                                <a href="https://www.linkedin.com/company/pt-geoservices/">
+                                    <BsLinkedin className="text-[18px]"/>
+                                    <span className="sr-only">LinkedIn</span>
+                                </a>
+                                {/* can we connect to open direct to email or somethin? */}
+                                <a href="https://www.youtube.com/@ptgeoservices8715">
+                                    <BsYoutube className="text-[24px]"/>
+                                    <span className="sr-only">Youtube</span>
+                                </a>
+                            </div>
+                            <div className="desktop:pt-16 pt-4 space-y-2 text-gray">
+                                <p className="font-medium text-[18px]">Contact us</p>
+                                <p className="inline-flex items-center"><span className="mr-4"><MdAttachEmail className="text-[18px]"/></span>info@geoservices.co.id</p>
+                            </div>
+                        </div>
 
-      <Box css={{ paddingTop: '20px' }}>
-        <Text css={{ fontSize: "16px", color: "#000000" }}>Jakarta Office</Text>
-        <Spacer y={0.5} />
-        <Text css={{ fontSize: "16px", color: "#828282", lineHeight: 1.5 }}>
-          Jl. Minangkabau Barat No. 34,
-            <br/>
-          Jakarta, Indonesia
-            <br/>
-          Phone : (021) 830 5555, 831 8989
-            <br/>
-          Fax : (021) 831 1454
-            <br/>
-          Email : jktbranch@geoservices.co.id
-        </Text>
-      </Box>
+                        <div className="desktop:flex grid grid-cols-1 items-center gap-8 mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+                            <div>
+                                <p className="font-medium">Jakarta</p>
+                                <br />
+                                <p className="text-gray">
+                                    Jl. Minangkabau Barat No. 34, <br />
+                                    Jakarta, 12970.
+                                    <br /><br />
+                                    <p className="inline-flex items-center"><span className="mr-4"><BsFillTelephoneFill/></span>(021) 830 5555, 831 8989</p>
+                                    <br />
+                                    <p className="inline-flex items-center"><span className="mr-4"><FaFax/></span>
+                                        (021) 831 1454
+                                    </p>
+                                </p>
+                            </div>
+                            <div>
+                                <p className="font-medium">Bandung</p>
+                                <br />
+                                <p className="text-gray">
+                                    Jl. Setiabudi No. 81, <br />
+                                    Bandung, 40153.
+                                    <br /><br />
+                                    <p className="inline-flex items-center"><span className="mr-4"><BsFillTelephoneFill/></span>(022) 203 1316, 203 5436</p>
+                                    <br />
+                                    <p className="inline-flex items-center"><span className="mr-4"><FaFax/></span>
+                                        (022) 203 8090
+                                    </p>
+                                </p>
+                            </div>
+                        </div>
 
-      <Box css={{ paddingTop: '20px' }}>
-        <Text css={{ fontSize: "16px", color: "#000000" }}>Bandung Office</Text>
-        <Spacer y={0.5} />
-        <Text css={{ fontSize: "16px", color: "#828282", lineHeight: 1.5 }}>
-          Jl. Setiabudhi No. 81,
-
-          {" "}
-          Bandung, Jawa Barat, Indonesia
-            <br/>
-          Phone : (022) 203 1316, 203 5436
-            <br/>
-          Fax : (022) 203 8090
-            <br/>
-          Email : bdgoff@geoservices.co.id
-        </Text>
-      </Box>
-    </Row>
-      </Row>
-  );
+                    </div>
+                    <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                    <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright © 2023 - PT Geoservices</span>
+                </div>
+            </footer>
+        </>
+    );
 };
 
 export default Footer;
