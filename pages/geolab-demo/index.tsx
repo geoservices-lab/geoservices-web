@@ -6,7 +6,7 @@ import Product from './component/card-product'
 import Highlight from './component/highlight'
 import Principal from './component/principal'
 import AccordionFlush from './component/accordion'
-import Footer from 'pages/home-demo/component/footer'
+import Footer from "../../module/BasicLayout/Footer"
 
 
 export default function Geolab () {
@@ -18,7 +18,7 @@ export default function Geolab () {
                 <div className='mobile:hidden'>
                     <BreadCrumb/>
                 </div>
-                
+
                 <br /><br />
                 <Product/>
                 <br /><br />

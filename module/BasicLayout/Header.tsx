@@ -134,15 +134,15 @@ const Header = () => {
           >
             <Box css={{ mr: "$5" }}>
               <Row justify="flex-end" align="center" gap={1}>
-                <TextLink css={headerTextCSS} href="">
+                <TextLink css={headerTextCSS} href="/career">
                   Career
                 </TextLink>
                 <Dot />
-                <TextLink css={headerTextCSS} href="">
+                <TextLink css={headerTextCSS} href="/about-us">
                   About Us
                 </TextLink>
                 <Dot />
-                <TextLink css={headerTextCSS} href="">
+                <TextLink css={headerTextCSS} href="/contact-us">
                   Contact
                 </TextLink>
               </Row>

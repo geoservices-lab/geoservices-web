@@ -5,7 +5,7 @@ import HomeBanner from "./component/home-banner"
 import Speciality from "./component/speciality"
 import NewsUpdate from "./component/news-update"
 import TrainingUpdate from "./component/training-update"
-import Footer from "./component/footer"
+import Footer from "../../module/BasicLayout/Footer"
 
 export default function Home() {
     return (

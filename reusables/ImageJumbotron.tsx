@@ -27,52 +27,20 @@ const ImageJumbotron = ({
 }: ImageJumbotronProps) => {
     const router = useRouter();
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const imageProps = (router.asPath.includes('training') || router.asPath.includes('services') || router.asPath.includes('geolab') || router.asPath.includes('software') || router.asPath.includes('exploration')) && imageSrc && useNextSanityImage(configuredSanityClient, imageSrc);
+    const imageProps = imageSrc && useNextSanityImage(configuredSanityClient, imageSrc);
 
   return (
     <Box css={{ width: "100%", position: "relative" }}>
-        <img
-            src={API_BASE_URL + '/uploads/overlay_d705da266e.png'}
+        <div
             style={{
-                width: '100%',
-                height: 390,
-                position: 'absolute',
-                zIndex: 1,
-                objectFit: 'cover'
-            }}
-        />
-      <Image
-        src={imageProps && imageProps.src}
-        objectFit="cover"
-        height={height}
-        containerCss={{
-          borderRadius: "0",
-          background: "rgba(0, 0, 0, 0.3)",
-        }}
-        css={{
-          zIndex: "-1",
-          objectPosition: `${objectPosition}`,
-          position: "relative",
-        }}
-      />
-      <Text
-        css={{
-          position: "absolute",
-          top: "40%",
-          left: "140px",
-          color: "$white",
-          // fontFamily: "Plus Jakarta Sans",
-          fontStyle: "normal",
-          fontWeight: "800",
-          fontSize: "60px",
-          lineHeight: "76px",
-          width: "80%",
-          textTransform: "uppercase",
-            zIndex: 2
-        }}
-      >
-        {text}
-      </Text>
+                backgroundImage: `url(${imageProps && imageProps.src})`
+            }} className="desktop:h-[391px] h-[158px] w-full object-fill bg-cover grayscale">
+            <div className="w-3/4 mx-auto py-16 desktop:w-full desktop:py-32 desktop:max-w-7xl">
+                <h1 className="font-extrabold text-white text-[40px] desktop:text-[70px] capitalize leading-none">
+                    {text}
+                </h1>
+            </div>
+        </div>
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import Header from "module/BasicLayout/Header";
 import React from "react";
 import TrainingSection from "../component/training-page";
-import Footer from "pages/home-demo/component/footer";
+import Footer from "../../../module/BasicLayout/Footer"
 
 export default function TrainingPage () {
     return (

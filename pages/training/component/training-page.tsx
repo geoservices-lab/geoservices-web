@@ -4,7 +4,7 @@ import { Badge } from 'flowbite-react';
 const TrainingSection = () => {
     return(
         <>
-            <a href="/training-demo" type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
+            <a href="/training" type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 ml-2 text-[#E68E67]">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />

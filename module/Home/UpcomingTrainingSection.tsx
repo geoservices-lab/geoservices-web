@@ -44,7 +44,7 @@ const UpcomingTrainingSection = () => {
                         upcoming training
                     </h1>
                 </div>
-                    <a href="/training-demo" type="button" className="mobile:hidden group bg-white hover:bg-peach hover:text-white border-b border-black font-medium rounded-md text-sm px-4 py-1 my-6 inline-flex items-center">
+                    <a href="/training" type="button" className="mobile:hidden group bg-white hover:bg-peach hover:text-white border-b border-black font-medium rounded-md text-sm px-4 py-1 my-6 inline-flex items-center">
                             View More
                             <svg className="w-4 h-4 ml-4 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -74,7 +74,7 @@ const UpcomingTrainingSection = () => {
 
                 </div>
                 <div className="desktop:hidden pt-8 text-center">
-                    <a href="/training-demo" type="button" className="group bg-white hover:bg-peach hover:text-white border-b border-black font-medium rounded-md text-sm px-4 py-2.5 inline-flex items-center">
+                    <a href="/training" type="button" className="group bg-white hover:bg-peach hover:text-white border-b border-black font-medium rounded-md text-sm px-4 py-2.5 inline-flex items-center">
                             View More
                             <svg className="w-4 h-4 ml-4 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>

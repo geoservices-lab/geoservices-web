@@ -2,7 +2,7 @@ import React from 'react'
 import Banner from './component/banner'
 import Header from 'module/BasicLayout/Header'
 import ListCareer from './component/list-career'
-import Footer from 'pages/home-demo/component/footer'
+import Footer from "../../module/BasicLayout/Footer";
 
 
 export default function Career () {

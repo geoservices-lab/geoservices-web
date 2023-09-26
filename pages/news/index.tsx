@@ -1,6 +1,6 @@
 import React from "react"
 import Header from "module/BasicLayout/Header"
-import Footer from "pages/home-demo/component/footer"
+import Footer from "../../module/BasicLayout/Footer"
 import NewsPage from "./component/news-card"
 import Banner from "./component/banner"
 
@@ -13,7 +13,7 @@ export default function News() {
         <div className="pt-32">
             <Footer />
         </div>
-        
+
         </>
     )
 }
