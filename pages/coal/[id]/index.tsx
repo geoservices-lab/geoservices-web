@@ -254,12 +254,12 @@ const CoalDetail = () => {
   return (
     <div>
       <Header />
-      <ImageJumbotron
-        imageSrc={
-          "https://strapi-g3gp.onrender.com/uploads/overlay_d705da266e.png"
-        }
-        text={title}
-      />
+      {/*<ImageJumbotron*/}
+      {/*  imageSrc={*/}
+      {/*    "https://strapi-g3gp.onrender.com/uploads/overlay_d705da266e.png"*/}
+      {/*  }*/}
+      {/*  text={title}*/}
+      {/*/>*/}
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
         <BreadCrumbLine items={breadcrumbData(title)} />
         <Tab tabItems={tabItems} />

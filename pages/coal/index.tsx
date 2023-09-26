@@ -56,12 +56,12 @@ const Coal = () => {
   return (
     <div>
       <Header />
-      <ImageJumbotron
-        imageSrc={
-          "https://strapi-g3gp.onrender.com/uploads/overlay_d705da266e.png"
-        }
-        text={"Coal and Minerals"}
-      />
+      {/*<ImageJumbotron*/}
+      {/*  imageSrc={*/}
+      {/*    "https://strapi-g3gp.onrender.com/uploads/overlay_d705da266e.png"*/}
+      {/*  }*/}
+      {/*  text={"Coal and Minerals"}*/}
+      {/*/>*/}
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
         <BreadCrumbLine items={breadcrumbData()} />
         <div
