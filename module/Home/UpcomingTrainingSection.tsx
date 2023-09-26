@@ -58,11 +58,13 @@ const UpcomingTrainingSection = () => {
                 >
                     {contentData && contentData.map((post: any) => (
                         <div className="flex-none mr-8">
-                            <div key={post.id} className="max-w-sm p-6 bg-transparent border border-white text-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <div key={post.id} className="relative max-w-sm p-6 bg-transparent border border-white text-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style={{
+                                height: 240,
+                            }}>
                                 <h5 className="mb-2 text-[24px] font-bold tracking-tight dark:text-white">{post.title}</h5>
                                 <p className="mb-3 font-normal dark:text-gray-400">{dayjs(post.start_date).format('DD MMM YYYY')} - {dayjs(post.end_date).format('DD MMM YYYY')}</p>
                                 <div className="py-4"></div>
-                                <a href={'/training-demo/1'} type="button" className="text-white bg-transparent group hover:bg-peach border-b border-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                                <a href={'/training-demo/1'} type="button" className="absolute bottom-0 mb-4 text-white bg-transparent group hover:bg-peach border-b border-white font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                                     Register
                                     <svg className="w-3.5 h-3.5 ml-2 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>

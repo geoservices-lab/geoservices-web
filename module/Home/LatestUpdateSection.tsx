@@ -92,22 +92,29 @@ const NewsUpdate = ({ category, title, action, url, image }:any) => {
         <>
             <div
                 className="flex-none mr-8 md:pb-4"
-                >
-                <div className="max-w-xs bg-slate-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 py-[20px] px-[16px]">
-                <a href={url}>
-                    <img className="rounded-lg w-full mb-4" src={image} alt="" />
+            >
+                <div className="relative max-w-xs bg-slate-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 py-[20px] px-[16px]"                 style={{
+                    height: 500,
+                }}>
+                <a className="block" href={url}>
+                    <img className="rounded-lg w-full mb-4" src={image} alt="" style={{
+                        height: 160,
+                        objectFit: 'cover'
+                    }}/>
                 </a>
                 <span className="bg-blue text-white text-[12px] mr-2 px-2.5 py-1 rounded">{category}</span>
                 <br />
                 <div className="space-y-4 mt-4">
                     <h5 className="text-[28px] font-normal text-gray-900 dark:text-white">{title}</h5>
-                    <a href={url} type="button" className="group text-black bg-transparent hover:bg-peach hover:text-white border-b border-black font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                </div>
+                    <div className="absolute bottom-0 pb-4">
+                        <a href={url} type="button" className="group text-black bg-transparent hover:bg-peach hover:text-white border-b border-black font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">
                             {action}
                             <svg className="w-3.5 h-3.5 ml-2 text-peach group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
-                    </a>
-                </div>
+                        </a>
+                    </div>
             </div>
             </div>
         </>
