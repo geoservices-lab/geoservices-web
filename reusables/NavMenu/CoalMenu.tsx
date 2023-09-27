@@ -673,13 +673,112 @@ export const SoftwareSubMenu = () => {
     );
 };
 
+export const ServicesSubMenu = () => {
+    const image1 = "/assets/bg-machinery.png";
+
+    const [product, setProductData] = useState([]);
+
+    const callAPI = async (setProductData) => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "services"]`);
+            const data = await res.json();
+            const filteredData = data.result.filter((item) => item.type === 'coal');
+
+            const mappedData = filteredData.map((item: any) => {
+                return ({
+                    label: item.service,
+                    name: item.service,
+                    href: `/coal/services/${item.slug}`,
+                    isActive: item.is_active,
+                })
+            });
+            setProductData(mappedData);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        callAPI(setProductData);
+    }, [product]);
+
+    return (
+        <>
+            <Box
+                css={{
+                    margin: "10px 10px 15px 10px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                }}
+            >
+                <Text
+                    css={{
+                        fontStyle: "normal",
+                        fontWeight: "700",
+                        fontSize: "18px",
+                        lineHeight: "22px",
+                    }}
+                >
+                    Services
+                </Text>
+            </Box>
+
+            <Box css={{ display: "flex" }}>
+                <Box
+                    css={{
+                        width: "70%",
+                        display: "grid",
+                        gridAutoRows: "min-content",
+                        gridTemplateColumns: "1fr 1fr",
+                    }}
+                >
+                    {product?.map((option) => {
+                        return (
+                            option?.isActive && <Box
+                                key={option?.name}
+                                css={{
+                                    mx: "10px",
+                                    mb: "15px",
+                                }}
+                            >
+                                <TextLink
+                                    textCSS={{
+                                        fontStyle: "normal",
+                                        fontWeight: "400",
+                                        fontSize: "15px",
+                                        lineHeight: "22px",
+                                    }}
+                                    href={option.href}
+                                >
+                                    {option.label}
+                                </TextLink>
+                            </Box>
+                        )
+                    })}
+                </Box>
+                <Box css={{ mx: "$14" }}>
+                    <Image
+                        src={image1}
+                        objectFit="fill"
+                        height={200}
+                        containerCss={{
+                            borderRadius: "0",
+                        }}
+                    />
+                </Box>
+            </Box>
+        </>
+    );
+};
+
 const subMenu: { [x: string]: () => JSX.Element } = {
     default: DefaultSubMenu,
     exploration: ExplorationSubMenu,
     laboratory: LaboratorySubMenu,
     software: SoftwareSubMenu,
     training: TrainingSubMenu,
-    wellAndServices: () => <>wellAndServices</>,
+    services: ServicesSubMenu,
 };
 
 export const getSubMenu = (selected: string) => {

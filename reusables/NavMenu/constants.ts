@@ -36,6 +36,10 @@ export const optionsCoal = [
     label: "Laboratory",
   },
   {
+    name: "services",
+    label: "Services",
+  },
+  {
     name: "training",
     label: "Training",
   },
