@@ -155,6 +155,7 @@ const ExplorationSub = () => {
                         marginTop: 30,
                         marginBottom: 40,
                         display: "flex",
+                        overflow: 'scroll',
                     }}
                 >
                     {otherDivision && otherDivision.map(
@@ -164,13 +165,24 @@ const ExplorationSub = () => {
                             }}>
                                 <Link key={index + 'lab'} href={'/exploration/' + item.slug}>
                                     <div>
-                                        <SanityImageComp image={item.banner} style={{
+                                        {item.banner ? <SanityImageComp
+                                            image={item.banner}
+                                            width={200}
+                                            height={160}
+                                            style={{
                                             width: 300,
                                             height: 160,
                                             objectFit: 'cover',
                                             borderRadius: 12,
                                             marginTop: 0,
-                                        }} />
+                                        }} /> : <div style={{
+                                            width: 200,
+                                            height: 160,
+                                            objectFit: 'cover',
+                                            borderRadius: 12,
+                                            marginTop: 0,
+                                            backgroundColor: 'gainsboro',
+                                        }}/>}
                                         <div style={{
                                             fontSize: 15,
                                             marginTop: 12,

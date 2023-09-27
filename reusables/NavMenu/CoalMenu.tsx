@@ -189,8 +189,9 @@ export const TrainingSubMenu = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
             const data = await res.json();
+            const filteredData = data.result.filter((item) => item.type === 'coal');
 
-            const mappedData = data.result.map((item: any) => {
+            const mappedData = filteredData.map((item: any) => {
                 return ({
                     label: item.title,
                     name: item.title,
@@ -419,7 +420,7 @@ export const LaboratorySubMenu = () => {
     return (
         <div className={'flex'}>
             <Box>
-                <Text className={'font-bold'} style={{ fontSize: 18, padding: 20 }}>
+                <Text className={'font-bold'} style={{ fontSize: 18, padding: 20, width: 250 }}>
                     Coal
                 </Text>
                 {coalLab?.map((option) => (
@@ -446,7 +447,7 @@ export const LaboratorySubMenu = () => {
             </Box>
 
             <Box>
-                <Text className={'font-bold'} style={{ fontSize: 18, padding: 20 }}>
+                <Text className={'font-bold'} style={{ fontSize: 18, padding: 20, width: 250 }}>
                     Mineral
                 </Text>
                 {mineralLab?.map((option) => (
@@ -472,7 +473,7 @@ export const LaboratorySubMenu = () => {
                 ))}
             </Box>
 
-            <Box css={{ display: "flex" }}>
+            <Box css={{ display: "flex", marginTop: 20, marginBottom: 20 }}>
                 <Box css={{ mx: "$14" }}>
                     <Image
                         src={image1}

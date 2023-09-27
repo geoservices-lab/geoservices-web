@@ -8,7 +8,7 @@ const configuredSanityClient = createClient({
     useCdn: true,
 });
 
-const SanityImage = ({ image, style }: any) => {
+const SanityImage = ({ image, style, width, height }: any) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const imageProps = image && useNextSanityImage(configuredSanityClient, image);
 
@@ -16,8 +16,8 @@ const SanityImage = ({ image, style }: any) => {
         <img
             alt={imageProps.src}
             src={imageProps ? imageProps.src : ''}
-            width={200}
-            height={120}
+            width={width ? width : 200}
+            height={height ? height : 120}
             style={{
                 width: '100%',
                 objectFit: 'contain',

@@ -189,8 +189,9 @@ export const TrainingSubMenu = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
             const data = await res.json();
+            const filteredData = data.result.filter((item) => item.type === 'oil');
 
-            const mappedData = data.result.map((item: any) => {
+            const mappedData = filteredData.map((item: any) => {
                 return ({
                     label: item.title,
                     name: item.title,
@@ -287,8 +288,9 @@ export const ServicesSubMenu = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "services"]`);
             const data = await res.json();
+            const filteredData = data.result.filter((item) => item.type === 'oil');
 
-            const mappedData = data.result.map((item: any) => {
+            const mappedData = filteredData.map((item: any) => {
                 return ({
                     label: item.service,
                     name: item.service,
@@ -482,8 +484,9 @@ export const LaboratorySubMenu = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "geolab"]`);
             const data = await res.json();
+            const filteredData = data.result.filter((item) => item.type === 'oil');
 
-            const mappedData = data.result.map((item: any) => {
+            const mappedData = filteredData.map((item: any) => {
                 return ({
                     label: item.division,
                     name: item.division,
