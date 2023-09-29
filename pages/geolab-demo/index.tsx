@@ -12,7 +12,6 @@ import Footer from "../../module/BasicLayout/Footer"
 export default function Geolab () {
     return (
         <>
-            <Header/>
             <Banner/>
             <div className='max-w-7xl mx-auto px-4'>
                 <div className='mobile:hidden'>
