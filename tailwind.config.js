@@ -18,7 +18,6 @@ module.exports = {
     theme: {
         screens: {
             mobile: { 
-                min: '0px',
                 max: '768px' }, //425px
             tablet: { max: '640px', min: '426px' },
             mobileLaptop: {
