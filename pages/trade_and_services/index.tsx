@@ -6,6 +6,7 @@ import BreadCrumbLine from "../../reusables/BreadcrumbLine";
 import Tab from "../../reusables/Tab/Tab";
 import Contact from "../../reusables/Contact/Contact";
 import Footer from "../../module/BasicLayout/Footer";
+import Banner from "pages/about-us/Component/banner";
 
 const breadcrumbData = () => [
   {
@@ -94,18 +95,16 @@ const TradeServices = () => {
   return (
     <div>
       <Header />
-      {/* <ImageJumbotron
-        imageSrc={
-          "https://strapi-g3gp.onrender.com/uploads/overlay_d705da266e.png"
-        }
-        text={"Trade and Services"}
-      /> */}
+      <Banner/>
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
         <BreadCrumbLine items={breadcrumbData()} />
         <Tab tabItems={tabItems} />
-        <Contact />
+        {/* <Contact /> */}
       </Container>
-      {/* <Footer /> */}
+      <div className="pt-32">
+        <Footer />
+      </div>
+      
     </div>
   );
 };

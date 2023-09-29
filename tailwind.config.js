@@ -17,7 +17,9 @@ module.exports = {
     ],
     theme: {
         screens: {
-            mobile: { max: '768px' }, //425px
+            mobile: { 
+                min: '0px',
+                max: '768px' }, //425px
             tablet: { max: '640px', min: '426px' },
             mobileLaptop: {
                 max: '1024px',
@@ -39,7 +41,7 @@ module.exports = {
                 min: '1024px',
             },
             desktop: {
-                min:'768px',
+                min:'769px',
                 max: '1931px',
                 //min:'1280px'
             },

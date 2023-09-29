@@ -91,9 +91,10 @@ const NewsUpdate = ({ category, title, action, url, image }:any) => {
     return (
         <>
             <div
-                className="flex-none mr-8 md:pb-4"
+                className="flex-none mr-8 md:pb-4 scrolling-touch"
             >
-                <div className="relative max-w-xs bg-slate-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 py-[20px] px-[16px]"                 style={{
+                <div className="relative max-w-xs bg-slate-100 rounded-lg shadow-md py-[20px] px-[16px]"                 
+                style={{
                     height: 500,
                 }}>
                 <a className="block" href={url}>
@@ -105,7 +106,7 @@ const NewsUpdate = ({ category, title, action, url, image }:any) => {
                 <span className="bg-blue text-white text-[12px] mr-2 px-2.5 py-1 rounded">{category}</span>
                 <br />
                 <div className="space-y-4 mt-4">
-                    <h5 className="text-[28px] font-normal text-gray-900 dark:text-white">{title}</h5>
+                    <h5 className="text-[24px] font-normal text-gray-900">{title}</h5>
                 </div>
                     <div className="absolute bottom-0 pb-4">
                         <a href={url} type="button" className="group text-black bg-transparent hover:bg-peach hover:text-white border-b border-black font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">

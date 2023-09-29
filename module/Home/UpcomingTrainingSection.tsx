@@ -54,11 +54,11 @@ const UpcomingTrainingSection = () => {
                 <br /><br />
                 <div
                 id="scrollContainer"
-                className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8 pb-8"
+                className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8 pb-8 px-4"
                 >
                     {contentData && contentData.map((post: any) => (
                         <div className="flex-none mr-8">
-                            <div key={post.id} className="relative max-w-sm p-6 bg-transparent border border-white text-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style={{
+                            <div key={post.id} className="relative max-w-xs p-6 bg-transparent border border-white text-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style={{
                                 height: 240,
                             }}>
                                 <h5 className="mb-2 text-[24px] font-bold tracking-tight dark:text-white">{post.title}</h5>

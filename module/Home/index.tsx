@@ -39,7 +39,10 @@ const Home = () => {
       <div className="mt-42">
       <OurSpecialtySection/>
       <LatestUpdateSection />
-      <UpcomingTrainingSection />
+        <div className="pb-32 mobile:pb-24">
+        <UpcomingTrainingSection />
+        </div>
+
       </div>
 
     </>

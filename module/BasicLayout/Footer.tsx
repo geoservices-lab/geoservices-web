@@ -15,19 +15,19 @@ const Footer = () => {
                             <a href="/" className="flex items-center">
                                 <img src="/assets/logo2.png" className="h-14" alt="Geoservices Logo" />
                             </a>
-                            <br />
+                            <br /><br />
                             <div className="inline-flex items-center space-x-5">
                                 <a href="https://www.instagram.com/geoservices.id/">
-                                    <BsInstagram className="text-[18px]"/>
+                                    <BsInstagram className="text-[18px]" color="gray"/>
                                     <span className="sr-only">Instagram</span>
                                 </a>
                                 <a href="https://www.linkedin.com/company/pt-geoservices/">
-                                    <BsLinkedin className="text-[18px]"/>
+                                    <BsLinkedin className="text-[18px]" color="gray"/>
                                     <span className="sr-only">LinkedIn</span>
                                 </a>
                                 {/* can we connect to open direct to email or somethin? */}
                                 <a href="https://www.youtube.com/@ptgeoservices8715">
-                                    <BsYoutube className="text-[24px]"/>
+                                    <BsYoutube className="text-[24px]" color="gray"/>
                                     <span className="sr-only">Youtube</span>
                                 </a>
                             </div>
@@ -36,11 +36,10 @@ const Footer = () => {
                                 <p className="inline-flex items-center"><span className="mr-4"><MdAttachEmail className="text-[18px]"/></span>info@geoservices.co.id</p>
                             </div>
                         </div>
-
-                        <div className="desktop:flex grid grid-cols-1 items-center gap-8 mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+                        <div className="mobile:pt-32"></div>
+                        <div className="flex items-center gap-8 mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                             <div>
-                                <p className="font-medium">Jakarta</p>
-                                <br />
+                                <p className="font-medium pb-4">Jakarta</p>
                                 <p className="text-gray">
                                     Jl. Minangkabau Barat No. 34, <br />
                                     Jakarta, 12970.
@@ -53,8 +52,7 @@ const Footer = () => {
                                 </p>
                             </div>
                             <div>
-                                <p className="font-medium">Bandung</p>
-                                <br />
+                                <p className="font-medium pb-4">Bandung</p>
                                 <p className="text-gray">
                                     Jl. Setiabudi No. 81, <br />
                                     Bandung, 40153.
