@@ -236,7 +236,9 @@ const GeolabSub = () => {
                 )}
         </Box>
       </Container>
-      <Footer />
+      <div className="pt-28">
+        <Footer />
+      </div>
     </>
   );
 };

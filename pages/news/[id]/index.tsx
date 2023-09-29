@@ -10,7 +10,7 @@ export default function PageNews () {
             <Header/>
             <Banner/>
             <Desc />
-            <div className="mt-32">
+            <div className="pt-28">
                 <Footer/>
             </div>
         </>

@@ -101,7 +101,7 @@ const TradeServices = () => {
         <Tab tabItems={tabItems} />
         {/* <Contact /> */}
       </Container>
-      <div className="pt-32">
+      <div className="pt-28">
         <Footer />
       </div>
       

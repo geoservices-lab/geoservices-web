@@ -236,7 +236,10 @@ const CoalLaboratory = () => {
                     )}
                 </Box>
             </Container>
-            <Footer />
+            <div className="pt-28">
+                <Footer />
+            </div>
+            
         </>
     );
 };

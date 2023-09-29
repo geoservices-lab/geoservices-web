@@ -148,22 +148,6 @@ const ExplorationSub = () => {
                         )
                     })}
                 </InfoCard>}
-                <InfoCard title={"CONTACTS"}>
-                    <div>
-                        {product && product.length > 0 && product.contact.map((item, index) => {
-                            return (
-                                <div style={{ marginBottom: 40 }}>
-                                    <h3 style={{ marginBottom: 12, color: 'grey' }}>{item.office}</h3>
-                                    <InfoCardListItem>{item.address}</InfoCardListItem>
-                                    <InfoCardListItem>Phone: {item.phones}</InfoCardListItem>
-                                    <InfoCardListItem>Fax: {item.fax}</InfoCardListItem>
-                                    <InfoCardListItem>E-mail: {item.email}</InfoCardListItem>
-                                    <InfoCardListItem>Contact Persons: {item.contact_persons.toString()}</InfoCardListItem>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </InfoCard>
                 <h2>Other Services</h2>
                 <Box
                     css={{
@@ -206,7 +190,10 @@ const ExplorationSub = () => {
                     )}
                 </Box>
             </Container>
-            <Footer />
+            <div className="pt-28">
+                <Footer />
+            </div>
+            
         </>
     );
 };

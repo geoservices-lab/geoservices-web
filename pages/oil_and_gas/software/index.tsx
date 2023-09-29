@@ -76,13 +76,11 @@ const Geolab = () => {
                         return <BoxItem key={index} label={item.principal} url={`/oil_and_gas/software/${item.slug}`} />;
                     })}
                 </div>
-                <Contact
-                    email={pageData && pageData.email}
-                    address={pageData && pageData.address}
-                    contactPerson={pageData && pageData.contact_persons}
-                />
             </Container>
-            <Footer />
+            <div className="pt-28">
+               <Footer /> 
+            </div>
+            
         </div>
     );
 };

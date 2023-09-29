@@ -34,7 +34,10 @@ export default function AboutUs() {
                 text={pageData && pageData.title}
             />
             <Desc desc={pageData && pageData.description}/>
-            <Footer />
+            <div className="pt-28">
+                <Footer />
+            </div>
+            
         </div>
     )
 }

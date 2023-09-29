@@ -31,8 +31,8 @@ const Footer = () => {
                                     <span className="sr-only">Youtube</span>
                                 </a>
                             </div>
-                            <div className="desktop:pt-16 pt-4 space-y-2 text-gray">
-                                <p className="font-medium text-[18px]">Contact us</p>
+                            <div className="desktop:pt-16 pt-4 space-y-2 text-gray text-[14px]">
+                                <p className="font-medium text-[16px]">Contact us</p>
                                 <p className="inline-flex items-center"><span className="mr-4"><MdAttachEmail className="text-[18px]"/></span>info@geoservices.co.id</p>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ const Footer = () => {
                         <div className="flex items-center gap-8 mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                             <div>
                                 <p className="font-medium pb-4">Jakarta</p>
-                                <p className="text-gray">
+                                <p className="text-gray text-[12px]">
                                     Jl. Minangkabau Barat No. 34, <br />
                                     Jakarta, 12970.
                                     <br /><br />
@@ -53,7 +53,7 @@ const Footer = () => {
                             </div>
                             <div>
                                 <p className="font-medium pb-4">Bandung</p>
-                                <p className="text-gray">
+                                <p className="text-gray text-[12px]">
                                     Jl. Setiabudi No. 81, <br />
                                     Bandung, 40153.
                                     <br /><br />

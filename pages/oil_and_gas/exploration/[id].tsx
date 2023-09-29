@@ -123,7 +123,8 @@ const ExplorationSub = () => {
                         })}
                     </Box>
                 </Box>
-                {product && product.equipment_item && <InfoCard title={"EQUIPMENT"}>
+                {product && product.equipment_item && 
+                <InfoCard title={"EQUIPMENT"}>
                     {product.equipment_item.map((item: any, index: number) => {
                         return(
                             <li key={index} style={{
@@ -135,22 +136,6 @@ const ExplorationSub = () => {
                         )
                     })}
                 </InfoCard>}
-                <InfoCard title={"CONTACTS"}>
-                    <div>
-                        {product && product.contact.map((item, index) => {
-                            return (
-                                <div style={{ marginBottom: 40 }}>
-                                    <h3 style={{ marginBottom: 12, color: 'grey' }}>{item.office}</h3>
-                                    <InfoCardListItem>{item.address}</InfoCardListItem>
-                                    <InfoCardListItem>Phone: {item.phones}</InfoCardListItem>
-                                    <InfoCardListItem>Fax: {item.fax}</InfoCardListItem>
-                                    <InfoCardListItem>E-mail: {item.email}</InfoCardListItem>
-                                    <InfoCardListItem>Contact Persons: {item.contact_persons.toString()}</InfoCardListItem>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </InfoCard>
                 <h2>Other Exploration Services</h2>
                 <Box
                     css={{

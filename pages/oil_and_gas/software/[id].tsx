@@ -119,22 +119,6 @@ const SoftwareSub = () => {
                         </div>}
                     </div>
                 </InfoCard>
-                <InfoCard title={"CONTACTS"}>
-                    <div>
-                        {product && product.contact.map((item, index) => {
-                            return (
-                                <div key={index} style={{ marginBottom: 40 }}>
-                                    <h3 style={{ marginBottom: 12, color: 'grey' }}>{item.office}</h3>
-                                    <InfoCardListItem>{item.address}</InfoCardListItem>
-                                    {item.phones && <InfoCardListItem>Phone: {item.phones}</InfoCardListItem>}
-                                    {item.fax && <InfoCardListItem>Fax: {item.fax}</InfoCardListItem>}
-                                    <InfoCardListItem>E-mail: {item.email}</InfoCardListItem>
-                                    <InfoCardListItem>Contact Persons: {item.contact_persons && item.contact_persons.toString()}</InfoCardListItem>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </InfoCard>
                 <h2>Other Software Principals</h2>
                 <Box
                     css={{
@@ -173,7 +157,10 @@ const SoftwareSub = () => {
                     )}
                 </Box>
             </Container>
-            <Footer />
+            <div className="pt-28">
+                <Footer />
+            </div>
+            
         </>
     );
 };

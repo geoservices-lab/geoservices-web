@@ -90,7 +90,10 @@ const Training = () => {
                     contactPerson={pageData && pageData.contact_persons}
                 />
             </Container>
-            <Footer />
+            <div className="pt-28">
+                <Footer />
+            </div>
+            
         </div>
     );
 };

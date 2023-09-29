@@ -263,9 +263,11 @@ const CoalDetail = () => {
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
         <BreadCrumbLine items={breadcrumbData(title)} />
         <Tab tabItems={tabItems} />
-        <Contact />
       </Container>
-      <Footer />
+      <div className="pt-28">
+        <Footer />
+      </div>
+      
     </div>
   );
 };

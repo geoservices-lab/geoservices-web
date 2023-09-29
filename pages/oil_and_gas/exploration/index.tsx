@@ -78,13 +78,10 @@ const Exploration = () => {
                         return <BoxItem key={index} label={item.service} url={`/oil_and_gas/exploration/${item.slug}`} />;
                     })}
                 </div>
-                <Contact
-                    email={pageData && pageData.email}
-                    address={pageData && pageData.address}
-                    contactPerson={pageData && pageData.contact_persons}
-                />
             </Container>
-            <Footer />
+            <div className="pt-28">
+                <Footer />
+            </div>
         </div>
     );
 };

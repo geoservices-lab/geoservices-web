@@ -78,7 +78,10 @@ const Coal = () => {
         </div>
         <Contact />
       </Container>
-      <Footer />
+      <div className="pt-28">
+        <Footer />
+      </div>
+      
     </div>
   );
 };
