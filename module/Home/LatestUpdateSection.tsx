@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL, API_KEY } from "../../pageConstant/general";
+import SanityImage from "../../reusables/SanityImage/SanityImage.comp";
 
 const news = [
     {
@@ -55,55 +56,28 @@ const news = [
 
   ];
 
-const NewsUpdate = ({ category, title, action, url, image }:any) => {
-    const [pageData, setPageData] = useState();
-    const [contentData, setContentData] = useState();
-
-    const callPageApi = async () => {
-        try {
-            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "news"]`);
-            const data = await res.json();
-            const currentPage = data.result.filter((item: any) => item.slug === 'training');
-            setPageData(currentPage[0]);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    const callContentApi = async () => {
-        try {
-            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
-            const data = await res.json();
-            const content = data && data.result;
-            setContentData(content);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    console.log(contentData && contentData);
-
-    useEffect(() => {
-        callPageApi();
-        callContentApi();
-    }, []);
-
+const NewsUpdate = ({ category, title, action, url, banner }:any) => {
     return (
         <>
             <div
                 className="flex-none mr-8 md:pb-4 scrolling-touch"
             >
-                <div className="relative max-w-xs bg-slate-100 rounded-lg shadow-md py-[20px] px-[16px]"                 
+                <div className="relative max-w-xs bg-slate-100 rounded-lg shadow-md py-[20px] px-[16px]"
                 style={{
                     height: 500,
                 }}>
                 <a className="block" href={url}>
-                    <img className="rounded-lg w-full mb-4" src={image} alt="" style={{
-                        height: 160,
-                        objectFit: 'cover'
-                    }}/>
+                    {banner && <SanityImage
+                        image={banner}
+                        style={{
+                            height: 160,
+                            objectFit: 'cover',
+                            marginTop: 0,
+                            marginBottom: 20,
+                        }}
+                    />}
                 </a>
-                <span className="bg-blue text-white text-[12px] mr-2 px-2.5 py-1 rounded">{category}</span>
+                <span className="bg-blue text-white text-[12px] mr-2 px-2.5 py-1 rounded uppercase">{category}</span>
                 <br />
                 <div className="space-y-4 mt-4">
                     <h5 className="text-[24px] font-normal text-gray-900">{title}</h5>
@@ -123,25 +97,22 @@ const NewsUpdate = ({ category, title, action, url, image }:any) => {
 }
 
 const LatestUpdateSection = () => {
-    const [newsData, setNewsData] = useState([]);
+    const [contentData, setContentData] = useState();
 
-  const callAPI = async ({setNewsData}:any) => {
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/news?populate=deep`, {
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-        },
-      });
-      const data = await res.json();
-      setNewsData(data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    const callContentApi = async () => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "news"]`);
+            const data = await res.json();
+            const content = data && data.result;
+            setContentData(content);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-  useEffect(() => {
-    callAPI(setNewsData);
-  }, []);
+    useEffect(() => {
+        callContentApi();
+    }, []);
 
     return(
         <>
@@ -156,17 +127,19 @@ const LatestUpdateSection = () => {
             <div
                 className="flex flex-no-wrap overflow-x-scroll scrolling-touch items-start mb-8 pb-8"
                 >
-                {news &&
-                    news.map((item, index) => (
-                        <NewsUpdate
-                        key={index}
-                        category={item.category}
-                        title={item.title}
-                        action={item.action}
-                        url={item.url || ""}
-                        image={item.image}
-                        />
-                    ))}
+                {contentData &&
+                    contentData.map((item, index) => {
+                        return (
+                            <NewsUpdate
+                                key={index}
+                                category={item.category}
+                                title={item.title}
+                                action={'Read More'}
+                                url={item.slug ? `/news/${item.slug}` : "/"}
+                                banner={item.banner}
+                            />
+                        )
+                    })}
               </div>
         </div>
         </>
