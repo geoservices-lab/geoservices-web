@@ -1,9 +1,9 @@
 import React from "react";
 
-const Banner = () => {
+const Banner = ({ image }) => {
     return (
         <>
-        <div 
+        <div
         style={{
         backgroundImage: "url('https://source.unsplash.com/FXJf8y_cZA0')"
         }} className="desktop:h-[391px] h-[158px] w-full object-fill bg-cover">
@@ -13,7 +13,7 @@ const Banner = () => {
                     Career
                     </h1>
                 </div>
-            </div>      
+            </div>
         </div>
         </>
     )

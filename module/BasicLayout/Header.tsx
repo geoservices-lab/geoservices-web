@@ -134,15 +134,15 @@ const Header = () => {
           >
             <Box css={{ mr: "$5" }}>
               <Row justify="flex-end" align="center" gap={1}>
-                <TextLink css={headerTextCSS} href="/career">
+                <TextLink css={router.pathname.includes('career') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/career">
                   Career
                 </TextLink>
                 <Dot />
-                <TextLink css={headerTextCSS} href="/about-us">
+                <TextLink css={router.pathname.includes('about-us') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/about-us">
                   About Us
                 </TextLink>
                 <Dot />
-                <TextLink css={headerTextCSS} href="/contact-us">
+                <TextLink css={router.pathname.includes('contact-us') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/contact-us">
                   Contact
                 </TextLink>
               </Row>

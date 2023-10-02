@@ -37,14 +37,12 @@ const Home = () => {
         data={data[0]}
       />
       <div className="mt-42">
-      <OurSpecialtySection/>
+      <OurSpecialtySection data={data[0]}/>
       <LatestUpdateSection />
         <div className="pb-32 mobile:pb-24">
         <UpcomingTrainingSection />
         </div>
-
       </div>
-
     </>
   );
 };
