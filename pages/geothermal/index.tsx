@@ -38,7 +38,7 @@ const Geothermal = () => {
             </div>
             <Product description={pageData && pageData.description}/>
             <div className="pt-14">
-                <Speciality/>
+                <Speciality data={pageData && pageData.specialties}/>
             </div>
             <div className="pt-14 space-y-8">
                 <Services/>
