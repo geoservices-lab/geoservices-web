@@ -9,6 +9,7 @@ module.exports = {
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./modules/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./reusables/**/*.{js,ts,jsx,tsx,mdx}",
         'node_modules/flowbite/**/*.{js,jsx,ts,tsx}',
         'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
 
@@ -178,6 +179,9 @@ module.exports = {
                 side: '56px',
                 'side-desktop': '72px',
                 'side-mobile': '22px',
+            },
+            marginTop: {
+                '80px': '80px',
             },
             transitionProperty: {
                 ...defaultTheme.transitionProperty,

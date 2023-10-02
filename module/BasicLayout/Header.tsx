@@ -10,6 +10,7 @@ import Box from "reusables/Box";
 import { Nav } from "reusables/NavMenu";
 import menu from "reusables/NavMenu/OilAndGasMenu";
 import coalMenu from "reusables/NavMenu/CoalMenu";
+import MobileNavigation from "../MobileNavigation/MobileNavigation";
 
 const headerTextCSS = {
   paddingTop: 10,
@@ -36,221 +37,227 @@ const Header = () => {
   const [isExpand, setExpand] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const logo = "/assets/logo2.png";
-
   const router = useRouter();
 
-  return (
-    <Box css={{ minHeight: "80px" }}>
-      <Box
-        css={{
-          m: 0,
-          p: 0,
-          top: 0,
-          minHeight: "80px",
-          position: "fixed",
-          zIndex: 2,
-          background: "rgba(255, 255, 255, 0.8)",
-          display: "grid",
-          gridAutoRows: "1fr",
-          width: "100%",
-        }}
-      >
-        <Box
-          css={{
-            display: "flex",
-            justifyContent: "end",
-            alignItem: "center",
-            position: "relative",
-            height: "100%",
-            "@sm": {
-              justifyContent: "space-between",
-            },
-          }}
-        >
+    const desktopNavigation = () => (
+      <Box className={"mobile:hidden"} css={{ minHeight: "80px" }}>
           <Box
-            css={{
-              width: `${isExpand ? "100%" : "0px"}`,
-              height: "100%",
-              transition: "width 0.5s",
-              position: "absolute",
-              zIndex: 5,
-              left: `${isExpand ? "0" : "-100px"}`,
-              background: "rgba(255, 255, 255)",
-              display: "flex",
-              alignContent: "center",
-              p: "$5",
-            }}
+              css={{
+                  m: 0,
+                  p: 0,
+                  top: 0,
+                  minHeight: "80px",
+                  position: "fixed",
+                  zIndex: 2,
+                  background: "rgba(255, 255, 255, 0.8)",
+                  display: "grid",
+                  gridAutoRows: "1fr",
+                  width: "100%",
+              }}
           >
-            <Input
-              width="100%"
-              placeholder="search"
-              value={searchKey}
-              onChange={(e) => setSearchKey(e?.target?.value)}
-              contentRight={
-                <Button
-                  auto
-                  light
-                  onPress={() => {
-                    setExpand(false);
-                    setSearchKey("");
-                  }}
-                  css={{ right: "$10" }}
-                >
-                  <ImCancelCircle />
-                </Button>
-              }
-            />
-          </Box>
-
-          <TextLink
-            css={{
-              height: "100%",
-              display: "none",
-              alignItems: "center",
-              pl: "120px",
-              "@sm": {
-                display: "flex",
-              },
-            }}
-            href={"/"}
-          >
-            <Image
-              src={logo}
-              width="200px"
-              height="60px"
-              alt="logo"
-              objectFit="contain"
-              style={{ marginTop: "-1.5px" }}
-            />
-          </TextLink>
-
-          <Box
-            css={{
-              display: "grid",
-              alignItems: "center",
-              gridAutoRows: "1fr",
-              gridTemplateColumns: "auto 1fr",
-            }}
-          >
-            <Box css={{ mr: "$5" }}>
-              <Row justify="flex-end" align="center" gap={1}>
-                <TextLink css={router.pathname.includes('career') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/career">
-                  Career
-                </TextLink>
-                <Dot />
-                <TextLink css={router.pathname.includes('about-us') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/about-us">
-                  About Us
-                </TextLink>
-                <Dot />
-                <TextLink css={router.pathname.includes('contact-us') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/contact-us">
-                  Contact
-                </TextLink>
-              </Row>
-              <Row justify="flex-end" align="center" gap={1} css={{ my: "$2" }}>
-                <Nav {...menu}>
-                  <Text
-                    css={{
-                      ...headerTextCSS,
-                      ...mainMenu,
-                      cursor: "pointer",
-                      "&:hover": {
-                        color: "$gray700",
-                      },
-                      top: 8,
+              <Box
+                  css={{
+                      display: "flex",
+                      justifyContent: "end",
+                      alignItem: "center",
+                      position: "relative",
                       height: "100%",
-                    }}
-                    style={{
-                      borderColor: router.pathname.includes("oil_and_gas")
-                        ? "#D3252C"
-                        : "transparent",
-                    }}
+                      "@sm": {
+                          justifyContent: "space-between",
+                      },
+                  }}
+              >
+                  <Box
+                      css={{
+                          width: `${isExpand ? "100%" : "0px"}`,
+                          height: "100%",
+                          transition: "width 0.5s",
+                          position: "absolute",
+                          zIndex: 5,
+                          left: `${isExpand ? "0" : "-100px"}`,
+                          background: "rgba(255, 255, 255)",
+                          display: "flex",
+                          alignContent: "center",
+                          p: "$5",
+                      }}
                   >
-                    Oil and Gas
-                  </Text>
-                </Nav>
-                  <Nav {...coalMenu}>
-                      <Text
-                          css={{
-                              ...headerTextCSS,
-                              ...mainMenu,
-                              cursor: "pointer",
-                              "&:hover": {
-                                  color: "$gray700",
-                              },
-                              top: 8,
-                              height: "100%",
+                      <Input
+                          width="100%"
+                          placeholder="search"
+                          value={searchKey}
+                          onChange={(e) => setSearchKey(e?.target?.value)}
+                          contentRight={
+                              <Button
+                                  auto
+                                  light
+                                  onPress={() => {
+                                      setExpand(false);
+                                      setSearchKey("");
+                                  }}
+                                  css={{ right: "$10" }}
+                              >
+                                  <ImCancelCircle />
+                              </Button>
+                          }
+                      />
+                  </Box>
+
+                  <TextLink
+                      css={{
+                          height: "100%",
+                          display: "none",
+                          alignItems: "center",
+                          pl: "120px",
+                          "@sm": {
+                              display: "flex",
+                          },
+                      }}
+                      href={"/"}
+                  >
+                      <Image
+                          src={logo}
+                          width="200px"
+                          height="60px"
+                          alt="logo"
+                          objectFit="contain"
+                          style={{ marginTop: "-1.5px" }}
+                      />
+                  </TextLink>
+
+                  <Box
+                      css={{
+                          display: "grid",
+                          alignItems: "center",
+                          gridAutoRows: "1fr",
+                          gridTemplateColumns: "auto 1fr",
+                      }}
+                  >
+                      <Box css={{ mr: "$5" }}>
+                          <Row justify="flex-end" align="center" gap={1}>
+                              <TextLink css={router.pathname.includes('career') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/career">
+                                  Career
+                              </TextLink>
+                              <Dot />
+                              <TextLink css={router.pathname.includes('about-us') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/about-us">
+                                  About Us
+                              </TextLink>
+                              <Dot />
+                              <TextLink css={router.pathname.includes('contact-us') ? { ...headerTextCSS, color: "#D3252C"} : headerTextCSS} href="/contact-us">
+                                  Contact
+                              </TextLink>
+                          </Row>
+                          <Row justify="flex-end" align="center" gap={1} css={{ my: "$2" }}>
+                              <Nav {...menu}>
+                                  <Text
+                                      css={{
+                                          ...headerTextCSS,
+                                          ...mainMenu,
+                                          cursor: "pointer",
+                                          "&:hover": {
+                                              color: "$gray700",
+                                          },
+                                          top: 8,
+                                          height: "100%",
+                                      }}
+                                      style={{
+                                          borderColor: router.pathname.includes("oil_and_gas")
+                                              ? "#D3252C"
+                                              : "transparent",
+                                      }}
+                                  >
+                                      Oil and Gas
+                                  </Text>
+                              </Nav>
+                              <Nav {...coalMenu}>
+                                  <Text
+                                      css={{
+                                          ...headerTextCSS,
+                                          ...mainMenu,
+                                          cursor: "pointer",
+                                          "&:hover": {
+                                              color: "$gray700",
+                                          },
+                                          top: 8,
+                                          height: "100%",
+                                      }}
+                                      style={{
+                                          borderColor: router.pathname.includes("coal")
+                                              ? "#D3252C"
+                                              : "transparent",
+                                      }}
+                                  >
+                                      Coal and Minerals
+                                  </Text>
+                              </Nav>
+                              <TextLink
+                                  textCSS={{
+                                      ...headerTextCSS,
+                                      ...mainMenu,
+                                      cursor: "pointer",
+                                      "&:hover": {
+                                          color: "$gray700",
+                                      },
+                                      height: "100%",
+                                      paddingLeft: 0,
+                                      paddingRight: 0,
+                                      borderColor: router.pathname.includes("geothermal")
+                                          ? "#D3252C"
+                                          : "transparent",
+                                  }}
+                                  href={"/geothermal"}
+                              >
+                                  Geothermal
+                              </TextLink>
+                              <TextLink
+                                  textCSS={{
+                                      ...headerTextCSS,
+                                      ...mainMenu,
+                                      cursor: "pointer",
+                                      "&:hover": {
+                                          color: "$gray700",
+                                      },
+                                      height: "100%",
+                                      marginLeft: 10,
+                                      paddingLeft: 0,
+                                      paddingRight: 0,
+                                      borderColor: router.pathname.includes("trade_and_services")
+                                          ? "#D3252C"
+                                          : "transparent",
+                                  }}
+                                  href={"/trade_and_services"}
+                              >
+                                  Trade and Services
+                              </TextLink>
+                          </Row>
+                      </Box>
+
+                      <Button
+                          auto
+                          onPress={() => {
+                              setExpand(true);
                           }}
-                          style={{
-                              borderColor: router.pathname.includes("coal")
-                                  ? "#D3252C"
-                                  : "transparent",
+                          css={{
+                              backgroundColor: "#363C9A",
+                              zIndex: 0,
+                              borderRadius: "0",
+                              height: "100%",
+                              width: "90px",
                           }}
                       >
-                          Coal and Minerals
-                      </Text>
-                  </Nav>
-                <TextLink
-                  textCSS={{
-                    ...headerTextCSS,
-                    ...mainMenu,
-                    cursor: "pointer",
-                    "&:hover": {
-                      color: "$gray700",
-                    },
-                    height: "100%",
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    borderColor: router.pathname.includes("geothermal")
-                      ? "#D3252C"
-                      : "transparent",
-                  }}
-                  href={"/geothermal"}
-                >
-                  Geothermal
-                </TextLink>
-                <TextLink
-                  textCSS={{
-                    ...headerTextCSS,
-                    ...mainMenu,
-                    cursor: "pointer",
-                    "&:hover": {
-                      color: "$gray700",
-                    },
-                    height: "100%",
-                    marginLeft: 10,
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    borderColor: router.pathname.includes("trade_and_services")
-                      ? "#D3252C"
-                      : "transparent",
-                  }}
-                  href={"/trade_and_services"}
-                >
-                  Trade and Services
-                </TextLink>
-              </Row>
-            </Box>
-
-            <Button
-              auto
-              onPress={() => {
-                setExpand(true);
-              }}
-              css={{
-                backgroundColor: "#363C9A",
-                zIndex: 0,
-                borderRadius: "0",
-                height: "100%",
-                width: "90px",
-              }}
-            >
-              <IoSearchOutline size={30} />
-            </Button>
+                          <IoSearchOutline size={30} />
+                      </Button>
+                  </Box>
+              </Box>
           </Box>
-        </Box>
       </Box>
-    </Box>
-  );
+  )
+
+  return (
+      <div>
+          {desktopNavigation()}
+          <MobileNavigation />
+      </div>
+  )
 };
 
 export default Header;
