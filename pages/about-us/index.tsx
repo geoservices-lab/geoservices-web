@@ -6,7 +6,6 @@ import ImageJumbotron from "../../reusables/ImageJumbotron";
 
 export default function AboutUs() {
     const [pageData, setPageData] = useState();
-    const [contentData, setContentData] = useState();
 
     const callPageApi = async () => {
         try {
@@ -23,10 +22,7 @@ export default function AboutUs() {
         callPageApi();
     }, []);
 
-    console.log(pageData && pageData);
-
     return (
-
         <div>
             <Header />
             <ImageJumbotron
@@ -37,7 +33,6 @@ export default function AboutUs() {
             <div className="pt-28">
                 <Footer />
             </div>
-            
         </div>
     )
 }

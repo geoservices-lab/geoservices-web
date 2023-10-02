@@ -61,10 +61,10 @@ const LatestUpdateSection = () => {
 
     return(
         <>
-        <div className="max-w-7xl container mx-auto desktop:py-32">
+        <div className="max-w-7xl container mx-auto py-8 desktop:py-32">
             <div className="inline-flex items-center pb-4">
                 <span className="mobile:hidden h-2 w-14 bg-blue"></span>
-                <h1 className="desktop:text-[50px] desktop:ml-[60px] desktop:text-left ml-16 text-[36px] font-bold text-center leading-10 text-peach">
+                <h1 className="desktop:text-[50px] desktop:ml-[60px] desktop:text-left ml-8 text-[36px] font-bold text-peach">
                     Latest Update
                 </h1>
             </div>

@@ -17,7 +17,7 @@ module.exports = {
     ],
     theme: {
         screens: {
-            mobile: { 
+            mobile: {
                 max: '768px' }, //425px
             tablet: { max: '640px', min: '426px' },
             mobileLaptop: {
@@ -148,7 +148,7 @@ module.exports = {
                 blue: '#505AE5',
                 peach: '#E68E67',
                 lightBlue: '#CCE7FF',
-                primary: '#471F81',
+                primary: '#363C9a',
                 secondary: '#C565AD',
                 'dark-primary': '#29045D',
                 'light-primary': '#A88ECF',

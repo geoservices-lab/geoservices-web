@@ -2,19 +2,7 @@ import React, {useEffect, useState} from "react"
 import dayjs from 'dayjs';
 
 const UpcomingTrainingSection = () => {
-    const [pageData, setPageData] = useState();
     const [contentData, setContentData] = useState();
-
-    const callPageApi = async () => {
-        try {
-            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
-            const data = await res.json();
-            const currentPage = data.result.filter((item: any) => item.slug === 'training');
-            setPageData(currentPage[0]);
-        } catch (err) {
-            console.log(err);
-        }
-    };
 
     const callContentApi = async () => {
         try {
@@ -28,7 +16,6 @@ const UpcomingTrainingSection = () => {
     };
 
     useEffect(() => {
-        callPageApi();
         callContentApi();
     }, []);
 
