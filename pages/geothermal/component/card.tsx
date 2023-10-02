@@ -1,21 +1,15 @@
 import React from 'react'
+import { PortableText } from "@portabletext/react"
 
-const Product = () => {
+const Product = ({ description }: any) => {
     return (
         <>
-        
-        <div className="border-t-4 border-peach shadow-md p-11 desktop:flex desktop:justify-between">
-            <h1 className=' text-peach font-bold text-[24px] capitalize leading-6'>General information</h1>
-            <br />
-            <p className='desktop:text-left text-justify desktop:w-3/4 text-gray text-[16px]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae maiores voluptate dolorum! Quasi numquam voluptatem nulla ratione blanditiis nesciunt unde reprehenderit adipisci soluta. Quae explicabo quas maxime corporis dignissimos molestiae? <br />
-            <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus recusandae doloribus corporis incidunt facilis adipisci ea officiis quaerat, facere accusantium laboriosam commodi vitae dolor eaque!
-            <br />
-            <br />
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, at quae esse porro dolorem assumenda.
-            </p>
-        </div>
-
+            <div className="border-t-4 border-peach shadow-md p-11">
+                <h1 className=' text-peach font-bold text-[24px] capitalize leading-6'>General information</h1>
+                <div className='desktop:text-left text-justify text-gray text-[16px] mt-4'>
+                    <PortableText value={description} />
+                </div>
+            </div>
         </>
     )
 }
