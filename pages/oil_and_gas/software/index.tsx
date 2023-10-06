@@ -123,14 +123,7 @@ const Geolab = () => {
                         <PortableText value={pageData && pageData.description} />
                     </div>
                 </InfoCard>
-                <div
-                    style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        marginTop: 20,
-                        marginBottom: 20,
-                    }}
-                >
+                <div className={'flex flex-wrap my-[20px]'}>
                     {contentData && contentData.map((item, index) => {
                         return (
                             <Box key={index} className={'desktop:w-1/3 p-4'}>

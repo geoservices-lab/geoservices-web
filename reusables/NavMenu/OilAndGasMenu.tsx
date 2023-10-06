@@ -451,8 +451,20 @@ export const ExplorationSubMenu = () => {
 export const LaboratorySubMenu = () => {
     const image1 = "/assets/bg-machinery.png";
     const [product, setProductData] = useState([]);
+    const [page, setPageData] = useState();
 
-    const callAPI = async (setProductData) => {
+    const callPageApi = async () => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
+            const data = await res.json();
+            const currentPage = data.result.filter((item: any) => item.slug === 'geological-laboratory');
+            setPageData(currentPage[0]);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const callAPI = async () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "geolab"]`);
             const data = await res.json();
@@ -473,8 +485,9 @@ export const LaboratorySubMenu = () => {
     };
 
     useEffect(() => {
-        callAPI(setProductData);
-    }, [product]);
+        callAPI();
+        callPageApi();
+    }, []);
 
     return (
         <>
@@ -530,14 +543,7 @@ export const LaboratorySubMenu = () => {
                     ))}
                 </Box>
                 <Box css={{ mx: "$14" }}>
-                    <Image
-                        src={image1}
-                        objectFit="fill"
-                        height={200}
-                        containerCss={{
-                            borderRadius: "0",
-                        }}
-                    />
+                    {page && page.banner && <SanityImageComp image={page.banner} style={{ height: 200, width: 400, marginTop: 0, objectFit: 'cover' }}/>}
                 </Box>
             </Box>
         </>
