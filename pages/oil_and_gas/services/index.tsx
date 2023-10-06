@@ -158,13 +158,7 @@ const Services = () => {
                                     <div className="overflow-hidden h-[140px] text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
                                         <PortableText value={item.introduction} />
                                     </div>
-                                    <Box
-                                        className={'absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full p-4'}
-                                        css={{
-                                            display: "flex",
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
+                                    <Box className={'flex justify-between absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full p-4'}>
                                         <TextLink href="mailto:info@geoservices.co.id" style={{
                                             color: '#505AE5',
                                         }}>

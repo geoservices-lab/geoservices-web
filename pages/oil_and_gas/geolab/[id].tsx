@@ -9,6 +9,9 @@ import Footer from "../../../module/BasicLayout/Footer";
 import Modal from "../../../reusables/Modal/Modal";
 import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
 import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
+import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
+import { PortableText } from "@portabletext/react";
+import TextLink from "../../../reusables/TextLink";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -36,6 +39,8 @@ const GeolabSub = () => {
   const [otherDivision, setOtherDivision] = useState([]);
   const [isModalOpen, setModalStatus] = useState(false);
   const [modalProps, setModalProps] = useState({});
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const callAPI = async (setProductData: Function) => {
     try {
@@ -43,8 +48,9 @@ const GeolabSub = () => {
       const data = await res.json();
       const currentPage = data.result.filter((item: any) => item.slug === router.query.id);
       const otherDivision = data.result.filter((item: any) => item.slug !== router.query.id);
+      const curated = otherDivision.filter((item: any) => item.type === 'oil');
       setProductData(currentPage[0]);
-      setOtherDivision(otherDivision);
+      setOtherDivision(curated);
     } catch (err) {
       console.log(err);
     }
@@ -53,12 +59,18 @@ const GeolabSub = () => {
   useEffect(() => {
     callAPI(setProductData);
   }, []);
-  console.log(product);
 
   const openProductDetail = (props) => () => {
     setModalStatus(true);
     setModalProps(props);
   };
+
+  const onOpenModal = (index: number) => {
+      setActiveIndex(index);
+      setOpen(true);
+  }
+
+  console.log(product);
 
   return (
     <>
@@ -70,138 +82,68 @@ const GeolabSub = () => {
       />
       <Container css={{ my: "10px", maxWidth: "1240px" }}>
         <BreadCrumbLine items={breadcrumbData(product && product.division)} />
-          <Box
-              css={{
-                  marginTop: 40,
-                  marginBottom: 40,
-                  borderTop: "4px solid #E68E67",
-                  boxShadow: "0px 4px 4px 0px #0000001A",
-                  p: "44px 193px 44px 52px",
+          <InfoCard title={'OVERVIEW'}>
+              <div style={{
+                  fontSize: 15,
+                  lineHeight: 2,
               }}
-          >
-              <Box
-                  css={{
-                      position: "relative",
-                  }}>
-              </Box>
-              <Box>
-                  <h3 style={{
-                      color: "#E68E67",
-                      marginTop: 0,
-                      paddingTop: 0,
-                  }}>
-                      GENERAL INFORMATION
-                  </h3>
-                  <Text
-                      css={{
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          lineHeight: "30px",
-                          color: "#828282",
-                      }}
-                  >
-                      {product && product.division}
-                  </Text>
-                  <Text
-                      css={{
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          lineHeight: "30px",
-                          color: "#828282",
-                      }}
-                  >
-                      Industry : Oil & Gas
-                  </Text>
-                  <Text
-                      css={{
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          lineHeight: "30px",
-                          color: "#828282",
-                      }}
-                  >
-                      PIC : {product && product.pic}
-                  </Text>
-                  <Text
-                      css={{
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          lineHeight: "30px",
-                          color: "#828282",
-                      }}
-                  >
-                      E-mail : {product && product.pic_email}
-                  </Text>
-                  <Text
-                      css={{
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          lineHeight: "30px",
-                          color: "#828282",
-                      }}
-                  >
-                      Location : {product && product.address}
-                  </Text>
-              </Box>
-          </Box>
-
-          <Box
-              css={{
-                  marginTop: 40,
-                  marginBottom: 40,
-                  borderTop: "4px solid #E68E67",
-                  boxShadow: "0px 4px 4px 0px #0000001A",
-                  p: "44px 193px 44px 52px",
-              }}
-          >
-              <Box
-                  css={{
-                      position: "relative",
-                  }}>
-              </Box>
-              <Box>
-                  <h3 style={{
-                      color: "#E68E67",
-                      marginTop: 0,
-                      paddingTop: 0,
-                  }}>
-                      PRODUCTS
-                  </h3>
-                  {product && product.products && product.products.map((item, index) => {
-                      return (
-                          <div
-                              key={index}
-                              style={{
-                              marginBottom: 20,
+                   className={'text-gray mt-4'}
+              >
+                  <p>
+                      {product && product.introduction}
+                  </p>
+              </div>
+          </InfoCard>
+          <h2 style={{
+              color: 'rgb(230, 142, 103)',
+              textTransform: 'uppercase',
+              fontSize: 18,
+          }}>
+              Highlighted Products
+          </h2>
+          <div className={'flex flex-wrap mt-[20px] mb-[40px]'}>
+              {product && product.products.map((item, index) => {
+                  return (
+                      <Box key={index} className={'desktop:w-1/3 pr-4 pb-4'}>
+                          <div className={'border p-4 h-[400px] relative'} style={{
+                              borderColor: 'gainsboro'
                           }}>
-                              <Text
-                                  css={{
-                                      fontWeight: "600",
-                                      fontSize: "20px",
-                                      color: "#828282",
-                                      whiteSpace: "pre-line",
-                                      marginBottom: 7,
-                                  }}
-                              >
-                                  {index + 1}. {item.product}
-                              </Text>
-                              <Text
-                                  css={{
-                                      fontWeight: "400",
-                                      fontSize: "14px",
-                                      lineHeight: "30px",
-                                      color: "#828282",
-                                      whiteSpace: "pre-line",
-                                  }}
-                              >
+                              {item.main_image && <SanityImageComp image={item.main_image} className={'h-[120px]'} style={{
+                                  marginTop: 0,
+                                  width: '100%',
+                                  objectFit: 'cover',
+                              }} />}
+                              <h3 style={{
+                                  textAlign: 'center',
+                                  lineHeight: 1.6,
+                                  paddingTop: 12,
+                              }}>
+                                  {item.product}
+                              </h3>
+                              <div className="overflow-hidden h-[140px] text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
                                   {item.description}
-                              </Text>
+                              </div>
+                              <Box className={'flex justify-between absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full p-4'}>
+                                  <TextLink href="mailto:info@geoservices.co.id" style={{
+                                      color: '#505AE5'
+                                  }}>
+                                      Request Quotation
+                                  </TextLink>
+                                  <a onClick={() => onOpenModal(index)} style={{
+                                      color: '#505AE5',
+                                      cursor: 'pointer'
+                                  }}>View Details</a>
+                              </Box>
                           </div>
-                      )
-                  })}
-              </Box>
-          </Box>
-        <h2>Other Geolab Laboratories</h2>
+                      </Box>
+                  )
+              })}
+          </div>
+        <h2 style={{
+            color: 'rgb(230, 142, 103)',
+            textTransform: 'uppercase',
+            fontSize: 18,
+        }}>Other Geological Laboratories</h2>
         <Box
           css={{
             marginTop: 30,
@@ -221,6 +163,7 @@ const GeolabSub = () => {
                             height: 160,
                             objectFit: 'cover',
                             borderRadius: 12,
+                            marginTop: 0,
                         }} />}
                         <div style={{
                           fontSize: 15,
