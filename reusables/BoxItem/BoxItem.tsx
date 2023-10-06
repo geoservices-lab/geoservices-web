@@ -18,6 +18,7 @@ const BoxItem = ({ label, url }) => {
         borderRadius: 12,
         border: "1px solid gainsboro",
         lineHeight: 1.5,
+          marginBottom: 20,
       }}
     >
       {label}

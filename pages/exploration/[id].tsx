@@ -19,12 +19,8 @@ const breadcrumbData = (labTitle: string) => [
         url: "/",
     },
     {
-        title: "Oil and Gas",
-        url: "/oil_and_gas",
-    },
-    {
         title: "Exploration",
-        url: "/oil_and_gas/exploration",
+        url: "/exploration",
     },
     {
         title: labTitle,
