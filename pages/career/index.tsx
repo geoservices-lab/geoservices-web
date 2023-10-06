@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react'
-import Banner from './component/banner'
+import React, { useEffect, useState } from 'react'
 import Header from 'module/BasicLayout/Header'
 import ListCareer from './component/list-career'
 import Footer from "../../module/BasicLayout/Footer";

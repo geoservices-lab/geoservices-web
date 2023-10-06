@@ -22,13 +22,13 @@ const breadcrumbData = () => [
         url: "/oil_and_gas",
     },
     {
-        title: "Software",
-        url: "/oil_and_gas/software",
+        title: "Services",
+        url: "/oil_and_gas/services",
         textColor: "rgb(230, 142, 103)",
     },
 ];
 
-const Geolab = () => {
+const Services = () => {
     const [open, setOpen] = useState(false);
     const [pageData, setPageData] = useState();
     const [contentData, setContentData] = useState();
@@ -45,7 +45,7 @@ const Geolab = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
             const data = await res.json();
-            const currentPage = data.result.filter((item: any) => item.slug === 'software');
+            const currentPage = data.result.filter((item: any) => item.slug === 'services' && item.parent === 'oil');
             setPageData(currentPage[0]);
         } catch (err) {
             console.log(err);
@@ -54,10 +54,13 @@ const Geolab = () => {
 
     const callContentApi = async () => {
         try {
-            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "software"]`);
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "services"]`);
             const data = await res.json();
             const content = data && data.result;
-            setContentData(content);
+            const filtered = content.filter((item) => {
+              return item.type === 'oil'
+            });
+            setContentData(filtered);
         } catch (err) {
             console.log(err);
         }
@@ -79,9 +82,12 @@ const Geolab = () => {
                 }
             }} center>
                 <div className={"overflow-scroll h-[500px]"}>
-                    {contentData && contentData[activeIndex].logo && <SanityImageComp image={contentData && contentData[activeIndex].logo} className={'h-[120px] max-w-[200px]'} style={{ marginTop: 0 }} />}
+                    {contentData && contentData[activeIndex].banner && <SanityImageComp image={contentData && contentData[activeIndex].banner} className={'h-[240px] max-w-[500px] mb-6'} style={{ marginTop: 0, objectFit: 'cover' }} />}
+                    <h2 className={'text-[20px]'}>
+                        {contentData && contentData[activeIndex].service}
+                    </h2>
                     <div className="text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
-                        <PortableText value={contentData && contentData[activeIndex].description} />
+                        <PortableText value={contentData && contentData[activeIndex].introduction} />
                     </div>
                     <div className={'mt-4 text-gray'}>
                         {contentData && contentData[activeIndex].products && <div className={'font-bold'}>Products :</div>}
@@ -91,10 +97,10 @@ const Geolab = () => {
                             </div>
                         ))}
                     </div>
-                    <div className={'flex flex-wrap'}>
+                    <div className={'flex'}>
                         {contentData && contentData[activeIndex].featured_images && contentData[activeIndex].featured_images.map((item, index) => (
-                            <div className={'pr-4 w-1/2'}>
-                                <SanityImageComp image={item} className={'h-[200px]'} />
+                            <div className={'pr-4'}>
+                                <SanityImageComp image={item} className={'h-[120px]'} />
                             </div>
                         ))}
                     </div>
@@ -118,7 +124,7 @@ const Geolab = () => {
                         fontSize: 15,
                         lineHeight: 2,
                     }}
-                        className={'text-gray mt-4'}
+                         className={'text-gray mt-4'}
                     >
                         <PortableText value={pageData && pageData.description} />
                     </div>
@@ -137,16 +143,18 @@ const Geolab = () => {
                                 <div className={'border p-4'} style={{
                                     borderColor: 'gainsboro'
                                 }}>
-                                    {item.logo && <SanityImageComp image={item.logo} className={'h-[120px]'} />}
+                                    {item.banner && <SanityImageComp image={item.banner} className={'h-[120px]'} style={{
+                                        marginTop: 0,
+                                    }} />}
                                     <h3 style={{
                                         textAlign: 'center',
                                         lineHeight: 1.6,
                                         paddingTop: 12,
                                     }}>
-                                        {item.principal}
+                                        {item.service}
                                     </h3>
                                     <div className="overflow-hidden h-[140px] text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
-                                        <PortableText value={item.description} />
+                                        <PortableText value={item.introduction} />
                                     </div>
                                     <Box
                                         css={{
@@ -172,10 +180,10 @@ const Geolab = () => {
                 </div>
             </Container>
             <div className="pt-28">
-               <Footer />
+                <Footer />
             </div>
         </div>
     );
 };
 
-export default Geolab;
+export default Services;

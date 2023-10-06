@@ -36,7 +36,7 @@ const ImageJumbotron = ({
                 backgroundImage: `url(${imageProps && imageProps.src})`
             }} className="desktop:h-[391px] h-[158px] w-full object-fill bg-cover">
             <div className="mobile:mt-[80px] w-3/4 mx-auto py-16 desktop:w-full desktop:py-32 desktop:max-w-7xl">
-                <h1 className="font-extrabold text-white text-[40px] desktop:text-[70px] capitalize leading-none">
+                <h1 className="drop-shadow-lg font-extrabold text-white text-[40px] desktop:text-[70px] capitalize leading-none">
                     {text}
                 </h1>
             </div>
