@@ -4,12 +4,12 @@ import Box from "../Box";
 const InfoCard = ({ title, children }) => {
     return (
         <Box
+            className={'p-8'}
             css={{
                 marginTop: 40,
                 marginBottom: 40,
                 borderTop: "4px solid #E68E67",
                 boxShadow: "0px 4px 4px 0px #0000001A",
-                p: "44px 193px 44px 52px",
             }}
         >
             <Box>
