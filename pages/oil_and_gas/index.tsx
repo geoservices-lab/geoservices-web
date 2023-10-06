@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "@nextui-org/react";
-import Header from "../../../module/BasicLayout/Header";
-import ImageJumbotron from "../../../reusables/ImageJumbotron";
-import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
-import Contact from "../../../reusables/Contact/Contact";
-import Footer from "../../../module/BasicLayout/Footer";
-import BoxItem from "../../../reusables/BoxItem/BoxItem";
-import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
+import Header from "../../module/BasicLayout/Header";
+import ImageJumbotron from "../../reusables/ImageJumbotron";
+import BreadCrumbLine from "../../reusables/BreadcrumbLine";
+import Footer from "../../module/BasicLayout/Footer";
+import BoxItem from "../../reusables/BoxItem/BoxItem";
+import InfoCard from "../../reusables/InfoCard/InfoCard.comp";
 import { PortableText } from "@portabletext/react";
 
 const breadcrumbData = () => [
@@ -17,11 +16,30 @@ const breadcrumbData = () => [
     {
         title: "Oil and Gas",
         url: "/oil_and_gas",
+        textColor: "rgb(230, 142, 103)",
+    },
+];
+
+const option = [
+    {
+        title: "Exploration",
+        slug: "/exploration",
     },
     {
-        title: "Geolab",
-        url: "/oil_and_gas/geolab",
-        textColor: "rgb(230, 142, 103)",
+        title: "Geological Laboratory",
+        slug: "/oil_and_gas/geolab",
+    },
+    {
+        title: "Software",
+        slug: "/oil_and_gas/software",
+    },
+    {
+        title: "Services",
+        slug: "/oil_and_gas/services",
+    },
+    {
+        title: "Training",
+        slug: "/training",
     },
 ];
 
@@ -33,7 +51,7 @@ const Geolab = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
             const data = await res.json();
-            const currentPage = data.result.filter((item: any) => item.slug === 'geological-laboratory');
+            const currentPage = data.result.filter((item: any) => item.slug === 'oil-and-gas');
             setPageData(currentPage[0]);
         } catch (err) {
             console.log(err);
@@ -78,8 +96,8 @@ const Geolab = () => {
                     </div>
                 </InfoCard>
                 <div className={'flex flex-wrap pt-[20px] mobile:justify-center'}>
-                    {contentData && contentData.map((item, index) => {
-                        return <BoxItem key={index} label={item.division} url={`/oil_and_gas/geolab/${item.slug}`} />;
+                    {option && option.map((item, index) => {
+                        return <BoxItem key={index} label={item.title} url={`/${item.slug}`} />;
                     })}
                 </div>
             </Container>
