@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import Header from "../../../module/BasicLayout/Header";
 import ImageJumbotron from "../../../reusables/ImageJumbotron";
 import Footer from "../../../module/BasicLayout/Footer";
-import Modal from "../../../reusables/Modal/Modal";
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
 import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
 import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
 import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
@@ -70,11 +71,32 @@ const GeolabSub = () => {
       setOpen(true);
   }
 
-  console.log(product);
+  const onCloseModal = () => setOpen(false);
 
   return (
     <>
-      <Modal isModalOpen={isModalOpen} {...modalProps} />
+       <Modal open={open} onClose={onCloseModal} styles={{ modal: { width: 1200, maxWidth: '80%' }}} center>
+           {product && product.products[activeIndex].main_image && <SanityImageComp image={product && product.products[activeIndex].main_image} className={'h-[240px] max-w-[500px] mb-6'} style={{ marginTop: 0, objectFit: 'cover' }} />}
+           <h2 className={'text-[20px]'}>
+               {product && product.products[activeIndex].product}
+           </h2>
+           <div className="text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
+               {product && product.products[activeIndex].description}
+           </div>
+           <div className={'flex'}>
+               {product && product.products[activeIndex].featured_images && product.products[activeIndex].featured_images.map((item, index) => (
+                   <div className={'pr-4'}>
+                       <SanityImageComp image={item} className={'h-[120px]'} />
+                   </div>
+               ))}
+           </div>
+           <a className={"flex justify-between items-center bg-primary text-white p-4 mt-4 w-[300px]"} href={'mailto:info@geoservices.co.id'}>
+               Request Quotation
+               <svg className="w-3.5 h-3.5 ml-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+               </svg>
+           </a>
+       </Modal>
       <Header />
       <ImageJumbotron
         imageSrc={product && product.banner}
@@ -105,35 +127,24 @@ const GeolabSub = () => {
               {product && product.products.map((item, index) => {
                   return (
                       <Box key={index} className={'desktop:w-1/3 pr-4 pb-4'}>
-                          <div className={'border p-4 h-[400px] relative'} style={{
+                          <div onClick={() => onOpenModal(index)} className={'cursor-pointer p-4 h-[260px] relative'} style={{
                               borderColor: 'gainsboro'
-                          }}>
-                              {item.main_image && <SanityImageComp image={item.main_image} className={'h-[120px]'} style={{
-                                  marginTop: 0,
-                                  width: '100%',
-                                  objectFit: 'cover',
-                              }} />}
-                              <h3 style={{
-                                  textAlign: 'center',
-                                  lineHeight: 1.6,
-                                  paddingTop: 12,
-                              }}>
-                                  {item.product}
-                              </h3>
-                              <div className="overflow-hidden h-[140px] text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
-                                  {item.description}
-                              </div>
-                              <Box className={'flex justify-between absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full p-4'}>
-                                  <TextLink href="mailto:info@geoservices.co.id" style={{
-                                      color: '#505AE5'
+                          }} onClick={() => onOpenModal(index)}>
+                              <div>
+                                  {item.main_image ? <SanityImageComp image={item.main_image} className={'h-[160px]'} style={{
+                                      marginTop: 0,
+                                      width: '100%',
+                                      objectFit: 'cover',
+                                      borderRadius: 12,
+                                  }} /> : <div className={'h-[160px] w-full bg-gray rounded-xl'}/>}
+                                  <h3 style={{
+                                      textAlign: 'center',
+                                      lineHeight: 1.6,
+                                      paddingTop: 12,
                                   }}>
-                                      Request Quotation
-                                  </TextLink>
-                                  <a onClick={() => onOpenModal(index)} style={{
-                                      color: '#505AE5',
-                                      cursor: 'pointer'
-                                  }}>View Details</a>
-                              </Box>
+                                      {item.product}
+                                  </h3>
+                              </div>
                           </div>
                       </Box>
                   )
