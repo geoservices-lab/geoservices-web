@@ -139,12 +139,14 @@ const Services = () => {
                 >
                     {contentData && contentData.map((item, index) => {
                         return (
-                            <Box key={index} className={'desktop:w-1/3 p-4'}>
-                                <div className={'border p-4'} style={{
+                            <Box key={index} className={'w-full desktop:w-1/3 p-4'}>
+                                <div className={'border relative p-4 h-[400px]'} style={{
                                     borderColor: 'gainsboro'
                                 }}>
-                                    {item.banner && <SanityImageComp image={item.banner} className={'h-[120px]'} style={{
+                                    {item.banner && <SanityImageComp image={item.banner} className={'h-[120px] w-full'} style={{
                                         marginTop: 0,
+                                        width: '100%',
+                                        objectFit: 'cover',
                                     }} />}
                                     <h3 style={{
                                         textAlign: 'center',
@@ -157,18 +159,20 @@ const Services = () => {
                                         <PortableText value={item.introduction} />
                                     </div>
                                     <Box
+                                        className={'absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full p-4'}
                                         css={{
                                             display: "flex",
                                             justifyContent: "space-between",
-                                            padding: 20,
                                         }}
                                     >
                                         <TextLink href="mailto:info@geoservices.co.id" style={{
-                                            color: '#505AE5'
+                                            color: '#505AE5',
                                         }}>
                                             Request Quotation
                                         </TextLink>
                                         <a onClick={() => onOpenModal(index)} style={{
+                                            display: 'block',
+                                            marginLeft: 20,
                                             color: '#505AE5',
                                             cursor: 'pointer'
                                         }}>View Details</a>
