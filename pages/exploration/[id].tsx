@@ -57,6 +57,8 @@ const ExplorationSub = () => {
         callAPI(setProductData);
     }, []);
 
+    console.log(product);
+
     return (
         <>
             <Modal isModalOpen={isModalOpen} {...modalProps} />
@@ -67,60 +69,18 @@ const ExplorationSub = () => {
             />
             <Container css={{ my: "10px", maxWidth: "1240px" }}>
                 <BreadCrumbLine items={product && breadcrumbData(product.service)} />
-                <Box
-                    css={{
-                        marginTop: 40,
-                        marginBottom: 40,
-                        borderTop: "4px solid #E68E67",
-                        boxShadow: "0px 4px 4px 0px #0000001A",
-                        p: "44px 193px 44px 52px",
+                <InfoCard title={'OVERVIEW'}>
+                    <div style={{
+                        fontSize: 15,
+                        lineHeight: 2,
                     }}
-                >
-                    <Box
-                        css={{
-                            position: "relative",
-                        }}>
-                    </Box>
-                    <Box>
-                        <h3 style={{
-                            color: "#E68E67",
-                            marginTop: 0,
-                            paddingTop: 0,
-                        }}>
-                            SERVICES
-                        </h3>
-                        {product && product.length > 0 && product.services.map((item, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    style={{
-                                        marginBottom: 20,
-                                    }}>
-                                    <Text
-                                        css={{
-                                            fontWeight: "600",
-                                            fontSize: "18px",
-                                            color: "#828282",
-                                            whiteSpace: "pre-line",
-                                            marginBottom: 7,
-                                        }}
-                                    >
-                                        {index + 1}. {item.service}
-                                    </Text>
-                                    {item.description && <div style={{
-                                        lineHeight: 1.5,
-                                        paddingBottom: 5,
-                                        color: 'rgb(130, 130, 130)',
-                                    }}>
-                                        <PortableText
-                                            value={item.description}
-                                        />
-                                    </div>}
-                                </div>
-                            )
-                        })}
-                    </Box>
-                </Box>
+                         className={'text-gray'}
+                    >
+                        <div className="text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-2">
+                            <PortableText value={product && product.introduction} />
+                        </div>
+                    </div>
+                </InfoCard>
                 {product && product.equipment_item && <InfoCard title={"EQUIPMENT"}>
                     {product.equipment_item.map((item: any, index: number) => {
                         return(
@@ -133,20 +93,17 @@ const ExplorationSub = () => {
                         )
                     })}
                 </InfoCard>}
-                <h2>Other Exploration Services</h2>
-                <Box
-                    css={{
-                        marginTop: 30,
-                        marginBottom: 40,
-                        display: "flex",
-                        overflow: 'scroll',
-                    }}
-                >
+                <h2 style={{
+                    color: 'rgb(230, 142, 103)',
+                    textTransform: 'uppercase',
+                    fontSize: 18,
+                }}>
+                    Other Exploration Services
+                </h2>
+                <Box className={'flex mt-[30px] mb-[40px] flex-wrap'}>
                     {otherDivision && otherDivision.map(
                         (item, index) =>
-                            index.toString() !== router.query.id && <div style={{
-                                marginRight: 20,
-                            }}>
+                            index.toString() !== router.query.id && <div className={'w-full desktop:w-1/3 pr-4 mb-12'}>
                                 <Link key={index + 'lab'} href={'/exploration/' + item.slug}>
                                     <div>
                                         {item.banner ? <SanityImageComp
@@ -154,13 +111,13 @@ const ExplorationSub = () => {
                                             width={200}
                                             height={160}
                                             style={{
-                                            width: 300,
+                                            width: '100%',
                                             height: 160,
                                             objectFit: 'cover',
                                             borderRadius: 12,
                                             marginTop: 0,
                                         }} /> : <div style={{
-                                            width: 200,
+                                            width: '100%',
                                             height: 160,
                                             objectFit: 'cover',
                                             borderRadius: 12,
@@ -184,7 +141,7 @@ const ExplorationSub = () => {
             <div className="pt-28">
                 <Footer />
             </div>
-            
+
         </>
     );
 };

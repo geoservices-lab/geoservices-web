@@ -11,7 +11,6 @@ import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
 import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
 import { PortableText } from '@portabletext/react';
 import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
-import InfoCardListItem from "../../../reusables/InfoCardListItem/InfoCardListItem";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -57,7 +56,7 @@ const ExplorationSub = () => {
         callAPI(setProductData);
     }, []);
 
-    console.log(product && product.contact);
+    console.log(product && product);
 
     return (
         <>
@@ -123,7 +122,7 @@ const ExplorationSub = () => {
                         })}
                     </Box>
                 </Box>
-                {product && product.equipment_item && 
+                {product && product.equipment_item &&
                 <InfoCard title={"EQUIPMENT"}>
                     {product.equipment_item.map((item: any, index: number) => {
                         return(
