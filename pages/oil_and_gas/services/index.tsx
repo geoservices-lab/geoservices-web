@@ -146,7 +146,7 @@ const Services = () => {
                                     {item.banner && <SanityImageComp image={item.banner} className={'h-[120px] w-full'} style={{
                                         marginTop: 0,
                                         width: '100%',
-                                        objectFit: 'cover',
+                                        objectFit: 'contain',
                                     }} />}
                                     <h3 style={{
                                         textAlign: 'center',

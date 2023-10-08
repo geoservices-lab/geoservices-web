@@ -14,6 +14,7 @@ const InfoCard = ({ title, children }) => {
         >
             <Box>
                 <h3 style={{
+                    fontSize: 20,
                     color: "#E68E67",
                     marginTop: 0,
                     paddingTop: 0,
