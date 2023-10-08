@@ -4,10 +4,11 @@ import Header from "../../module/BasicLayout/Header";
 import ImageJumbotron from "../../reusables/ImageJumbotron";
 import BreadCrumbLine from "../../reusables/BreadcrumbLine";
 import Footer from "../../module/BasicLayout/Footer";
-import BoxItem from "../../reusables/BoxItem/BoxItem";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { PortableText } from "@portabletext/react";
 import InfoCard from "../../reusables/InfoCard/InfoCard.comp";
+import SanityImage from "../../reusables/SanityImage/SanityImage.comp";
 
 const breadcrumbData = () => [
     {
@@ -73,10 +74,29 @@ const Exploration = () => {
                         <PortableText value={pageData && pageData.description} />
                     </div>
                 </InfoCard>
-                <div className={'flex flex-wrap mobile:justify-center pt-[20px]'}>
-                    {contentData && contentData.map((item, index) => {
-                        return <BoxItem key={index} label={item.service} url={`/exploration/${item.slug}`} />;
-                    })}
+                <div>
+                    <h1 className='capitalize font-bold text-[32px] mb-4'>Products and Services</h1>
+                        <div className="grid grid-cols-1 gap-x-4 gap-y-16 border-t border-gray pt-10 desktop:grid-cols-3 ">
+                            {contentData && contentData.map((post) => (
+                                <Link href={`/exploration/${post.slug}`}>
+                                <div key={post.id} className="max-w-md rounded-lg shadow-md border-gray cursor-pointer">
+                                    {post.banner && <SanityImage image={post.banner} className={'rounded-xl'} style={{ marginTop: 0, height: 160, objectFit: 'cover' }}/>}
+                                    <div className='px-4'>
+                                        <h1 className="text-[18px] text-justify text-gray font-bold mr-2 capitalize mt-4 mb-2">{post.service}</h1>
+                                        <div className={'h-[150px] overflow-hidden text-gray'}>
+                                            {post.introduction && <PortableText value={post.introduction} />}
+                                        </div>
+                                        <br />
+                                        <div className="flex justify-end text-[14px] mb-4">
+                                            <button className='hover:scale-105'>
+                                                <p className='text-blue capitalize'>view details</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </Link>
+                            ))}
+                        </div>
                 </div>
             </Container>
             <div className="pt-28">
