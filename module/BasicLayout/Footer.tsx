@@ -40,7 +40,7 @@ const Footer = () => {
                         <div className="flex items-center gap-8 mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                             <div>
                                 <p className="font-medium pb-4">Jakarta</p>
-                                <p className="text-gray text-[12px]">
+                                <p className="text-gray text-[14px]">
                                     Jl. Minangkabau Barat No. 34, <br />
                                     Jakarta, 12970.
                                     <br /><br />
@@ -53,7 +53,7 @@ const Footer = () => {
                             </div>
                             <div>
                                 <p className="font-medium pb-4">Bandung</p>
-                                <p className="text-gray text-[12px]">
+                                <p className="text-gray text-[14px]">
                                     Jl. Setiabudi No. 81, <br />
                                     Bandung, 40153.
                                     <br /><br />

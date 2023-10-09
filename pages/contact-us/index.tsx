@@ -28,7 +28,7 @@ export default function ContactUS () {
         <Header/>
         <ImageJumbotron imageSrc={pageData && pageData.banner} text={pageData && pageData.title} />
         <ContactUs/>
-        <div className='pt-64'>
+        <div className='pt-32'>
             <Footer/>
         </div>
         </>

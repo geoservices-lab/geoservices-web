@@ -5,8 +5,11 @@ const ContactUs = () => {
     return(
         <>
         <div className='flex mobile:flex-col justify-between max-w-7xl mx-auto pt-14 mobile:px-8'>
-            <div className='desktop:flex-initial desktop:w-1/3'>
-                <h1 className="font-bold text-[#E68E67] desktop:text-[24px] text-[18px] mt-[20px] uppercase">Contact Us</h1>
+            <div className='desktop:hidden'>
+                <img src="../assets/Laboratory of PT Geoservices.png" alt=""/>
+            </div>
+            <div className='desktop:flex-initial desktop:w-1/2'>
+                <h1 className="font-bold text-[#E68E67] desktop:text-[36px] text-[24px] mt-[20px] uppercase">Contact Us</h1>
                 <br /><br />
                 <form className="flex flex-col gap-4">
                     <div>
@@ -64,6 +67,25 @@ const ContactUs = () => {
                         <option>
                         Choose business unit
                         </option>
+                        
+                        <option>
+                        Coal Laboratory
+                        </option>
+                        <option>
+                        Drilling
+                        </option>
+                        <option>
+                        Engineering, Procurement & Construction 
+                        </option>
+                        <option>
+                        Enviromental Laboratory
+                        </option>
+                        <option>
+                        Equipment and Services
+                        </option>
+                        <option>
+                        Exploration
+                        </option>
                         <option>
                         Gological Laboratory
                         </option>
@@ -71,7 +93,19 @@ const ContactUs = () => {
                         Geothermal
                         </option>
                         <option>
-                        Coal Laboratory
+                        Mineral Laboratory
+                        </option>
+                        <option>
+                        Inspection Services
+                        </option>
+                        <option>
+                        Siesmic
+                        </option>
+                        <option>
+                        Software
+                        </option>
+                        <option>
+                        Training
                         </option>
                     </Select>
                     </div>
@@ -97,8 +131,8 @@ const ContactUs = () => {
                     </Button>
                 </form>
             </div>
-            <div>
-                test2
+            <div className='ml-16 mobile:hidden'>
+                <img src="../assets/Laboratory of PT Geoservices.png" alt=""/>
             </div>
         </div>
         </>

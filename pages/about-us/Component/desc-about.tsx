@@ -4,7 +4,7 @@ import { PortableText } from "@portabletext/react";
 const Desc = ({ desc }: any) => {
     return (
         <>
-            <div className='max-w-7xl mx-auto pt-14 mobile:px-8 text-justify space-y-4'>
+            <div className='max-w-6xl mx-auto pt-14 mobile:px-8 text-justify space-y-4'>
                 <div className="text-justify desktop:text-[18px] text-[16px] text-gray leading-8">
                     <PortableText
                         value={desc}
