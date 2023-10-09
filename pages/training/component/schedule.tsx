@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from 'flowbite-react'
 'use client';
 
 const posts = [
@@ -92,6 +93,16 @@ const Schedule = () => {
             
             </div>
         ))}
+        </div>
+
+            <br /><br />
+        <div className='px-4'>
+        <a href='/training/full-calendar' type='button' className='bg-transparent group hover:bg-[#E68E67] hover:text-[#fff] border border-gray font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center'>
+            View full Calendar
+            <svg className="w-3.5 h-3.5 ml-2 text-[#E68E67] group-hover:text-[#fff]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
         </div>
 
         {/* <br /><br /><br /><br />

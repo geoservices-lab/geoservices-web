@@ -41,23 +41,16 @@ const TrainingSection = () => {
                 </div>
                 <br />
                 <div className="desktop:w-1/2 w-full">
-                    <button type="button" className='flex py-2.5 px-4 desktop:w-[250px] w-full justify-between bg-[#363C9A] text-white rounded-md hover:scale-110'>
-                        <p>Google calendar</p>
+                    <a href='mailto:info@geoservices.co.id' type="button" className='flex py-2.5 px-4 desktop:w-[250px] w-full justify-between bg-[#363C9A] text-white rounded-md hover:scale-110'>
+                        <p>Get Formulir and Brocure</p>
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                         </span>
-                    </button>
+                    </a>
                     <br />
-                    <button type="button" className='flex py-2.5 px-4 desktop:w-[250px] w-full justify-between bg-[#363C9A] text-white rounded-md hover:scale-110'>
-                        <p>iCal Export</p>
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                            </svg>
-                        </span>
-                    </button>
+                    
                 </div>
             </div>
             <br /><br />
@@ -124,7 +117,7 @@ const TrainingSection = () => {
                     </div>
                 </li>
             </ul>
-
+            
         </>
     )
 }
