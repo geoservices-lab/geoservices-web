@@ -10,7 +10,7 @@ export default function ContactUS () {
         <Header/>
         <Banner/>
         <ContactUs/>
-        <div className='pt-64'>
+        <div className='pt-32'>
             <Footer/>
         </div>
         </>
