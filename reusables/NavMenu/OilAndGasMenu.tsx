@@ -321,7 +321,7 @@ export const ServicesSubMenu = () => {
                 return (
                     <Link href={'/oil_and_gas/services'}>
                         <Box css={{ mx: "20px" }}>
-                            {item.image && <SanityImageComp image={item.image} style={{ height: 200, objectFit: 'cover' }}/>}
+                            {item.image && <SanityImageComp image={item.image} style={{ height: 200, objectFit: 'contain' }}/>}
                             <Box
                                 css={{
                                     marginTop: "10px",
