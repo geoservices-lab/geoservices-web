@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container } from "@nextui-org/react";
 import Header from "../../../module/BasicLayout/Header";
 import ImageJumbotron from "../../../reusables/ImageJumbotron";
@@ -33,10 +33,18 @@ const Services = () => {
     const [pageData, setPageData] = useState();
     const [contentData, setContentData] = useState();
     const [activeIndex, setActiveIndex] = useState(0);
+    const modalRef = useRef();
 
     const onOpenModal = (index: number) => {
         setActiveIndex(index);
         setOpen(true);
+
+        setTimeout(() => {
+            modalRef.current?.scrollTo({
+                top: 0,
+                animated: false
+            });
+        }, 100);
     }
 
     const onCloseModal = () => setOpen(false);
@@ -57,10 +65,14 @@ const Services = () => {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "services"]`);
             const data = await res.json();
             const content = data && data.result;
-            const filtered = content.filter((item) => {
-              return item.type === 'oil'
+            const study = content.filter((item) => {
+                return item.type === 'oil' && item.service === 'Study and Consultancy'
             });
-            setContentData(filtered);
+            const filtered = content.filter((item) => {
+              return item.type === 'oil' && item.service !== 'Study and Consultancy'
+            });
+            const sorted = filtered.sort((a, b) => a.service.localeCompare(b.service));
+            setContentData([...study, ...sorted]);
         } catch (err) {
             console.log(err);
         }
@@ -71,8 +83,6 @@ const Services = () => {
         callContentApi();
     }, []);
 
-    console.log(contentData && contentData[activeIndex].featured_images);
-
     return (
         <div>
             <Modal open={open} onClose={onCloseModal} styles={{
@@ -80,9 +90,9 @@ const Services = () => {
                     width: 1200,
                     maxWidth: '80%',
                 }
-            }} center>
-                <div className={"overflow-scroll h-[500px]"}>
-                    {contentData && contentData[activeIndex].banner && <SanityImageComp image={contentData && contentData[activeIndex].banner} className={'h-[240px] max-w-[500px] mb-6'} style={{ marginTop: 0, objectFit: 'cover' }} />}
+            }} center={true}>
+                <div className={"overflow-y-auto h-[500px]"} ref={modalRef}>
+                    {contentData && contentData[activeIndex].banner && <SanityImageComp image={contentData && contentData[activeIndex].banner} className={'h-[240px] max-w-[500px] mb-6'} style={{ marginTop: 0, objectFit: 'contain' }} />}
                     <h2 className={'text-[20px]'}>
                         {contentData && contentData[activeIndex].service}
                     </h2>

@@ -126,8 +126,8 @@ const GeolabSub = () => {
           <div className={'flex flex-wrap mt-[20px] mb-[40px]'}>
               {product && product.products.map((item, index) => {
                   return (
-                      <Box key={index} className={'desktop:w-1/3 pr-4 pb-4'}>
-                          <div onClick={() => onOpenModal(index)} className={'cursor-pointer p-4 h-[260px] relative'} style={{
+                      <Box key={index} className={'w-full desktop:w-1/3 desktop:pr-4 desktop:pb-4'}>
+                          <div onClick={() => onOpenModal(index)} className={'cursor-pointer desktop:p-4 h-[260px] relative'} style={{
                               borderColor: 'gainsboro'
                           }} onClick={() => onOpenModal(index)}>
                               <div>
@@ -160,6 +160,8 @@ const GeolabSub = () => {
             marginTop: 30,
             marginBottom: 40,
             display: "flex",
+              overflow: 'scroll',
+              flexWrap: 'no-wrap'
           }}
         >
           {otherDivision && otherDivision.map(
@@ -175,6 +177,7 @@ const GeolabSub = () => {
                             objectFit: 'cover',
                             borderRadius: 12,
                             marginTop: 0,
+                            maxWidth: 300,
                         }} />}
                         <div style={{
                           fontSize: 15,

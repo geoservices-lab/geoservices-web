@@ -1,45 +1,125 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const MobileNavigation = () => {
     const [isExpanded, setExpandStatus] = useState(false);
+    const [isSubMenuActive, setActiveSubmenu] = useState(false);
+    const [subMenuIndex, setSubMenuIndex] = useState();
+
+    const oilAndGasMenu = [
+        {
+            label: 'Exploration',
+            url: '/exploration',
+        },
+        {
+            label: 'Laboratory',
+            url: '/oil_and_gas/geolab',
+        },
+        {
+            label: 'Software',
+            url: '/oil_and_gas/software',
+        },
+        {
+            label: 'Services',
+            url: '/oil_and_gas/services',
+        },
+        {
+            label: 'Training',
+            url: '/oil_and_gas/training',
+        },
+    ];
+
+    const coalMenu = [
+        {
+            label: 'Exploration',
+            url: '/exploration',
+        },
+        {
+            label: 'Laboratory',
+            url: '/coal/laboratory',
+        },
+        {
+            label: 'Services',
+            url: '/coal/services',
+        },
+        {
+            label: 'Training',
+            url: '/coal/training',
+        },
+    ];
 
     const menus = [
         {
+            id: 0,
             label: 'Oil and Gas',
-            url: '/oil_and_gas'
+            url: '/oil_and_gas',
+            subMenu: oilAndGasMenu
         },
         {
+            id: 1,
             label: 'Coal and Minerals',
-            url: '/coal'
+            url: '/coal',
+            subMenu: coalMenu
         },
         {
+            id: 2,
             label: 'Geothermal',
             url: '/geothermal'
         },
         {
+            id: 3,
             label: 'Trade and Services',
             url: '/trade_and_services'
         },
         {
+            id: 4,
             label: 'Career',
             url: '/career'
         },
         {
+            id: 5,
             label: 'About Us',
             url: '/about-us'
         },
         {
+            id: 6,
             label: 'Contact Us',
             url: '/contact-us'
         },
     ];
 
-    const MenuItem = ({ label, url }: any) => (
+    const renderSubmenu = (subMenu) => {
+        return (
+            <ul
+                className={'mt-4'}
+                style={{
+                    backgroundColor: 'gainsboro'
+                }}
+            >
+                {subMenu.map((item: any, index: number) => (
+                        <li key={index} className={'p-4 ml-2'}>
+                            <a href={item.url ? item.url : '#'}>
+                                {item.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        );
+    }
+
+    const expandSubMenu = (id: number) => {
+        setActiveSubmenu(!isSubMenuActive);
+    }
+
+    const MenuItem = ({ label, url, subMenu, id }: any) => (
         <li className={'p-4 ml-2'}>
-            <a href={url ? url : '#'}>
+            <a href={subMenu ? '#' : url} className={'flex justify-between'} onClick={() => expandSubMenu(id)}>
                 {label}
+                {subMenu && !isSubMenuActive && <FaChevronDown size={18} />}
+                {subMenu && isSubMenuActive && <FaChevronUp size={18} />}
             </a>
+            {subMenu && renderSubmenu(subMenu)}
         </li>
     );
 
@@ -49,6 +129,7 @@ const MobileNavigation = () => {
                 {menus.map((item) => <MenuItem
                     label={item.label}
                     url={item.url}
+                    subMenu={item.subMenu}
                 />)}
             </ul>
         </div>
