@@ -50,7 +50,7 @@ const posts = [
     },
 ]
 
-const Schedule = () => {
+const Schedule = ({ data }) => {
     return(
         <>
         {/* <div className="flex justify-between h-20 text-[#828282] bg-[#DCF3FB] items-center px-4">
@@ -75,22 +75,22 @@ const Schedule = () => {
         <br /><br /><br /> */}
 
         <div className='grid desktop:grid-cols-3 grid-cols-1 gap-8 px-4 text-[#828282]'>
-        {posts.map((post) => (
+        {data && data.map((post) => (
             <div key={post.id} className="max-w-sm p-6 bg-transparent border border-gray  rounded-lg shadow hover:shadow-xl hover:scale-105">
                 <h5 className="mb-2 text-[21px] font-semibold tracking-tight">{post.title}</h5>
                 <br />
-                <p className="mb-3 font-normal dark:text-gray-400">{post.description}</p>
-                <p className='font-semibold'>({post.status})</p>
+                <p className="mb-3 font-normal dark:text-gray-400">{post.start_date} - {post.end_date}</p>
+                <p className='font-semibold'>({post.venue})</p>
                 <div className="pt-4"></div>
-                <p className='font-semibold'>Tags: <span>{post.tags}</span></p>
+                <p className='font-semibold'>Tags: <span>{post.tags.join(',')}</span></p>
                 <br />
-                <a href={post.href} type="button" className="bg-transparent group hover:bg-[#E68E67] hover:text-[#fff] border border-slate-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                <a href={`training/${post.title.replaceAll(' ', '-')}`} type="button" className="bg-transparent group hover:bg-[#E68E67] hover:text-[#fff] border border-slate-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                     Register
                     <svg className="w-3.5 h-3.5 ml-2 text-[#E68E67] group-hover:text-[#fff]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                     </svg>
                 </a>
-            
+
             </div>
         ))}
         </div>

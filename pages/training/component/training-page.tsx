@@ -1,7 +1,9 @@
 import React from 'react'
 import { Badge } from 'flowbite-react';
 
-const TrainingSection = () => {
+const TrainingSection = ({ data }) => {
+    console.log(data);
+
     return(
         <>
             <a href="/training" type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
@@ -14,29 +16,35 @@ const TrainingSection = () => {
             </a>
 
             <h1 className='text-[#828282] desktop:text-[48px] text-[36px] font-semibold py-8'>
-                Coal Trading & Sourcing
+                {data && data.title}
             </h1>
 
             <div className='desktop:flex flex-col-1'>
                 <div className='desktop:w-1/2 w-full'>
                     <div>
                         <h5 className='font-bold text-[#828282]'>Start Date</h5>
-                        <p>May 17, 2023</p>
+                        <p>
+                            {data && data.start_date}
+                        </p>
                     </div>
                     <div>
                         <h5 className='font-bold text-[#828282]'>End Date</h5>
-                        <p>To be announce</p>
+                        <p>
+                            {data && data.end_date}
+                        </p>
                     </div>
                 </div>
                 <br />
                 <div className='desktop:w-1/2 w-full'>
                     <div>
                         <h5 className='font-bold text-[#828282]'>Venue</h5>
-                        <p>Jakarta</p>
+                        <p>
+                            {data && data.venue}
+                        </p>
                     </div>
                     <div>
                         <h5 className='font-bold text-[#828282]'>Time</h5>
-                        <p>00:00 - 00:01 WIB</p>
+                        <p>10:00 - 11:00 WIB</p>
                     </div>
                 </div>
                 <br />
@@ -50,7 +58,7 @@ const TrainingSection = () => {
                         </span>
                     </a>
                     <br />
-                    
+
                 </div>
             </div>
             <br /><br />
@@ -66,7 +74,7 @@ const TrainingSection = () => {
                 </p>
                 <div className='grid grid-cols-2 desktop:grid-cols-8 gap-4'>
                 <Badge color="info">
-                    Coal
+                    {data && data.tags[0]}
                 </Badge>
                 <Badge color="failure">
                     Oil and Gas
@@ -117,7 +125,7 @@ const TrainingSection = () => {
                     </div>
                 </li>
             </ul>
-            
+
         </>
     )
 }

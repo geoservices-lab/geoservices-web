@@ -1,11 +1,29 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Header from 'module/BasicLayout/Header'
 import Banner from './component/banner-training'
 import Footer from "../../module/BasicLayout/Footer"
 import BreadCrumb from './component/breadcrumb'
 import Schedule from './component/schedule'
+import {useRouter} from "next/router";
 
 export default function Training() {
+    const [product, setProductData] = useState();
+
+    const callAPI = async (setProductData: Function) => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
+            const data = await res.json();
+            const currentPage = data.result;
+            setProductData(currentPage);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        callAPI(setProductData);
+    }, []);
+
     return (
         <>
         <Header/>
@@ -15,7 +33,7 @@ export default function Training() {
                 <BreadCrumb/>
             </div>
             <div>
-                <Schedule/>
+                <Schedule data={product}/>
             </div>
 
         </div>
