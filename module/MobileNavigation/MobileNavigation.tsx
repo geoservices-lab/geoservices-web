@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import SubMenu from './SubMenu';
 
 const MobileNavigation = () => {
     const [isExpanded, setExpandStatus] = useState(false);
-    const [isSubMenuActive, setActiveSubmenu] = useState(false);
-    const [subMenuIndex, setSubMenuIndex] = useState();
 
     const oilAndGasMenu = [
         {
@@ -52,13 +51,13 @@ const MobileNavigation = () => {
         {
             id: 0,
             label: 'Oil and Gas',
-            url: '/oil_and_gas',
+            url: '#',
             subMenu: oilAndGasMenu
         },
         {
             id: 1,
             label: 'Coal and Minerals',
-            url: '/coal',
+            url: '#',
             subMenu: coalMenu
         },
         {
@@ -88,38 +87,17 @@ const MobileNavigation = () => {
         },
     ];
 
-    const renderSubmenu = (subMenu) => {
+    const MainMenu = ({ label, url }: any) => {
         return (
-            <ul
-                className={'mt-4'}
-                style={{
-                    backgroundColor: 'gainsboro'
-                }}
-            >
-                {subMenu.map((item: any, index: number) => (
-                        <li key={index} className={'p-4 ml-2'}>
-                            <a href={item.url ? item.url : '#'}>
-                                {item.label}
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
+            <a href={url} className={'flex justify-between'}>
+                {label}
+            </a>
         );
     }
 
-    const expandSubMenu = (id: number) => {
-        setActiveSubmenu(!isSubMenuActive);
-    }
-
-    const MenuItem = ({ label, url, subMenu, id }: any) => (
+    const MenuItem = ({ label, url, subMenu }: any) => (
         <li className={'p-4 ml-2'}>
-            <a href={subMenu ? '#' : url} className={'flex justify-between'} onClick={() => expandSubMenu(id)}>
-                {label}
-                {subMenu && !isSubMenuActive && <FaChevronDown size={18} />}
-                {subMenu && isSubMenuActive && <FaChevronUp size={18} />}
-            </a>
-            {subMenu && renderSubmenu(subMenu)}
+            {subMenu ? <SubMenu label={label} subMenu={subMenu} /> : <MainMenu label={label} url={url} />}
         </li>
     );
 

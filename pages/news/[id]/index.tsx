@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react"
 import Header from "module/BasicLayout/Header"
-import Banner from "../component/banner"
 import Desc from "pages/about-us/Component/desc-about"
 import Footer from "../../../module/BasicLayout/Footer"
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import ImageJumbotron from "../../../reusables/ImageJumbotron";
 
 export default function PageNews () {
@@ -20,8 +19,6 @@ export default function PageNews () {
             console.log(err);
         }
     };
-
-    console.log(news);
 
     useEffect(() => {
         callAPI();
