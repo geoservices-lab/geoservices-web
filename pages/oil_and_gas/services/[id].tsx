@@ -1,4 +1,4 @@
-import { Image, Text, Container } from "@nextui-org/react";
+import { Text, Container } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Box from "reusables/Box";
@@ -11,7 +11,6 @@ import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
 import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
 import { PortableText } from '@portabletext/react';
 import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
-import InfoCardListItem from "../../../reusables/InfoCardListItem/InfoCardListItem";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -193,7 +192,7 @@ const ExplorationSub = () => {
             <div className="pt-28">
                 <Footer />
             </div>
-            
+
         </>
     );
 };

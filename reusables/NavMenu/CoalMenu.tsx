@@ -195,7 +195,7 @@ export const TrainingSubMenu = () => {
                 return ({
                     label: item.title,
                     name: item.title,
-                    href: `/training${item.title.replaceAll(' ', '-')}`,
+                    href: `/training/${item.title.replaceAll(' ', '-')}`,
                     isActive: true,
                 })
             });
@@ -688,7 +688,7 @@ export const ServicesSubMenu = () => {
                 return ({
                     label: item.service,
                     name: item.service,
-                    href: `/coal/services/${item.slug}`,
+                    href: `/coal/services`,
                     isActive: item.is_active,
                 })
             });
