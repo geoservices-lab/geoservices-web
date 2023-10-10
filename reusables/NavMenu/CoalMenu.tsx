@@ -195,7 +195,7 @@ export const TrainingSubMenu = () => {
                 return ({
                     label: item.title,
                     name: item.title,
-                    href: `/oil_and_gas/training`,
+                    href: `/training${item.title.replaceAll(' ', '-')}`,
                     isActive: true,
                 })
             });
