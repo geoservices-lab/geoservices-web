@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import 'regenerator-runtime/runtime'
-import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table';
+import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
+import dayjs from "dayjs";
 
 function GlobalFilter({
 preGlobalFilteredRows,
 globalFilter,
 setGlobalFilter,
-}) 
+})
 {
  const count = preGlobalFilteredRows.length
  const [value, setValue] = React.useState(globalFilter)
@@ -50,66 +51,47 @@ function DefaultColumnFilter({
         )
     }
 
-function Example() {
+function Calendar() {
+    const year =  new Date().getFullYear();
+    const month = new Date().getMonth();
+    const monthData = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
- const data = React.useMemo(
-     () => [
-       {
-         col1: 'Oil and Gas',
-         col2: 'Root Cause Analysis for Boilers and Steam Cycle Failures - Virtual Instructor Led Training (VILT)',
-         col3: '23 august 2023',
-         col4: '739',
-         
-       },
-       {
-         col1: 'Oil and Gas',
-         col2: 'Root Cause Analysis for Boilers and Steam Cycle Failures - Virtual Instructor Led Training (VILT)',
-         col3: '23 august 2023',
-         col4: '740',
-         
-       },
-       {
-         col1: 'Oil and Gas',
-         col2: 'Root Cause Analysis for Boilers and Steam Cycle Failures - Virtual Instructor Led Training (ABC)',
-         col3: '23 august 2023',
-         col4: '743',
-         
-       },
-       {
-         col1: 'Coal',
-         col2: 'Root Cause Analysis for Boilers and Steam Cycle Failures - Virtual Instructor Led Training (ABC)',
-         col3: '23 august 2023',
-         col4: '738',
-         
-       },
-       {
-         col1: 'Coal',
-         col2: 'Root Cause Analysis for Boilers and Steam Cycle Failures - Virtual Instructor Led Training (VILT)',
-         col3: '23 august 2023',
-         col4: '739',
-         
-       },
-     ],
-     []
- )
+    const [selectedMonth, setSelectedMonth] = useState(month);
+    const [selectedYear, setSelectedYear] = useState(year);
+    const [data, setProductData] = useState([]);
+
+    const callAPI = async (setProductData: Function) => {
+        try {
+            const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
+            const data = await res.json();
+            const currentPage = data.result.filter((item) => item.start_date.includes(`${selectedMonth + 1}-`));
+            setProductData(currentPage);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        callAPI(setProductData);
+    }, [selectedMonth]);
 
  const columns = React.useMemo(
      () => [
        {
          Header: 'Category',
-         accessor: 'col1', // accessor is the "key" in the data
+         accessor: 'type', // accessor is the "key" in the data
        },
        {
-         Header: 'Tittle',
-         accessor: 'col2',
+         Header: 'Title',
+         accessor: 'title',
        },
        {
          Header: 'Date',
-         accessor: 'col3',
+         accessor: 'start_date',
        },
        {
          Header: 'Venue',
-         accessor: 'col4',
+         accessor: 'venue',
        },
      ],
      []
@@ -144,26 +126,44 @@ function Example() {
    useSortBy
  );
 
+ const handleNextMonth = () => {
+     if (selectedMonth < 11) {
+         setSelectedMonth(selectedMonth + 1);
+     } else {
+         setSelectedMonth(0);
+         setSelectedYear(selectedYear + 1);
+     }
+ }
+
+    const handlePrevMonth = () => {
+        if (selectedMonth > 0) {
+            setSelectedMonth(selectedMonth - 1);
+        } else {
+            setSelectedMonth(11);
+            setSelectedYear(selectedYear - 1);
+        }
+    }
+
  return (
         <>
         <div className="flex justify-between h-20 text-white bg-peach items-center px-4">
-            <a href="/home-demo" type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
+            <button onClick={() => handlePrevMonth()} type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 ml-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
                 </span>
                 <p className='mobile:hidden'>Previous</p>
-            </a>
-            <div className='text-[24px]'>July 2022</div>
-            <a href="/home-demo" type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
+            </button>
+            <div className='text-[24px]'>{monthData[selectedMonth]} {selectedYear}</div>
+            <button onClick={() => handleNextMonth()} type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
                 <p className='mobile:hidden'>Next</p>
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                 </span>
-            </a>
+            </button>
         </div>
         <br /><br />
 
@@ -209,17 +209,30 @@ function Example() {
             return (
                 <tr {...row.getRowProps()}>
                     {row.cells.map(cell => {
-                    return (
-                        <td
-                            {...cell.getCellProps()}
-                            style={{
-                                padding: '10px',
-                                border: 'solid 1px gray',
-                            }}
-                        >
-                            {cell.render('Cell')}
-                        </td>
-                    )
+
+                        const mapCell = () => {
+                            if (cell.value === 'oil') {
+                                return 'Oil and Gas';
+                            } else if (cell.value === 'coal') {
+                                return 'Coal and Minerals';
+                            } else if (cell.column.id === 'start_date' && cell.value) {
+                                return dayjs(cell.value).format('DD MMM YYYY')
+                            } else {
+                                return cell.render('Cell')
+                            }
+                        }
+
+                        return (
+                            <td
+                                {...cell.getCellProps()}
+                                style={{
+                                    padding: '10px',
+                                    border: 'solid 1px gray',
+                                }}
+                            >
+                                {mapCell()}
+                            </td>
+                        )
                     })}
                 </tr>
             )
@@ -233,4 +246,4 @@ function Example() {
     )
 }
 
-export default Example
+export default Calendar;
