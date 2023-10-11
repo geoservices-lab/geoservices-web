@@ -24,7 +24,7 @@ const MobileNavigation = () => {
         },
         {
             label: 'Training',
-            url: '/oil_and_gas/training',
+            url: '/training',
         },
     ];
 
@@ -43,7 +43,7 @@ const MobileNavigation = () => {
         },
         {
             label: 'Training',
-            url: '/coal/training',
+            url: '/training',
         },
     ];
 
