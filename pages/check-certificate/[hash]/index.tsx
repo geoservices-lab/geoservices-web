@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import DOMPurify from "dompurify";
 import { pdfjs } from 'react-pdf';
 import Header from "module/BasicLayout/Header"
-import Footer from "./component/footer"
+import Footer from 'module/BasicLayout/Footer'
 
 const CheckCertificate = () => {
   const { query } = useRouter();
@@ -44,11 +44,11 @@ const CheckCertificate = () => {
         console.log(reason);
       });
     }
-      
+
   };
 
   // const hash = 'WyJRdHlXQlNoUGVSdUFGVFJ3azlCWFdCVWRXSU1OcksyTWh4WC03Z0Fyb0JZIiwxNCwiMHhBMUQyNzhBNzEyMzlhMDI2MzRiYzEyNUY4QmMzNzFGNjg0ZThjNjFlIl0.ZQuiHA.x90Shz3cHh6ierj3s0Z8j3bP-OM'
-  
+
 
   const SafeHTML = newHTML;
   useEffect(() => {
@@ -66,7 +66,7 @@ const CheckCertificate = () => {
             <Footer />
         </footer>
     </>
-   
+
 )
 };
 

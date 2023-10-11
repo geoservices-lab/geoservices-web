@@ -243,7 +243,9 @@ function Calendar() {
                             } else if (cell.column.id === 'title') {
                               return (
                                 <Link href={`/training/${cell.value.replace(' ', '-')}`}>
-                                    {cell.value}
+                                    <span className={'text-link underline cursor-pointer'}>
+                                        {cell.value}
+                                    </span>
                                 </Link>
                               )
                             } else {
