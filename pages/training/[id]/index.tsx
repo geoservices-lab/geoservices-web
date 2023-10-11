@@ -26,7 +26,7 @@ export default function TrainingPage () {
     return (
         <>
         <Header/>
-        <div className="max-w-7xl mx-auto pt-14 px-8">
+        <div className="mobile:mt-[40px] max-w-7xl mx-auto pt-14 px-8">
             <TrainingSection data={product} />
         </div>
         <div className="pt-28">
