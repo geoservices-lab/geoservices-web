@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import 'regenerator-runtime/runtime'
 import { useTable, useSortBy, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 import dayjs from "dayjs";
+import Link from 'next/link';
 
 function GlobalFilter({
 preGlobalFilteredRows,
@@ -64,7 +65,7 @@ function Calendar() {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
             const data = await res.json();
-            const currentPage = data.result.filter((item) => item.start_date.includes(`${selectedMonth + 1}-`));
+            const currentPage = data.result.filter((item: any) => item.start_date.includes(`${selectedMonth + 1}-`));
             setProductData(currentPage);
         } catch (err) {
             console.log(err);
@@ -144,6 +145,27 @@ function Calendar() {
         }
     }
 
+    const renderMobileEvents = () => (
+        data && data.map((item, index) => (
+            <Link href={`/training/${item.title.replace(' ', '-')}`}>
+                <div className={'desktop:hidden mx-6 mb-4 p-4 bg-[#f5f5f5] rounded-xl border border-[#d5d5d5]'}>
+                    <span className={'text-12 inline-block bg-peach text-white py-2 px-4 mb-2 rounded-2xl'}>
+                        {item.type === 'oil' ? 'Oil and Gas' : 'Coal and Minerals'}
+                    </span>
+                    <div className={'font-bold'}>
+                        {item.title}
+                    </div>
+                    <div>
+                        {dayjs(item.start_date).format('DD MMM YYYY')}
+                    </div>
+                    <div>
+                        {item.venue}
+                    </div>
+                </div>
+            </Link>
+        ))
+    )
+
  return (
         <>
         <div className="flex justify-between h-20 text-white bg-peach items-center px-4">
@@ -168,10 +190,10 @@ function Calendar() {
         <br /><br />
 
         <div className='max-w-7xl mx-auto'>
-        <table {...getTableProps()} style={{ border: 'solid 1px black', width:'100%' }}>
+        <table {...getTableProps()} className={'desktop:border border-black'} style={{ width:'100%' }}>
             <thead className='text-left'>
             {headerGroups.map(headerGroup => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
+                <tr {...headerGroup.getHeaderGroupProps()} className={'mobile:hidden'}>
                 {headerGroup.headers.map(column => (
                     <th
                         {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -186,9 +208,10 @@ function Calendar() {
                 ))}
                 </tr>
             ))}
-            <br /><br />
+            <br className={'mobile:hidden'}/><br className={'mobile:hidden'}/>
             <tr>
             <th
+                className={'pl-6 desktop:p-3'}
                 colSpan={visibleColumns.length}
                 style={{
                 textAlign: 'left',
@@ -203,7 +226,7 @@ function Calendar() {
             </tr>
             </thead>
             <br />
-            <tbody {...getTableBodyProps()}>
+            <tbody {...getTableBodyProps()} className={'mobile:hidden'}>
             {rows.map(row => {
             prepareRow(row)
             return (
@@ -217,6 +240,12 @@ function Calendar() {
                                 return 'Coal and Minerals';
                             } else if (cell.column.id === 'start_date' && cell.value) {
                                 return dayjs(cell.value).format('DD MMM YYYY')
+                            } else if (cell.column.id === 'title') {
+                              return (
+                                <Link href={`/training/${cell.value.replace(' ', '-')}`}>
+                                    {cell.value}
+                                </Link>
+                              )
                             } else {
                                 return cell.render('Cell')
                             }
@@ -238,6 +267,7 @@ function Calendar() {
             )
             })}
             </tbody>
+            {renderMobileEvents()}
         </table>
         </div>
 
