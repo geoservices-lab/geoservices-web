@@ -54,10 +54,6 @@ function DefaultColumnFilter({
 
 function Calendar() {
     const year =  new Date().getFullYear();
-    const month = new Date().getMonth();
-    const monthData = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-    const [selectedMonth, setSelectedMonth] = useState(month);
     const [selectedYear, setSelectedYear] = useState(year);
     const [data, setProductData] = useState([]);
 
@@ -65,7 +61,9 @@ function Calendar() {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "training"]`);
             const data = await res.json();
-            const currentPage = data.result.filter((item: any) => item.start_date.includes(`${selectedMonth + 1}-`));
+            const currentPage = data.result.filter((item: any) => {
+                return item.start_date.includes(selectedYear);
+            });
             setProductData(currentPage);
         } catch (err) {
             console.log(err);
@@ -74,7 +72,7 @@ function Calendar() {
 
     useEffect(() => {
         callAPI(setProductData);
-    }, [selectedMonth]);
+    }, [selectedYear]);
 
  const columns = React.useMemo(
      () => [
@@ -127,22 +125,12 @@ function Calendar() {
    useSortBy
  );
 
- const handleNextMonth = () => {
-     if (selectedMonth < 11) {
-         setSelectedMonth(selectedMonth + 1);
-     } else {
-         setSelectedMonth(0);
-         setSelectedYear(selectedYear + 1);
-     }
- }
+    const handleNext = () => {
+        setSelectedYear(selectedYear + 1);
+    }
 
-    const handlePrevMonth = () => {
-        if (selectedMonth > 0) {
-            setSelectedMonth(selectedMonth - 1);
-        } else {
-            setSelectedMonth(11);
-            setSelectedYear(selectedYear - 1);
-        }
+    const handlePrev = () => {
+        setSelectedYear(selectedYear - 1);
     }
 
     const renderMobileEvents = () => (
@@ -169,7 +157,7 @@ function Calendar() {
  return (
         <>
         <div className="flex justify-between h-20 text-white bg-peach items-center px-4">
-            <button onClick={() => handlePrevMonth()} type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
+            <button onClick={() => handlePrev()} type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 ml-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -177,8 +165,8 @@ function Calendar() {
                 </span>
                 <p className='mobile:hidden'>Previous</p>
             </button>
-            <div className='text-[24px]'>{monthData[selectedMonth]} {selectedYear}</div>
-            <button onClick={() => handleNextMonth()} type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
+            <div className='text-[24px]'>{selectedYear}</div>
+            <button onClick={() => handleNext()} type="button" className='text-center inline-flex gap-4 font-medium group hover:scale-110'>
                 <p className='mobile:hidden'>Next</p>
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 mr-2">
