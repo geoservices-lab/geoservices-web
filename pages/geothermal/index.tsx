@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react"
-import Banner from "./component/banner"
 import Header from "module/BasicLayout/Header"
 import BreadCrumb from "./component/breadcrumb"
 import Product from "./component/card"
@@ -32,7 +31,7 @@ const Geothermal = () => {
         <ImageJumbotron imageSrc={pageData && pageData.image} text={pageData && pageData.title} />
         <div className='max-w-7xl mx-auto px-4 space-y-8'>
             <div className='mobile:hidden'>
-                <BreadCrumb/>
+                <BreadCrumb slug={'Geothermal'} />
             </div>
             <Product description={pageData && pageData.description}/>
             <div className="pt-14">
