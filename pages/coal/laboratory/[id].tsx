@@ -24,7 +24,7 @@ const breadcrumbData = (labTitle: string) => [
         url: "/coal",
     },
     {
-        title: "Laboratory",
+        title: "Coal Laboratory",
         url: "/coal/laboratory",
     },
     {
@@ -76,15 +76,15 @@ const CoalLabSub = () => {
     return (
         <>
             <Modal open={open} onClose={onCloseModal} styles={{ modal: { width: 1200, maxWidth: '80%' }}} center>
-                {product && product.products[activeIndex].main_image && <SanityImageComp image={product && product.products[activeIndex].main_image} className={'h-[240px] max-w-[500px] mb-6'} style={{ marginTop: 0, objectFit: 'cover' }} />}
+                {product && product.length > 0 && product.products[activeIndex].main_image && <SanityImageComp image={product && product.products[activeIndex].main_image} className={'h-[240px] max-w-[500px] mb-6'} style={{ marginTop: 0, objectFit: 'cover' }} />}
                 <h2 className={'text-[20px]'}>
-                    {product && product.products[activeIndex].product}
+                    {product && product.length > 0 && product.products[activeIndex].product}
                 </h2>
                 <div className="text-justify desktop:text-[15px] text-[12px] text-gray leading-8 pt-4">
-                    {product && product.products[activeIndex].description}
+                    {product && product.length > 0 && product.products[activeIndex].description}
                 </div>
                 <div className={'flex'}>
-                    {product && product.products[activeIndex].featured_images && product.products[activeIndex].featured_images.map((item, index) => (
+                    {product && product.length > 0 && product.products[activeIndex].featured_images && product.products[activeIndex].featured_images.map((item, index) => (
                         <div className={'pr-4'}>
                             <SanityImageComp image={item} className={'h-[120px]'} />
                         </div>
@@ -124,7 +124,7 @@ const CoalLabSub = () => {
                     Highlighted Products
                 </h2>
                 <div className={'flex flex-wrap mt-[20px] mb-[40px]'}>
-                    {product && product.products.map((item, index) => {
+                    {product && product.length > 0 && product.products.map((item, index) => {
                         return (
                             <Box key={index} className={'desktop:w-1/3 pr-4 pb-4'}>
                                 <div onClick={() => onOpenModal(index)} className={'cursor-pointer p-4 h-[260px] relative'} style={{

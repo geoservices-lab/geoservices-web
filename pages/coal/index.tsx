@@ -31,6 +31,7 @@ const Coal = () => {
   const [laboratory, setLaboratoryData] = useState();
   const [services, setServicesData] = useState();
   const [training, setTrainingData] = useState();
+  const [mineral, setMineralData] = useState();
 
   const callPageApi = async () => {
     try {
@@ -60,6 +61,17 @@ const Coal = () => {
       const data = await res.json();
       const currentData = data.result.filter((item: any) => item.slug === 'coal-laboratory');
       setLaboratoryData(currentData[0]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const callLMineralApi = async () => {
+    try {
+      const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
+      const data = await res.json();
+      const currentData = data.result.filter((item: any) => item.slug === 'mineral-laboratory');
+      setMineralData(currentData[0]);
     } catch (err) {
       console.log(err);
     }
@@ -105,6 +117,7 @@ const Coal = () => {
     callLaboratoryApi();
     callTrainingApi();
     callServicesApi();
+    callLMineralApi();
   }, []);
 
   const option = [
@@ -115,10 +128,16 @@ const Coal = () => {
       introduction: exploration && exploration.description,
     },
     {
-      service: "Laboratory",
+      service: "Coal Laboratory",
       slug: "/coal/laboratory",
       banner: laboratory && laboratory.banner,
       introduction: laboratory && laboratory.description,
+    },
+    {
+      service: "Mineral Laboratory",
+      slug: "/mineral/laboratory",
+      banner: mineral && mineral.banner,
+      introduction: mineral && mineral.description,
     },
     {
       service: "Services",

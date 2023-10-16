@@ -19,8 +19,8 @@ const breadcrumbData = () => [
         url: "/coal",
     },
     {
-        title: "Coal Laboratory",
-        url: "/coal/laboratory",
+        title: "Mineral Laboratory",
+        url: "/mineral/laboratory",
         textColor: "rgb(230, 142, 103)",
     },
 ];
@@ -33,7 +33,7 @@ const CoalLab = () => {
         try {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
             const data = await res.json();
-            const currentPage = data.result.filter((item: any) => item.slug === 'coal-laboratory');
+            const currentPage = data.result.filter((item: any) => item.slug === 'mineral-laboratory');
             setPageData(currentPage[0]);
         } catch (err) {
             console.log(err);
@@ -45,7 +45,7 @@ const CoalLab = () => {
             const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "geolab"]`);
             const data = await res.json();
             const content = data && data.result;
-            const cureated = content.filter((item) => item.type === 'coal');
+            const cureated = content.filter((item) => item.type === 'mineral');
             setContentData(cureated);
         } catch (err) {
             console.log(err);
@@ -79,7 +79,7 @@ const CoalLab = () => {
                 </InfoCard>
                 <div className={'flex flex-wrap pt-[20px] mobile:justify-center'}>
                     {contentData && contentData.map((item, index) => {
-                        return <BoxItem key={index} label={item.division} url={`/coal/laboratory/${item.slug}`} />;
+                        return <BoxItem key={index} label={item.division} url={`/mineral/laboratory/${item.slug}`} />;
                     })}
                 </div>
             </Container>
