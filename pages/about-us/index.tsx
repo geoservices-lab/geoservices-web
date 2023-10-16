@@ -3,6 +3,11 @@ import Header from "../../module/BasicLayout/Header";
 import Desc from './Component/desc-about';
 import Footer from "../../module/BasicLayout/Footer";
 import ImageJumbotron from "../../reusables/ImageJumbotron";
+import Ourteam from './Component/our-team';
+import History from './Component/history';
+import Quotes from './Component/quotes';
+
+
 
 export default function AboutUs() {
     const [pageData, setPageData] = useState();
@@ -29,7 +34,15 @@ export default function AboutUs() {
                 imageSrc={pageData && pageData.banner}
                 text={pageData && pageData.title}
             />
-            <Desc desc={pageData && pageData.description}/>
+            <Quotes/>
+            <br />
+            <History/>
+            <br />
+            <hr className='max-w-7xl text-peach mx-auto'/>
+            <br />
+            <Ourteam/>
+            
+            {/* <Desc desc={pageData && pageData.description}/> */}
             <div className="pt-28">
                 <Footer />
             </div>

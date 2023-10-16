@@ -1,11 +1,10 @@
-
-import React from "react"
+import React from "react";
 
 const posts = [
     {
       id: 1,
       title: 'Sludge Oil Liquefaction System (Sols) With Paralax(R)',
-      category: 'Upstream',
+      category: 'Certificate',
       href: '/news-demo/1',
       imageUrl:
       "https://source.unsplash.com/FXJf8y_cZA0",
@@ -14,7 +13,7 @@ const posts = [
     {
         id: 2,
         title: 'Sludge Oil Liquefaction System (Sols) With Paralax(R)',
-        category: 'Upstream',
+        category: 'Certificate',
         href: '/news-demo/1',
         imageUrl:
         "https://source.unsplash.com/FXJf8y_cZA0",
@@ -22,34 +21,23 @@ const posts = [
     {
         id: 3,
         title: 'Sludge Oil Liquefaction System (Sols) With Paralax(R)',
-        category: 'Upstream',
+        category: 'Certificate',
         href: '/news-demo/1',
         imageUrl:
         "https://source.unsplash.com/FXJf8y_cZA0",
     },
-        // More posts...
-        {
-            id: 4,
-            title: 'Sludge Oil Liquefaction System (Sols) With Paralax(R)',
-            category: 'Upstream',
-            href: '/news-demo/1',
-            imageUrl:
-            "https://source.unsplash.com/FXJf8y_cZA0",
-        },
-        {
-            id: 5,
-            title: 'Sludge Oil Liquefaction System (Sols) With Paralax(R)',
-            category: 'Upstream',
-            href: '/news-demo/1',
-            imageUrl:
-            "https://source.unsplash.com/FXJf8y_cZA0",
-        },
-  ]
-  
-  const newsPage = () => {
+]
+
+const Certificates = () => {
     return (
         <>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <hr className="text-peach max-w-7xl mx-auto mt-16 mb-8"/>
+        <div className="px-4 max-w-7xl mx-auto text-left">
+            <div className="mx-auto mb-8 px-4">
+                <h2 className="mb-4 desktop:text-[32pt] text-[24pt] tracking-wide font-extrabold text-peach">Certificates</h2>
+                <p className="font-light text-gray text-[14pt] text-justify">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt impedit ducimus nemo! Iure, porro nihil? Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem temporibus asperiores labore repellendus eveniet esse magnam nemo fugiat mollitia? Veritatis. </p>
+            </div>
+
             <div className="grid mx-auto mt-10 grid-cols-1 gap-x-4 gap-y-8 desktop:grid-cols-3">
             {posts.map((post) => (
 
@@ -78,10 +66,10 @@ const posts = [
             
             ))}
             </div>
+
         </div>
         </>
-
     )
-  }
-  
-  export default newsPage
+}
+
+export default Certificates
