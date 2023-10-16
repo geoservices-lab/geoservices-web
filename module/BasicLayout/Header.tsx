@@ -53,6 +53,7 @@ const Header = () => {
                   display: "grid",
                   gridAutoRows: "1fr",
                   width: "100%",
+                  paddingRight: 40,
               }}
           >
               <Box
@@ -165,7 +166,11 @@ const Header = () => {
                                               : "transparent",
                                       }}
                                   >
-                                      Oil and Gas
+                                      <Link href={'/oil_and_gas'} style={{
+                                          color: 'black'
+                                      }}>
+                                          Oil and Gas
+                                      </Link>
                                   </Text>
                               </Nav>
                               <Nav {...coalMenu}>
@@ -186,7 +191,11 @@ const Header = () => {
                                               : "transparent",
                                       }}
                                   >
-                                      Coal and Minerals
+                                      <Link href={'/coal'} style={{
+                                          color: 'black'
+                                      }}>
+                                        Coal and Minerals
+                                      </Link>
                                   </Text>
                               </Nav>
                               <TextLink
@@ -231,21 +240,21 @@ const Header = () => {
                           </Row>
                       </Box>
 
-                      <Button
-                          auto
-                          onPress={() => {
-                              setExpand(true);
-                          }}
-                          css={{
-                              backgroundColor: "#363C9A",
-                              zIndex: 0,
-                              borderRadius: "0",
-                              height: "100%",
-                              width: "90px",
-                          }}
-                      >
-                          <IoSearchOutline size={30} />
-                      </Button>
+                      {/*<Button*/}
+                      {/*    auto*/}
+                      {/*    onPress={() => {*/}
+                      {/*        setExpand(true);*/}
+                      {/*    }}*/}
+                      {/*    css={{*/}
+                      {/*        backgroundColor: "#363C9A",*/}
+                      {/*        zIndex: 0,*/}
+                      {/*        borderRadius: "0",*/}
+                      {/*        height: "100%",*/}
+                      {/*        width: "90px",*/}
+                      {/*    }}*/}
+                      {/*>*/}
+                      {/*    <IoSearchOutline size={30} />*/}
+                      {/*</Button>*/}
                   </Box>
               </Box>
           </Box>

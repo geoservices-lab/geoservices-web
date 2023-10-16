@@ -29,6 +29,8 @@ const Coal = () => {
   const [contentData, setContentData] = useState();
   const [exploration, setExplorationData] = useState();
   const [laboratory, setLaboratoryData] = useState();
+  const [services, setServicesData] = useState();
+  const [training, setTrainingData] = useState();
 
   const callPageApi = async () => {
     try {
@@ -63,6 +65,28 @@ const Coal = () => {
     }
   };
 
+  const callServicesApi = async () => {
+    try {
+      const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
+      const data = await res.json();
+      const currentData = data.result.filter((item: any) => item.slug === 'services' && item.parent === 'coal');
+      setServicesData(currentData[0]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const callTrainingApi = async () => {
+    try {
+      const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "pages"]`);
+      const data = await res.json();
+      const currentData = data.result.filter((item: any) => item.slug === 'training' && item.parent === 'coal');
+      setTrainingData(currentData[0]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const callContentApi = async () => {
     try {
       const res = await fetch(`https://miib670e.api.sanity.io/v2021-06-07/data/query/production?query=*[_type == "exploration"]`);
@@ -79,6 +103,8 @@ const Coal = () => {
     callContentApi();
     callExplorationApi();
     callLaboratoryApi();
+    callTrainingApi();
+    callServicesApi();
   }, []);
 
   const option = [
@@ -97,14 +123,14 @@ const Coal = () => {
     {
       service: "Services",
       slug: "/coal/services",
-      banner: exploration && exploration.banner,
-      introduction: exploration && exploration.description,
+      banner: services && services.banner,
+      introduction: services && services.description,
     },
     {
       service: "Training",
-      slug: "/coal/training",
-      banner: exploration && exploration.banner,
-      introduction: exploration && exploration.description,
+      slug: "/training",
+      banner: training && training.banner,
+      introduction: training && training.description,
     },
   ];
 

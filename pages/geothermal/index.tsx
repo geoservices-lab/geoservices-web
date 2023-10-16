@@ -26,8 +26,6 @@ const Geothermal = () => {
         callPageApi();
     }, []);
 
-    console.log(pageData);
-
     return (
         <>
         <Header/>
@@ -41,8 +39,8 @@ const Geothermal = () => {
                 <Speciality data={pageData && pageData.specialties}/>
             </div>
             <div className="pt-14 space-y-8">
-                <Services/>
-                <Equipments/>
+                <Services data={pageData && pageData.services}/>
+                <Equipments data={pageData && pageData.equipments}/>
             </div>
         </div>
         <div className="pt-24">

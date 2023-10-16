@@ -147,7 +147,7 @@ const OilandGas = () => {
         },
         {
             service: "Training",
-            slug: "/oil_and_gas/training",
+            slug: "/training",
             banner: training && training.banner,
             introduction: training && training.description,
         },
