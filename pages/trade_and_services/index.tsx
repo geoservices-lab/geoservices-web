@@ -5,7 +5,7 @@ import Product from "../geothermal/component/card"
 import Speciality from "../geothermal/component/speciality"
 import Services from "../geothermal/component/services"
 import Footer from "module/BasicLayout/Footer"
-import Equipments from "../geothermal/component/equipments"
+import Enviromental from "./component/enviromental"
 import ImageJumbotron from "../../reusables/ImageJumbotron";
 
 const Geothermal = () => {
@@ -39,7 +39,7 @@ const Geothermal = () => {
           </div>
           <div className="pt-14 space-y-8">
             <Services data={pageData && pageData.services}/>
-            <Equipments data={pageData && pageData.equipments}/>
+            <Enviromental data={pageData && pageData.equipments}/>
           </div>
         </div>
         <div className="pt-24">

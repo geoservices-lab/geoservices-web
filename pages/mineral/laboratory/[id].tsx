@@ -152,7 +152,7 @@ const MineralLabSub = () => {
                     color: 'rgb(230, 142, 103)',
                     textTransform: 'uppercase',
                     fontSize: 18,
-                }}>Other Geological Laboratories</h2>
+                }}>Other Mineral Laboratories</h2>
                 <Box
                     css={{
                         marginTop: 30,
