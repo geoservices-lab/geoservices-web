@@ -11,6 +11,8 @@ import { Modal } from 'react-responsive-modal';
 import BreadCrumbLine from "../../../reusables/BreadcrumbLine";
 import SanityImageComp from "../../../reusables/SanityImage/SanityImage.comp";
 import InfoCard from "../../../reusables/InfoCard/InfoCard.comp";
+import { PortableText } from "@portabletext/react";
+import TextLink from "../../../reusables/TextLink";
 
 const breadcrumbData = (labTitle: string) => [
     {
@@ -18,12 +20,12 @@ const breadcrumbData = (labTitle: string) => [
         url: "/",
     },
     {
-        title: "Coal",
-        url: "/coal",
+        title: "Trade and Services",
+        url: "/trade_and_services",
     },
     {
-        title: "Coal Laboratory",
-        url: "/coal/laboratory",
+        title: "Water Services",
+        url: "/enviromental/laboratory",
     },
     {
         title: labTitle,
@@ -32,7 +34,7 @@ const breadcrumbData = (labTitle: string) => [
     },
 ];
 
-const CoalLabSub = () => {
+const WaterLabSub = () => {
     const router = useRouter();
     const [product, setProductData] = useState();
     const [otherDivision, setOtherDivision] = useState([]);
@@ -47,7 +49,7 @@ const CoalLabSub = () => {
             const data = await res.json();
             const currentPage = data.result.filter((item: any) => item.slug === router.query.id);
             const otherDivision = data.result.filter((item: any) => item.slug !== router.query.id);
-            const curated = otherDivision.filter((item: any) => item.type === 'coal');
+            const curated = otherDivision.filter((item: any) => item.type === 'water');
             setProductData(currentPage[0]);
             setOtherDivision(curated);
         } catch (err) {
@@ -114,13 +116,13 @@ const CoalLabSub = () => {
                         </p>
                     </div>
                 </InfoCard>
-                <h2 style={{
+                {product && product.length > 0 && <h2 style={{
                     color: 'rgb(230, 142, 103)',
                     textTransform: 'uppercase',
                     fontSize: 18,
                 }}>
                     Highlighted Products
-                </h2>
+                </h2>}
                 <div className={'flex flex-wrap mt-[20px] mb-[40px]'}>
                     {product && product.length > 0 && product.products.map((item, index) => {
                         return (
@@ -165,7 +167,7 @@ const CoalLabSub = () => {
                             index.toString() !== router.query.id && <div style={{
                                 marginRight: 20,
                             }}>
-                                <Link key={index + 'lab'} href={'/coal/laboratory/' + item.slug}>
+                                <Link key={index + 'lab'} href={'/enviromental/laboratory/' + item.slug}>
                                     <div>
                                         {item.banner ? <SanityImageComp image={item.banner} style={{
                                             width: 300,
@@ -202,4 +204,4 @@ const CoalLabSub = () => {
     );
 };
 
-export default CoalLabSub;
+export default WaterLabSub;
