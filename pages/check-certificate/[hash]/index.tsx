@@ -61,7 +61,7 @@ const CheckCertificate = () => {
       var isLoadingButtonNotLoaded = document.getElementById('loadingbtn')
       console.log('the result not showing')
       console.log('Iframe Need To Reload')
-      const maxAttempts = 20; // Define the maximum number of attempts
+      var maxAttempts = 20; // Define the maximum number of attempts
       let attempts = 0;
       var isStop = false
       const checkIframe = () => {
@@ -89,6 +89,7 @@ const CheckCertificate = () => {
 
             // Force to reload when blocked by CSP
             if (String(error).includes('Permission denied to access property "document"')) { 
+              maxAttempts += 5 // Add attemp 5 when blocked by CSP (its happend on mozil la private mode)
               setTimeout(checkIframe, 1000);
             }
             isStop = true;
