@@ -20,7 +20,7 @@ export default function Home() {
             <div className="mt-48"></div>
             <NewsUpdate />
             <br /><br />
-            <TrainingUpdate />
+            {/* <TrainingUpdate /> */}
         </div>
         <footer>
             <Footer />

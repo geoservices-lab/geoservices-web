@@ -18,17 +18,17 @@ const posts = [
     {
       name: 'Peter A. Pranama, MBA',
       tittle: 'President',
-      imageUrl: "https://source.unsplash.com/7YVZYZeITc8",
+      imageUrl: "../assets/pak peter.png",
     },
     {
     name: 'Arifin Pranoto',
     tittle: 'Vice President',
-    imageUrl: "https://source.unsplash.com/jmURdhtm7Ng",
+    imageUrl: "../assets/pak peter.png",
     },
     {
     name: 'Danundra Sutesio',
     tittle: 'Director',
-    imageUrl: "https://source.unsplash.com/C8Ta0gwPbQg",
+    imageUrl: "../assets/pak peter.png",
     },
     
 ]
@@ -63,10 +63,10 @@ const Ourteam = () => {
                 </div>
                 <div className="grid gap-8 desktop:gap-16 max-w-4xl mx-auto grid-cols-2 desktop:grid-cols-3 desktop:py-8">
                     {posts.map((post) => (
-                    <div className="text-center text-white bg-peach rounded-md">
-                        <img className="mx-auto rounded-md" src={post.imageUrl} alt="Bonnie Avatar"/>
-                        <div className="py-2">
-                            <h3 className="text-2xl font-bold tracking-tight text-gray-900">
+                    <div className="bg-peach rounded-md">
+                        <img className="rounded-t" src={post.imageUrl} alt="Bonnie Avatar"/>
+                        <div className="my-2 ml-4 text-white">
+                            <h3 className="text-2xl font-bold tracking-tight">
                             {post.name}
                             </h3>
                             <p>{post.tittle}</p>

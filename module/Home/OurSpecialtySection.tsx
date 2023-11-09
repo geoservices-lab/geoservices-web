@@ -42,10 +42,8 @@ const OurSpecialtySection = ({ data }: any) => {
                     <div
                         className={`desktop:flex ${index % 2 === 0 ? '' : 'desktop:flex-row-reverse'} grid-cols-1 rounded-md bg-slate-100`}
                     >
-                        <div className="desktop:flex-auto w-full">
-                            <SanityImage image={post.image} className="rounded-md w-full h-full" style={{
-                                marginTop: 0,
-                            }}/>
+                        <div>
+                            <SanityImage image={post.image}/>
                         </div>
                         <div className="desktop:flex-auto w-full">
                             <div className="px-12 mr-4 pb-12 pt-12">

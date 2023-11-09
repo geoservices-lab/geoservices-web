@@ -4,7 +4,7 @@ const Quotes = () => {
     return (
         <>
             <div className="gap-16 items-center py-8 px-4 mx-auto max-w-7xl desktop:flex">
-                <img className="desktop:w-1/4 w-1/2 rounded-md " src="https://source.unsplash.com/7YVZYZeITc8" alt="dashboard image"/>
+                <img className="desktop:w-1/3 w-1/2 rounded-md shadow-md" src="../assets/pak peter.png" alt="dashboard image"/>
                 <div>
                 <h2 className="mb-4 desktop:text-[32pt] text-[24pt] tracking-wide font-extrabold text-peach">Foreword</h2>
                 <blockquote className="p-4 my-4 border-l-4 border-peach">

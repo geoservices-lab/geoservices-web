@@ -6,6 +6,8 @@ import ImageJumbotron from "../../reusables/ImageJumbotron";
 import Ourteam from './Component/our-team';
 import History from './Component/history';
 import Quotes from './Component/quotes';
+import QHSE from './Component/qhse';
+import ISO from './Component/iso-cert';
 
 
 
@@ -34,6 +36,10 @@ export default function AboutUs() {
                 imageSrc={pageData && pageData.banner}
                 text={pageData && pageData.title}
             />
+
+            <QHSE/>
+            <ISO/>
+            <div className='py-16'></div>
             <Quotes/>
             <br />
             <History/>
